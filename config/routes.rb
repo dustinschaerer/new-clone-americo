@@ -1,8 +1,12 @@
 Americo::Application.routes.draw do
   
+  get "store/index"
+  resources :products
+
   get "users/new"
 
   root :to => 'static_pages#home'
+  match '/store',   to: 'store#index',          via: 'get'
 
   match '/signup',  to: 'users#new',            via: 'get'
 
