@@ -1,5 +1,10 @@
 Americo::Application.routes.draw do
   
+  resources :line_items
+
+  devise_for :users
+  resources :carts
+
   get "store/index"
   resources :products
 
