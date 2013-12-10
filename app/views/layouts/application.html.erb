@@ -14,13 +14,14 @@
 
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span2">
+      <div class="span3">
           <!--sidebar-->
           <div class="sidebar-nav-fixed" id="side">
-             <div id="cart">
-               <%= render @cart %>   
-             </div>
-
+            <% if @cart %>
+              <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+                <%= render @cart %>   
+              <% end %>
+            <% end %> 
           <ul class="nav nav-list">
             <li><a href="/">Home</a></li>
             <li><a href="#">Responsive</a></li>
@@ -38,7 +39,7 @@
           </ul>
           </div>
       </div>
-      <div class="span10">
+      <div class="span9">
          <!--2nd column-->
          <div id="rightCol">
           <%= render 'layouts/messages' %>
