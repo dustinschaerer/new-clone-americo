@@ -1,0 +1,46 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, size: 50 %>
+  </div>
+  <div class="field">
+    <%= f.label :ship_street_address, 'Street Address' %>
+    <%= f.text_field :ship_street_address, size: 50 %>
+  </div>
+  <div class="field">
+    <%= f.label :ship_city, 'City' %>
+    <%= f.text_field :ship_city, size: 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :ship_state, 'State' %>
+    <%= f.select :ship_state, Order::STATES, prompt: 'Select State' %>
+
+  </div>
+  <div class="field">
+    <%= f.label :ship_country, 'Country' %>
+    <%= f.text_field :ship_country %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone, 'Telephone Number' %>
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= f.label :email, 'Email Address' %>
+    <%= f.text_field :email, size: 40 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

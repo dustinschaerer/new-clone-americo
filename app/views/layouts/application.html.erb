@@ -14,7 +14,7 @@
 
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span3">
+      <div class="span4">
           <!--sidebar-->
           <div class="sidebar-nav-fixed" id="side">
             <% if @cart %>
@@ -23,23 +23,20 @@
               <% end %>
             <% end %> 
           <ul class="nav nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Responsive</a></li>
-            <li><a href="#">Example</a></li>
+            <li><a href="/store">Home</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
             <li class="divider"></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">News</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
             <li><a href="#">Example</a></li>
-            <li><a href="#">Example</a></li>
-            <li><a href="#">Resources</a></li>
             <li class="divider"></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
             <li><a href="#">Link</a></li>
           </ul>
           </div>
-      </div>
-      <div class="span9">
+      </div><!--/span4-->
+      <div class="span8">
          <!--2nd column-->
          <div id="rightCol">
           <%= render 'layouts/messages' %>
@@ -54,7 +51,7 @@
            <%= yield %>
 
           </div><!--/rightCol-->
-      </div><!--/span10-->
+      </div><!--/span8-->
     </div>
 
     <%= render 'layouts/footer' %>

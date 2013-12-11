@@ -1,13 +1,18 @@
 Americo::Application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :line_items
 
   devise_for :users
+  
   resources :carts
 
   get "store/index"
-  resources :products
-
+  resources :products do
+    get :who_bought, on: :member
+  end
+  resources :orders
   get "users/new"
 
   root :to => 'static_pages#home'
