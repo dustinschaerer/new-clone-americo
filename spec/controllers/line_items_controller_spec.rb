@@ -23,7 +23,12 @@ describe LineItemsController do
   # This should return the minimal set of attributes required to create a valid
   # LineItem. As you add validations to LineItem, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "product" => "" } }
+  let(:valid_attributes) { { "product_id" => "2",
+                             "cart_id" => "2",
+                             "quantity" => "1",
+                             "style_id" => "1",
+                             "series_id" => "2",
+                             "color_id" => "3" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

@@ -23,7 +23,13 @@ describe OrdersController do
   # This should return the minimal set of attributes required to create a valid
   # Order. As you add validations to Order, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "Joe Schmo",
+                             "ship_street_address" => "123 Way Street",
+                             "ship_city" => "Vancouver",
+                             "ship_state" => "Washington",
+                             "ship_country" => "United States",
+                             "telephone" => "555-555-5555",
+                             "email" => "dustin@gmail.com" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -49,7 +55,7 @@ describe OrdersController do
   describe "GET new" do
     it "assigns a new order as @order" do
       get :new, {}, valid_session
-      assigns(:order).should be_a_new(Order)
+      response.should redirect_to store_url
     end
   end
 
@@ -75,9 +81,9 @@ describe OrdersController do
         assigns(:order).should be_persisted
       end
 
-      it "redirects to the created order" do
+      it "redirects to the store url" do
         post :create, {:order => valid_attributes}, valid_session
-        response.should redirect_to(Order.last)
+        response.should redirect_to store_url
       end
     end
 

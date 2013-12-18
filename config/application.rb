@@ -30,5 +30,8 @@ module Americo
 
     I18n.enforce_available_locales = true
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
+    config.filter_parameters += [:password, :password_confirmation]
   end
 end

@@ -41,13 +41,13 @@ describe "Static pages" do
     visit root_path
     click_link('About', match: :first)
     page.should have_title(full_title('About Us'))
-    click_link "Help"
+    click_link('Help', match: :first)
     page.should have_title(full_title('Help'))
-    click_link "Contact"
+    click_link('Contact', match: :first)
     page.should have_title(full_title('Contact'))
     click_link "Home"
-    click_link "Sign up"
-    page.should have_title(full_title('Sign up'))
+    click_link('Sign up', match: :first)
+    page.should have_title(full_title('Sign Up'))
   end
 
 end

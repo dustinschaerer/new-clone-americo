@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-  
+  permit_params :title, :description, :image_url, :thumbnail_url, :category
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

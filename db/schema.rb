@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210214843) do
+ActiveRecord::Schema.define(version: 20131211235806) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20131210214843) do
     t.datetime "updated_at"
   end
 
+  create_table "colors", force: true do |t|
+    t.integer  "series_id"
+    t.string   "name"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "colors", ["series_id"], name: "index_colors_on_series_id"
+
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -58,11 +68,17 @@ ActiveRecord::Schema.define(version: 20131210214843) do
     t.datetime "updated_at"
     t.integer  "quantity",   default: 1
     t.integer  "order_id"
+    t.integer  "style_id"
+    t.integer  "series_id"
+    t.integer  "color_id"
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
+  add_index "line_items", ["color_id"], name: "index_line_items_on_color_id"
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
+  add_index "line_items", ["series_id"], name: "index_line_items_on_series_id"
+  add_index "line_items", ["style_id"], name: "index_line_items_on_style_id"
 
   create_table "orders", force: true do |t|
     t.string   "name"
@@ -82,6 +98,27 @@ ActiveRecord::Schema.define(version: 20131210214843) do
     t.string   "category"
     t.string   "image_url"
     t.string   "thumbnail_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "series", force: true do |t|
+    t.integer  "style_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "series", ["style_id"], name: "index_series_on_style_id"
+
+  create_table "styles", force: true do |t|
+    t.string   "title"
+    t.string   "category"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

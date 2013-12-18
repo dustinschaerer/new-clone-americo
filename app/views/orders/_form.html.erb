@@ -30,7 +30,8 @@
   </div>
   <div class="field">
     <%= f.label :ship_country, 'Country' %>
-    <%= f.text_field :ship_country %>
+    <%= select_tag(:ship_country, options_for_select([['United States', 'United States']] )) %>
+    
   </div>
   <div class="field">
     <%= f.label :telephone, 'Telephone Number' %>
