@@ -1,0 +1,20 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Tim Smith
+  ship_street_address: 123 Way Street
+  ship_city: Vancouver
+  ship_state: Washington
+  ship_country: United States
+  email: tim@example.org
+  telephone: 555-555-5555
+
+two:
+  name: MyString
+  ship_street_address: MyText
+  ship_city: MyString
+  ship_state: MyString
+  ship_country: MyString
+  email: MyString
+  telephone: MyString

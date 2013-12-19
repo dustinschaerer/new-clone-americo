@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: Slip-Knot Padding Swatch Sample
+  description: 8 x 10 Vinyl Slip-Knot Padding Swatch Sample
+  category: Slip-Knot Padding
+  image_url: slipknot-padding-swatch-sample.png
+  thumbnail_url: slipknot-padding-swatch-sample-thumb.png
+
+two:
+  title: Laminate Swatch Sample
+  description: 8 x 10 Laminate Swatch Sample
+  category: Laminate
+  image_url: laminate-swatch-sample.png
+  thumbnail_url: laminate-swatch-sample-thumb.png
+
+vinyl: 
+  title:         Vinyl Swatch Sample
+  description:   8 x 10 Vinyl Swatch Sample
+  category:      Vinyl
+  image_url:     vinyl-swatch-sample.png
+  thumbnail_url: vinyl-swatch-sample-thumb.png

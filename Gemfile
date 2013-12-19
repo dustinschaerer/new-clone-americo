@@ -14,7 +14,6 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
-  gem 'factory_girl_rails', '4.2.1' 
 end
 
 group :test do
@@ -22,6 +21,7 @@ group :test do
   gem 'capybara', '2.1.0'
   # uncomment on Linux
   gem 'libnotify', '0.8.0'
+  gem 'shoulda'
 end
 
 gem 'sass-rails', '4.0.1'

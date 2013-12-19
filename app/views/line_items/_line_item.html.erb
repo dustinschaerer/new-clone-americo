@@ -1,8 +1,8 @@
-	 <% if line_item == @current_item %>
+	  <% if line_item == @current_item %>
      <tr id="current_item">
-     <% else %>
+    <% else %>
      <tr>
-     <% end %>	 	
+    <% end %>	 	
       <td><%= line_item.quantity %>&times;</td>
       <td><%= line_item.product.title %></td>
       <td class="item_category"><%= line_item.product.category %></td>
