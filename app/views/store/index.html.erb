@@ -9,15 +9,33 @@
 					<div class="span3">
 						<%= image_tag(product.image_url) %>
 					</div>
-					<div class="span6">
+					<div class="span9">
 						<h3><%= product.title %></h3>
 						<%= sanitize(product.description) %>
 						<div class="price_line">
 							<span class="price"></span>
 						</div>
-					</div>
-					<div class="span3">
-						<%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+					    <div class="row-fluid">
+					
+							<div class="span4 style-dropdown">
+								<%= collection_select(:style, :name, @styles, :id, :name ) %>
+							</div>
+							<div class="span4 series-dropdown">
+								<%= collection_select(:series, :name, @series, :id, :name ) %>
+							</div>
+							<div class="span4 color-dropdown">
+								<%= collection_select(:color, :name, @colors, :id, :name ) %>
+							</div>
+	
+						</div>		
+
+						<div class="row-fluid">
+					
+							<div class="span12 pull-right">
+								<%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+							</div>
+						</div>	
+
 					</div>
 					
 				</div>

@@ -4,5 +4,9 @@ class StoreController < ApplicationController
   
   def index
   	@products = Product.order(:title)
+    @series = Series.order(:name)
+    @styles = Style.order(:name)
+    @colors = Color.order(:name)
+
   end
 end
