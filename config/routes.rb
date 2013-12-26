@@ -1,5 +1,6 @@
 Americo::Application.routes.draw do
   
+  
   authenticated :user do
     root :to => 'store#index', :as => "authenticated_root"
   end
@@ -8,22 +9,24 @@ Americo::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
+  resources :categories
+
   resources :line_items
  
   resources :carts
 
+  resources :orders
+    
   get "store/index"
   resources :products do
     get :who_bought, on: :member
   end
-  resources :orders
-  get "users/new"
 
+  get "users/new"
   
   match '/store',   to: 'store#index',          via: 'get'
-
   match '/signup',  to: 'users#new',            via: 'get'
-
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

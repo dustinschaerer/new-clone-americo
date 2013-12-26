@@ -6,6 +6,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :series
   belongs_to :color
 
-  delegate :name, :category, :description, :image_url, to: :style, prefix: true
+  delegate :name, :category_id, :description, :image_url, to: :style, prefix: true
 
 end

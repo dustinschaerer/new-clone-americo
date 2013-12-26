@@ -19,10 +19,13 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  
+  
   <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.label :category_id %><br>
+    <%= f.collection_select(:category_id, @categories, :id, :name) %>
   </div>
+    
   <div class="field">
     <%= f.label :image_url %><br>
     <%= f.text_field :image_url %>
@@ -35,3 +38,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+<%= params.inspect %> 

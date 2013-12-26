@@ -15,10 +15,19 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @categories = Category.all
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml { render :xml => @product }
+    end
+
   end
 
   # GET /products/1/edit
   def edit
+    @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   # POST /products
@@ -79,6 +88,10 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :category, :image_url, :thumbnail_url)
+      params.require(:product).permit(:title, 
+                                      :description,
+                                      :category_id,
+                                      :image_url, 
+                                      :thumbnail_url)
     end
 end

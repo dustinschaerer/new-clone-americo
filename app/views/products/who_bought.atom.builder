@@ -19,7 +19,7 @@ atom_feed do |feed|
             xhtml.tr do
               xhtml.td item.product.title
               xhtml.td item.quantity
-              xhtml.td item.product.category
+              xhtml.td item.product.category_id
             end
           end
         end
