@@ -1,5 +1,32 @@
 <h1>Listing categories</h1>
 
+<% @categories.in_groups_of(4, false).each do |group| %>  
+
+  <div class="entry">
+    <div class="row-fluid">
+
+      <% group.each do |category| %>
+
+        <%= link_to(category) do %>
+        <div class="span3">
+          <div class="well">
+            <%= image_tag(category.image_url) %>
+            <h4><%= category.name %></h4>
+            <%= sanitize(category.description) %>
+          </div>
+        </div>
+        <% end %>
+        
+      <% end %>
+
+    </div>
+  </div>
+
+<% end %>
+
+
+
+
 <table>
   <thead>
     <tr>
@@ -13,7 +40,7 @@
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+   <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
         <td><%= category.description %></td>
@@ -22,10 +49,9 @@
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
-
 <%= link_to 'New Category', new_category_path %>
