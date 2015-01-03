@@ -1,12 +1,9 @@
 <h1>All Styles</h1>
 
-<% @styles.in_groups_of(4, false).each do |group| %>  
-
+<% @styles.in_groups_of(4, false).each do |group| %>
   <div class="entry">
     <div class="row-fluid">
-
       <% group.each do |style| %>
-
         <%= link_to(style) do %>
         <div class="span3">
           <div class="well">
@@ -16,23 +13,10 @@
           </div>
         </div>
         <% end %>
-        
       <% end %>
-
     </div>
   </div>
-
 <% end %>
-
-
-
-
-
-
-
-
-
-
 <table>
   <thead>
     <tr>

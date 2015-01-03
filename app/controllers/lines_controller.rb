@@ -1,18 +1,16 @@
 class LinesController < ApplicationController
 
-  before_action :authenticate_admin_user!, :except => [:new, :create, :destroy] 
+  before_action :authenticate_admin_user!, :except => [:new, :create, :destroy]
   include CurrentCart
   include CurrentQuoteholder
   before_action :set_quoteholder
   before_action :set_cart
   before_action :set_line, only: [:show, :edit, :update, :destroy]
-  
 
   # GET /lines
   # GET /lines.json
   def index
     @lines = Line.all
-    
   end
 
   # GET /lines/1
@@ -22,11 +20,10 @@ class LinesController < ApplicationController
 
   # GET /lines/new
   def new
-
     @line = Line.new
     @qp_id = (params[:quote_product_id])
     qp = QuoteProduct.find(@qp_id)
-    @qp_name = qp.name   
+    @qp_name = qp.name
   end
 
   # GET /lines/1/edit
@@ -39,11 +36,9 @@ class LinesController < ApplicationController
     # quote_product = QuoteProduct.find(params[:quote_product_id])
     @qp_id = (params[:quote_product_id])
     @line = @quoteholder.lines.build(line_params)
-    #@line = Line.new(line_params)
-
     respond_to do |format|
       if @line.save
-        format.html { redirect_to @line.quoteholder, only_path: true, notice: 'Line was successfully created and added to your Quoteholder.' }
+        format.html { redirect_to @line.quoteholder, only_path: true, notice: 'Quote Item was successfully created and added to your Quoteholder.' }
         format.json { render action: 'show', status: :created, location: @line }
       else
         format.html { render action: 'new', :params => { :quote_product_id => @qp_id } }

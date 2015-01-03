@@ -8,7 +8,8 @@ gem "sass-rails", "~> 4.0.3"
 #gem 'bootstrap-sass', '~>3.0.3.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
-gem 'activeadmin', github: 'gregbell/active_admin', branch: 'master'
+#gem 'activeadmin', github: 'gregbell/active_admin', branch: 'master'
+gem 'activeadmin', github: 'activeadmin'
 #gem 'seed_dump'
 #gem 'acts-as-taggable-on'
 gem 'pg'
@@ -16,14 +17,12 @@ gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
 gem 'jquery-ui-rails'
-gem 'turbolinks', '2.1'
-gem 'jquery-turbolinks'
 gem 'jbuilder', '1.0.2'
 gem 'simple_form'
-#gem 'country-select'
 gem 'underscore-rails'
 gem 'dependent-fields-rails'
-gem 'bootstrap_form'
+#gem 'bootstrap_form'
+gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
 gem "best_in_place", github: 'bernat/best_in_place'
 gem 'activemerchant'
 gem 'figaro'
@@ -56,7 +55,7 @@ group :test do
 end
 
 group :doc do
-  gem 'sdoc', '0.3.20', require: false
+  gem 'sdoc', '0.4.0', require: false
 end
 
 group :production do

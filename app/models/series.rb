@@ -10,12 +10,14 @@ class Series < ActiveRecord::Base
 	has_many :quotes, through: :lines
 	before_destroy :ensure_not_referenced_by_any_line_item
 
+  delegate :name, to: :style, prefix: true
+
 	validates :name, :description, :image_url, presence: true
 	validates :image_url, allow_blank: true, format: {
 		with: %r{\.(gif|jpg|png)\z}i,
 		message: 'must be a URL for GIF, JPG or PNG image.'
 	}
-    
+
 	def self.latest
    	Series.order(:updated_at).last
   end
@@ -30,7 +32,7 @@ class Series < ActiveRecord::Base
       if line_items.empty?
         return true
       else
-        errors.add(:base, 'Line Items present')	
+        errors.add(:base, 'Line Items present')
         return false
       end
 	  end
