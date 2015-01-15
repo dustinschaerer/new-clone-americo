@@ -1,0 +1,257 @@
+/*
+ * This is a manifest file that'll be compiled into admin.css, which will include all the files
+ * listed below.git
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_directory ./admin
+ *= require morris
+*/
+
+
+// First import cerulean variables
+@import "admin/bootswatch/spacelab/variables";
+
+// Import bootstrap
+//@import "admin/bootstrap";
+@import "admin/bootstrap.min";
+@import "admin/sb-admin";
+
+// Bootstrap body padding for fixed navbar
+// body { padding-top: 60px; }
+
+// And finally bootswatch style itself
+// @import "admin/bootswatch/spacelab/bootswatch";
+
+@import url(//fonts.googleapis.com/css?family=Roboto:400,600,700&subset=latin,latin-ext);
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: "Roboto", Helvetica, Arial, sans-serif!important;
+}
+
+.admin_swatch {
+  max-height: 80px;
+  max-width: 80px;
+}
+
+
+
+/* Side notes for calling out invoice like object
+-------------------------------------------------- */
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 50px 15px 30px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-primary {
+  background-color: #F6F6F6;
+  border-color: #446E9B;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+.bs-callout-default {
+  background-color: #F6F6F6;
+  border-color: #474949;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-warning {
+  background-color: #F6F6F6;
+  border-color: #D47500;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+
+.bs-callout-danger {
+  background-color: #F6F6F6;
+  border-color: #5cb85c;;
+    border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-info {
+  background-color: #F6F6F6;
+  border-color: #8A1921;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-yellow {
+  background-color: #F6F6F6;
+  border-color: #f0ad4e;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-green {
+  background-color: #F6F6F6;
+  border-color: #5CB85C;;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+.top10 {
+  margin-top: 10px;
+}
+.top20 {
+  margin-top: 20px;
+}
+.top25 {
+  margin-top: 25px;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.eot');
+  src: font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.woff') format('woff'),
+    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.invoice-title {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+#user-bg-row {
+  background: #333;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+  border-bottom: solid 3px #999999;
+}
+
+#user-bg-row-quote {
+  background: #446E9B;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+  border-bottom: solid 3px #999999;
+}
+
+#user-bg-row-purchase {
+  background: #8A1921;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+
+  border-bottom: solid 3px #999999;
+}
+
+#view-selector-1-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-2-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-3-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-4-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-5-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-6-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+
+
+.label-status {
+  color: white;
+  text-transform: uppercase;
+  padding: 6px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.warn {
+  background: #1Ea0E5;
+
+}
+.ok {
+  background: #03721E;
+}
+
+.offline_purchased {
+  background: #8C5C37;
+}
+.purchased, .error {
+  background: #BF2C37;
+}
+
+
+
+
+
+form {
+  color: #000000;
+}
+
+body {
+  font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14px;
+  line-height:1.42857143;
+  color:#000000;
+  background-color:#ffffff;
+  a {
+    color: #BF2C37;
+  }
+}
+
+
+
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+

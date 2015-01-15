@@ -1,0 +1,195 @@
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+               <a href="/admin/purchases"> <i class="fa fa-tags"></i> Purchases</a>
+            </li>
+            <li class="active">
+                #<%= @purchase.id %>
+            </li>
+        </ol>
+
+    </div>
+</div>
+<!-- /.row -->
+
+<p id="notice"><%= notice %></p>
+
+<div class="row" id="user-bg-row-purchase">
+  <div class="col-lg-12">
+    <p class=""><a href="/admin/users/<%= @purchase.user_id %>"><%= @purchase.email %></a></p></div>
+  </div>
+</div>
+
+<div class="bs-callout bs-callout-info">
+
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+    <h1>PURCHASE ID #<%= @purchase.id %></h1>
+  </div>
+  <div class="col-md-6 col-lg-6 top25">
+    <h4 class="pull-right"><%= @purchase.created_at.strftime("%B %d, %Y") %></h4>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+  	<br>
+    <p><strong>Status:</strong> <%= best_in_place @purchase, :status, :as => :select, :collection => { "Shipped" => "Shipped", "Purchased" => "Purchased" }, :class => ["#{@purchase.current_color}", "label-status"] %>
+      &nbsp;
+      <%= link_to url_for(params) do %>
+        <i class='fa fa-refresh'></i>
+      <% end %>
+    </p>
+    <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <div class="panel panel-dark">
+      <div class="panel-heading">
+        CUSTOMER DETAILS
+      </div>
+      <div class="panel-body">
+        <%= @purchase.firstname.titleize %> <%= @purchase.lastname.titleize %><br />
+        <%= @purchase.email %><br>
+        Tel: <%= @purchase.telephone %><br>
+        <% unless @purchase.company.blank? %>
+          <%= @purchase.company %><br>
+        <% end %>
+         <% unless @purchase.tax_id.blank? %>
+        Tax ID: <%= @purchase.tax_id %><br><br>
+        <% end %>
+        <% unless @purchase.contactby.blank? %>
+        Contact By: <%= @purchase.contactby %><br><br>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-md-4">
+    <div class="panel panel-dark">
+      <div class="panel-heading">
+        SHIPPING INFORMATION
+      </div>
+      <div class="panel-body">
+        <% unless @purchase.company.blank? %>
+          <%= @purchase.company %><br>
+        <% end %>
+
+        <%= @purchase.firstname %> <%= @purchase.lastname %>
+        <br><%= @purchase.ship_street_address %>
+        <br><%= @purchase.ship_city %>, <%= @purchase.ship_state %>  <%= @purchase.ship_zipcode %>
+        <br><%= @purchase.ship_country %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-md-4">
+    <div class="panel panel-dark">
+      <div class="panel-heading">
+        PAYMENT INFORMATION
+      </div>
+      <div class="panel-body">
+        <% unless @purchase.company.blank? %>
+          <%= @purchase.company %><br>
+        <% end %>
+        <%= @purchase.pay_firstname %> <%= @purchase.pay_lastname %>
+        <br><%= @purchase.pay_street_address %>
+        <br><%= @purchase.pay_city %>, <%= @purchase.pay_state %>  <%= @purchase.pay_zipcode %>
+        <br><%= @purchase.pay_country %>
+
+        <br>Card Type: <%= @purchase.card_type %>
+        <br>Expires On: <%= @purchase.card_expires_on %>
+        <% unless @purchase.telephone.blank?%>
+          <br>Tel: <%= @purchase.pay_telephone %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-gray">
+      <div class="panel-body">
+        <%= render "conditional_purchase_lines" %>
+
+        <div class="row">
+  			  <div class="col-xs-2 col-xs-offset-8 text-right">
+  			    <strong>Sub-Total:</strong>
+  			  </div>
+  			  <div class="col-xs-2 text-right">
+  			    <%= number_to_currency(@purchase.subtotal) %>
+  			  </div>
+  			</div>
+
+        <div class="row">
+  			  <div class="col-xs-2 col-xs-offset-8 text-right">
+  			    <strong>Shipping:</strong>
+  			  </div>
+  			  <div class="col-xs-2 text-right">
+  			    <%= number_to_currency(@purchase.shipping) %>
+  			  </div>
+  			</div>
+
+        <div class="row">
+  			  <div class="col-xs-2 col-xs-offset-8 text-right">
+  			    <strong>Sales Tax:</strong>
+  			  </div>
+  			  <div class="col-xs-2 text-right">
+  			    <%= number_to_currency(@purchase.sales_tax) %>
+  			  </div>
+  			</div>
+
+        <hr>
+
+        <div class="row">
+  			  <div class="col-xs-2 col-xs-offset-8 text-right">
+  			    <h4 class="black">Total:</h4>
+  			  </div>
+  			  <div class="col-xs-2 text-right">
+  			    <h4 class="black"><%= number_to_currency(@purchase.total) %></h4>
+  			  </div>
+  			</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 text-right">
+    <div class="btn-group">
+    <%= link_to send_shipped_email_admin_purchase_path, :class => "btn btn-danger btn-med"  do %>
+      <i class="glyphicon glyphicon-paper-plane"></i> SHIP PURCHASE - Send Shipped Email to Customer Now and Update Purchase Status to Shipped
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<div class="row" style="margin-top:15px;">
+  <div class="col-xs-12 col-lg-8">
+    <div class="panel panel-red">
+      <div class="panel-heading">
+        <strong>Questions to the Customer regarding this purchase: </strong>
+      </div>
+      <div class="panel-body">
+        <%= best_in_place @purchase, :question, :as => :textarea, :place_holder => "Click here to type a question..." %>
+        <%= button_to 'Send Customer Question Now', edit_quote_path(@purchase.id), class: "btn btn-success pull-right", method: :get %>
+      </div>
+    </div>
+  </div>
+
+
+</div>

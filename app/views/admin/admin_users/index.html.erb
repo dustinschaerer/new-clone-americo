@@ -1,0 +1,64 @@
+
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-bolt"></i> Administrators
+            </li>
+        </ol>
+
+        <h1 class="page-header">
+            Administrators
+        </h1>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+
+        <thead>
+            <tr>
+              <th>Admin User ID</th>
+              <th>Email</th>
+              <th>Sign in Count</th>
+              <th>Last Sign in IP</th>
+              <th>Last Sign in Date</th>
+              <th>Created at</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <% @admin_users.each do |admin_user| %>
+            <tr>
+                <td><%= link_to "#{admin_user.id}", [:admin, admin_user], class: "admin-link" %></td>
+                <td><%= admin_user.email %></td>
+                <td><%= admin_user.sign_in_count %></td>
+                <td><%= admin_user.last_sign_in_ip %></td>
+                <td><%= admin_user.last_sign_in_at %></td>
+                <td><%= admin_user.created_at.strftime("%-m-%d-%Y") %></td>
+            </tr>
+          <% end  %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- /.row -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

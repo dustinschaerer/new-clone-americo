@@ -19,4 +19,4 @@
 //= require underscore
 //= require dependent-fields
 //= require respond
-//= require_tree .
+//= require_directory .

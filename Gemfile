@@ -36,6 +36,9 @@ gem 'asset_sync'
 gem 'active_skin'
 #gem "brakeman", :require => false
 gem 'rails_best_practices'
+gem 'kaminari'
+gem 'morrisjs-rails'
+gem 'raphael-rails'
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'

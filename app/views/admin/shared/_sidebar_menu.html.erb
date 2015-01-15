@@ -1,0 +1,92 @@
+<div id="sidebar-default" class="main-sidebar fix-scroll">
+  <div class="current-user">
+      <a href="#" class="name">
+        <i class="ion-person-stalker"></i>
+        <span>
+          Ken Morrison
+           <i class="fa fa-chevron-down"></i>
+        </span>
+      </a>
+      <ul class="menu">
+        <li>
+          <a href="#">Admin User settings</a>
+        </li>
+        <li>
+          <a href="#">Sign out</a>
+        </li>
+      </ul>
+  </div>
+  <div class="menu-section">
+    <h3>General</h3>
+    <ul>
+      <li class="option">
+        <a href="/admin" class="active">
+          <i class="ion-android-earth"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li class="option">
+        <a href="<%= admin_orders_path %>" class="active">
+          <i class="ion-cart"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+
+      <li class="option">
+        <a href="<%= admin_quotes_path %>" class="active">
+          <i class="ion-pricetags"></i>
+          <span>Quotes</span>
+        </a>
+      </li>
+
+      <li class="option">
+        <a href="<%= admin_purchases_path %>" class="active">
+          <i class="ion-card"></i>
+          <span>Purchases</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+  <div class="menu-section">
+    <h3>Application</h3>
+    <ul>
+      <li class="option">
+        <a href="#" data-toggle="sidebar">
+          <i class="ion-earth"></i> <span>App Pages</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+      </li>
+      <li class="option">
+        <a href="#" data-toggle="sidebar">
+          <i class="ion-card"></i> <span>Pricing</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="<%=
+          # invoice_pricing_index_path
+          %>">Invoice</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="bottom-menu hidden-sm">
+    <ul>
+      <li><a href="#"><i class="ion-help"></i></a></li>
+      <li>
+        <a href="#">
+          <i class="ion-archive"></i>
+          <span class="flag"></span>
+        </a>
+        <ul class="menu">
+          <li><a href="#">5 unread messages</a></li>
+          <li><a href="#">12 tasks completed</a></li>
+          <!-- <li><a href="#">3 features added</a></li> -->
+        </ul>
+      </li>
+      <li><a href=""><i class="ion-log-out"></i></a></li>
+    </ul>
+  </div>
+</div>

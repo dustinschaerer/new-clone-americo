@@ -151,6 +151,21 @@ class Purchase < ActiveRecord::Base
       )
     end
 
+    def self.total_purchases_grouped_by_day(start)
+      purchases = where(created_at: start.beginning_of_day..Time.zone.now)
+      purchases = purchases.group("date(created_at)")
+      purchases = purchases.select("date(created_at) as created_at, count(*) as count")
+      #purchases.group_by { |o| o.created_at.to_date }
+      purchases.each_with_object({}) do |purchase, counts|
+        counts[purchase.created_at.to_date] = purchase.count
+      end
+    end
+
+    def self.created_between(start_date, end_date)
+      where("created_at >= ? AND created_at <= ?", start_date, end_date)
+    end
+
+
   private
 
 
