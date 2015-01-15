@@ -79,6 +79,12 @@ GEM
       unf
     awesome_print (1.6.1)
     bcrypt (3.1.9)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bourbon (3.2.3)
@@ -88,6 +94,7 @@ GEM
     bullet (4.14.0)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    callsite (0.0.11)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -98,6 +105,7 @@ GEM
       ffi (~> 1.0, >= 1.0.6)
     code_analyzer (0.4.5)
       sexp_processor
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -107,6 +115,7 @@ GEM
     coffee-script-source (1.8.0)
     colored (1.2)
     daemon_controller (1.2.0)
+    debug_inspector (0.0.2)
     dependent-fields-rails (0.4.2)
       coffee-rails
       jquery-rails
@@ -205,6 +214,10 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    heroku_rails_deflate (1.0.3)
+      actionpack (>= 3.2.13)
+      activesupport (>= 3.2.13)
+      rack (>= 1.4.5)
     hike (1.2.3)
     i18n (0.7.0)
     inflecto (0.0.2)
@@ -230,6 +243,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     mime-types (1.25.1)
     mini_portile (0.6.2)
     minitest (4.7.5)
@@ -260,6 +277,8 @@ GEM
       activerecord (>= 3.0)
     polyglot (0.3.5)
     rack (1.5.2)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.4)
@@ -367,6 +386,8 @@ DEPENDENCIES
   activemerchant
   asset_sync
   best_in_place!
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.1.1)
   bootstrap_form!
   bullet
@@ -378,10 +399,12 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   friendly_id (~> 5.0.0)
+  heroku_rails_deflate
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   jquery-ui-rails
   libnotify (= 0.8.0)
+  meta_request
   newrelic_rpm
   passenger
   pg

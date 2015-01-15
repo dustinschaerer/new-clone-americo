@@ -1,4 +1,4 @@
- source 'https://rubygems.org'
+source 'https://rubygems.org'
 ruby '2.0.0'
 
 
@@ -43,7 +43,13 @@ group :development, :test do
   #gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
   gem 'factory_girl_rails'
+end
+
+group :development do
   gem 'bullet'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
@@ -60,4 +66,5 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
+  gem 'heroku_rails_deflate'
 end
