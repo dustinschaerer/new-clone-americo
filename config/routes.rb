@@ -1,15 +1,15 @@
 Americo::Application.routes.draw do
 
+  root :to => "static_pages#home"
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
   end
-  root :to => "static_pages#home"
-
+  authenticated :admin_user do
+    root :to => 'admin/dashboard#index', :as => "authenticated_admin_root"
+  end
   devise_for :users
+  devise_for :admin_users
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  
   resources :users, only: [:show, :edit, :update]
   resources :quoteholders
   resources :lines
@@ -25,10 +25,52 @@ Americo::Application.routes.draw do
   resources :colors
   resources :orders
   resources :messages
-  resources :subscribers  
-  resources :quotecarts  
+  resources :subscribers
+  resources :quotecarts
   resources :quotes
   resources :purchases, :only => [:new, :create, :show, :update]
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    get 'charts', to: 'dashboard#charts', as: '/charts'
+    get 'geocharts', to: 'dashboard#geocharts', as: '/geocharts'
+    resources :quoteholders
+    resources :lines
+    resources :quote_products
+    resources :sizes
+    resources :shapes
+    resources :covers
+    resources :categories
+    resources :line_items
+    resources :carts
+    resources :styles
+    resources :series
+    resources :colors
+    resources :orders do
+      member do
+        get 'send_shipped_email'
+        get 'send_question_email'
+      end
+    end
+    resources :messages
+    resources :subscribers
+    resources :quotecarts
+    resources :quotes do
+      member do
+        get 'recalculate'
+        get 'send_priced_email'
+        get 'send_question_email'
+      end
+    end
+    resources :purchases do
+      member do
+        get 'send_shipped_email'
+        get 'send_question_email'
+      end
+    end
+    resources :users
+    resources :admin_users
+  end
 
   get "store/index"
   resources :products do
@@ -37,14 +79,14 @@ Americo::Application.routes.draw do
   resources :series do
     get :who_bought, on: :member
   end
-  
+
   resources :colors do
     get :who_bought, on: :member
   end
-  
+
   get "users/new"
 
-  match '/users/:id', to: 'users#show',           via: 'get' 
+  match '/users/:id', to: 'users#show',           via: 'get'
   match '/contact',   to: 'messages#new',         via: 'get'
   match '/store',     to: 'static_pages#home',    via: 'get'
   match '/signup',    to: 'users#new',            via: 'get'
@@ -72,7 +114,7 @@ Americo::Application.routes.draw do
   match '/technical_specs',   to: 'static_pages#technical_specs', via: 'get'
   match '/terms_and_conditions',   to: 'static_pages#terms_and_conditions', via: 'get'
   match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

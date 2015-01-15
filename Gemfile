@@ -4,12 +4,14 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.4'
 #gem 'sass-rails', '4.0.1'
-gem "sass-rails", "~> 4.0.3"
+gem "sass-rails"
 #gem 'bootstrap-sass', '~>3.0.3.0'
-gem 'bootstrap-sass', '~> 3.1.1'
+#gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'font-awesome-sass'
 gem 'devise'
 #gem 'activeadmin', github: 'gregbell/active_admin', branch: 'master'
-gem 'activeadmin', github: 'activeadmin'
+#gem 'activeadmin', github: 'activeadmin'
 #gem 'seed_dump'
 #gem 'acts-as-taggable-on'
 gem 'pg'
