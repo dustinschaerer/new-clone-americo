@@ -7,4 +7,6 @@ log/development.log
 tmp
 public/assets/swatches/swatches.zip
 /assets/images/swatches/swatches.zip
+public/assets
+app/assets
 tmp/*
