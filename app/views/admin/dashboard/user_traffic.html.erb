@@ -1,0 +1,287 @@
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i> Dashboard
+            </li>
+              <li class="active">
+                <i class="fa fa-bar-chart-o"></i> Charts
+            </li>
+
+        </ol>
+         <h1 class="page-header">
+            Charts &amp; Stats <small>Statistics Overview</small>
+        </h1>
+    </div>
+</div>
+<!-- /.row -->
+
+
+<div id="embed-api-auth-container" class=""></div><br>
+
+<!--
+<div class="row">
+  <div class="col-lg-12">
+     <div class="panel panel-gray">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> User Sessions per day - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+            <div id="view-selector-1-container" class=""></div>
+            <div id="chart-1-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Viewed per day - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-2-container" class=""></div>
+        <div id="chart-2-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-gray">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Views per Session - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-3-container" class=""></div>
+        <div id="chart-3-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Visiting Devices - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-4-container"></div>
+        <div id="chart-4-container" class="panel"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Visitor Types - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-6-container"></div>
+        <div id="chart-6-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-gray">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Visits by Country - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-5-container"></div>
+        <div id="chart-5-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Step 2: Load the library. -->
+
+<script>
+(function(w,d,s,g,js,fs){
+  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+  js.src='https://apis.google.com/js/platform.js';
+  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+}(window,document,'script'));
+</script>
+
+<script>
+gapi.analytics.ready(function() {
+  /**
+   * Authorize the user immediately if the user has already granted access.
+   * If no access has been created, render an authorize button inside the
+   * element with the ID "embed-api-auth-container".
+   */
+  gapi.analytics.auth.authorize({
+    container: 'embed-api-auth-container',
+    clientid: '210551902511-ollcuvtmlno09prd2gvruubgaphopksu.apps.googleusercontent.com',
+  });
+
+  var viewSelector4 = new gapi.analytics.ViewSelector({
+    container: 'view-selector-4-container'
+  });
+
+  var viewSelector5 = new gapi.analytics.ViewSelector({
+    container: 'view-selector-5-container'
+  });
+
+  var viewSelector6 = new gapi.analytics.ViewSelector({
+    container: 'view-selector-6-container'
+  });
+
+  // Render both view selectors to the page.
+  viewSelector4.execute();
+  viewSelector5.execute();
+  viewSelector6.execute();
+
+  /**
+   * Create the first DataChart over the past 30 days.
+   * It will be rendered inside an element with the id "chart-1-container".
+   */
+
+   var requests = [
+   {
+      query: {
+        ids: '88344494',
+        metrics: 'ga:sessions',
+        dimensions: 'ga:date',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday'
+      },
+      chart: {
+        container: 'chart-1-container',
+        type: 'LINE',
+        options: {
+          width: '100%'
+        }
+      }
+    }, {
+      query: {
+        ids: '88344494',
+        metrics: 'ga:pageviews',
+        dimensions: 'ga:date',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday'
+      },
+      chart: {
+        container: 'chart-2-container',
+        type: 'LINE',
+        options: {
+          width: '100%'
+        }
+      }
+    }, {
+      query: {
+        ids: '88344494',
+        metrics: 'ga:pageviewsPerSession',
+        dimensions: 'ga:date',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday'
+      },
+      chart: {
+        container: 'chart-3-container',
+        type: 'LINE',
+        options: {
+          width: '100%'
+        }
+      }
+    }
+   ];
+
+
+/*
+var makeCallThrottled = _.throttle(function(config) {
+  config.resp = new gapi.analytics.googleCharts.DataChart(config);
+}, 100);
+
+_.each(request, function(request) {
+  console.log('called');
+  makeCallThrottled(request);
+});
+*/
+
+  var dataChart4 = new gapi.analytics.googleCharts.DataChart({
+    query: {
+      ids: '88344494',
+      metrics: 'ga:sessions',
+      dimensions: 'ga:deviceCategory',
+      'start-date': '30daysAgo',
+      'end-date': 'yesterday',
+      'max-results': 6,
+      sort: '-ga:deviceCategory'
+    },
+    chart: {
+      container: 'chart-4-container',
+      type: 'PIE',
+      options: {
+        width: '100%',
+        pieHole: 0.4
+      }
+    }
+  });
+
+  var dataChart5 = new gapi.analytics.googleCharts.DataChart({
+    query: {
+      ids: '88344494',
+      metrics: 'ga:sessions',
+      dimensions: 'ga:country',
+      'start-date': '30daysAgo',
+      'end-date': 'yesterday',
+      'max-results': 8,
+      sort: '-ga:sessions'
+    },
+    chart: {
+      container: 'chart-5-container',
+      type: 'PIE',
+      options: {
+        width: '100%'
+      }
+    }
+  });
+
+  var dataChart6 = new gapi.analytics.googleCharts.DataChart({
+    query: {
+      ids: '88344494',
+      metrics: 'ga:sessions',
+      dimensions: 'ga:userType',
+      'start-date': '30daysAgo',
+      'end-date': 'yesterday',
+      sort: '-ga:userType'
+    },
+    chart: {
+      container: 'chart-6-container',
+      type: 'PIE',
+      options: {
+        width: '100%'
+      }
+    }
+  });
+
+
+  /**
+   * Update the first dataChart when the first view selecter is changed.
+  */
+
+  viewSelector4.on('change', function(ids) {
+    dataChart4.set({query: {ids: ids}}).execute();
+  });
+
+  viewSelector5.on('change', function(ids) {
+    dataChart5.set({query: {ids: ids}}).execute();
+  });
+
+  viewSelector6.on('change', function(ids) {
+    dataChart6.set({query: {ids: ids}}).execute();
+  });
+
+});
+</script>

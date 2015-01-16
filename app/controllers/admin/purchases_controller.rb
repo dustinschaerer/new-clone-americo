@@ -64,6 +64,9 @@ class Admin::PurchasesController < AdminController
         :pay_country, :subtotal, :shipping, :sales_tax, :total, :pay_type, :card_type,
         :card_expires_on, :state, :ip_address, :amount, :user, :company, :card_number,
         :card_verification, :month, :year, :email, :quote_id, :tax_id, :question,
-        quotes_attributes: [:status, :id])
+        quotes_attributes: [:status, :id], lines_attributes: [:id, :price, :quantity])
     end
 end
+
+
+

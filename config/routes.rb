@@ -33,7 +33,13 @@ Americo::Application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     get 'charts', to: 'dashboard#charts', as: '/charts'
+    get 'chartsuey', to: 'dashboard#chartsuey', as: '/chartsuey'
     get 'geocharts', to: 'dashboard#geocharts', as: '/geocharts'
+    get 'single', to: 'dashboard#single', as: '/single'
+    get 'user_traffic', to: 'dashboard#user_traffic', as: '/user_traffic'
+    get 'visits', to: 'dashboard#visits', as: '/visits'
+    get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
+
     resources :quoteholders
     resources :lines
     resources :quote_products
