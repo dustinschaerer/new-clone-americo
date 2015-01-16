@@ -71,5 +71,5 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  gem 'heroku_rails_deflate'
+  # gem 'heroku_rails_deflate'
 end

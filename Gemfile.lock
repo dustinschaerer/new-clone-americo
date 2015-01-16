@@ -187,10 +187,6 @@ GEM
     formatador (0.2.5)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
-    heroku_rails_deflate (1.0.3)
-      actionpack (>= 3.2.13)
-      activesupport (>= 3.2.13)
-      rack (>= 1.4.5)
     hike (1.2.3)
     i18n (0.7.0)
     inflecto (0.0.2)
@@ -362,7 +358,6 @@ DEPENDENCIES
   figaro
   font-awesome-sass
   friendly_id (~> 5.0.0)
-  heroku_rails_deflate
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   jquery-ui-rails
