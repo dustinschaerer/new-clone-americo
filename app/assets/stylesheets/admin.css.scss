@@ -12,7 +12,8 @@
  *
  *= require_self
  *= require_directory ./admin
- *= require morris
+ *= require_directory admin
+  *= require morris
 */
 
 
