@@ -7,7 +7,7 @@
                 <i class="fa fa-dashboard"></i> Dashboard
             </li>
               <li class="active">
-                <i class="fa fa-bar-chart-o"></i> Charts
+                <i class="fa fa-map-marker"></i> Geo Charts
             </li>
 
         </ol>
@@ -18,17 +18,13 @@
 </div>
 <!-- /.row -->
 
-
-
-
-
 <div id="embed-api-auth-container" class=""></div><br>
 
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-gray">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-user"></i> Unique User Visits/Sessions by State - From Last 30 Days</h3>
+        <h3 class="panel-title"><i class="fa fa-user"></i> Unique User Sessions by State - From Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-1-container" class=""></div>
@@ -42,7 +38,7 @@
   <div class="col-lg-12">
     <div class="panel panel-gray">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-user"></i> Unique User Visits/Sessions by Province - From Last 30 Days</h3>
+        <h3 class="panel-title"><i class="fa fa-user"></i> Unique User Sessions by Province - From Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-2-container" class=""></div>
@@ -172,9 +168,8 @@ gapi.analytics.ready(function() {
    */
   gapi.analytics.auth.authorize({
     container: 'embed-api-auth-container',
-    clientid: ENV["GOOGLE_ANALYTICS_API_OAUTH_CLIENT_ID"],
+    clientid: '210551902511-ollcuvtmlno09prd2gvruubgaphopksu.apps.googleusercontent.com',
   });
-
 
   /**
    * Create a ViewSelector for the first view to be rendered inside of an
@@ -192,12 +187,10 @@ gapi.analytics.ready(function() {
   viewSelector1.execute();
   viewSelector2.execute();
 
-
   /**
    * Create the first DataChart over the past 30 days.
    * It will be rendered inside an element with the id "chart-1-container".
    */
-
   var dataChart1 = new gapi.analytics.googleCharts.DataChart({
     query: {
       ids: '88344494',

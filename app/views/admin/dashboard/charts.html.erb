@@ -228,7 +228,7 @@
   <div class="col-lg-12">
     <div class="panel panel-red">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-shopping-cart"></i> Purchases by Day Past Year</h3>
+        <h3 class="panel-title"><i class="fa fa-credit-card"></i> Purchases by Day Past Year</h3>
       </div>
       <div class="panel-body">
         <%= content_tag :div, "", id: "chart-purchase-year", data: { purchase_year: purchase_year_chart_data } %>
@@ -244,7 +244,7 @@
   <div class="col-lg-12">
      <div class="panel panel-gray">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> User Sessions per day</h3>
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> User Sessions per day - Last 30 Days</h3>
       </div>
       <div class="panel-body">
             <div id="view-selector-1-container" class=""></div>
@@ -258,7 +258,7 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Viewed per day</h3>
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Viewed per day - Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-2-container" class=""></div>
@@ -272,7 +272,7 @@
   <div class="col-lg-12">
     <div class="panel panel-gray">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Views per Session</h3>
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Pages Views per Session - Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-3-container" class=""></div>
@@ -286,7 +286,7 @@
   <div class="col-sm-4">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Devices by Session</h3>
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Devices by Session - Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-4-container"></div>
@@ -294,25 +294,26 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4">
-    <div class="panel panel-gray">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sessions by Country</h3>
-      </div>
-      <div class="panel-body">
-        <div id="view-selector-5-container"></div>
-        <div id="chart-5-container"></div>
-      </div>
-    </div>
-  </div>
+
   <div class="col-sm-4">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sessions by Visitor Types</h3>
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sessions by Visitor Types - Last 30 Days</h3>
       </div>
       <div class="panel-body">
         <div id="view-selector-6-container"></div>
         <div id="chart-6-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-gray">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sessions by Country - Last 30 Days</h3>
+      </div>
+      <div class="panel-body">
+        <div id="view-selector-5-container"></div>
+        <div id="chart-5-container"></div>
       </div>
     </div>
   </div>
@@ -358,7 +359,7 @@ gapi.analytics.ready(function() {
    */
   gapi.analytics.auth.authorize({
     container: 'embed-api-auth-container',
-    clientid: ENV["GOOGLE_ANALYTICS_API_OAUTH_CLIENT_ID"],
+    clientid: '210551902511-ollcuvtmlno09prd2gvruubgaphopksu.apps.googleusercontent.com',
   });
 
 

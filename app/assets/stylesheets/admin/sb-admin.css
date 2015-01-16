@@ -375,3 +375,10 @@ a.purchase-dash:hover {
 
     color: #fff;
 }
+
+#user-email-link a {
+  color: #fff;
+}
+#user-email-link a:hover {
+  color: #CDCDCD;
+}
