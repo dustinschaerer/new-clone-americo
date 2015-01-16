@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
       return :warn
     elsif (self.status == "Shipped")
       return :ok
-    elsif (self.status == "Offline Purchased")
+    elsif (self.status == "Offline-Purchased")
       return :offline_purchased
     elsif (self.status == "Purchased")
       return :error
