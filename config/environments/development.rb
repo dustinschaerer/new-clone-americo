@@ -66,5 +66,6 @@
     Bullet.add_footer = false
   end
 
+  config.assets.raise_production_errors = true
 
 end
