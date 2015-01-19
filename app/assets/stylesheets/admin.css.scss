@@ -11,8 +11,8 @@
  * file per style scope.
  *
  *= require morris
+ *= require_self
 */
-
 
 //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
 //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
@@ -20,7 +20,6 @@
 //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
 //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff2"
 
-
 //= depend_on_asset "font-awesome/fontawesome-webfont.eot"
 //= depend_on_asset "font-awesome/fontawesome-webfont.svg"
 //= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
@@ -30,9 +29,6 @@
 //= depend_on_asset "font-awesome/fontawesome-webfont.svg"
 //= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
 //= depend_on_asset "font-awesome/fontawesome-webfont.woff"
-
-
-
 
  @font-face {
   font-family: 'Glyphicons Halflings';
@@ -42,7 +38,6 @@
     font-path('bootstrap/glyphicons-halflings-regular.ttf') format('truetype'),
     font-path('bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -55,6 +50,9 @@
 @import url(//fonts.googleapis.com/css?family=Roboto:400,600,700&subset=latin,latin-ext);
 
 
+
+/* Set custom font for main elements
+-------------------------------------------------- */
 body,
 h1,
 h2,
@@ -75,8 +73,6 @@ h6,
   max-height: 80px;
   max-width: 80px;
 }
-
-
 
 /* Side notes for calling out invoice like object
 -------------------------------------------------- */
@@ -227,7 +223,6 @@ h6,
   height: 1px;
 }
 
-
 .label-status {
   color: white;
   text-transform: uppercase;
@@ -251,16 +246,12 @@ h6,
   background: #BF2C37;
 }
 
-
-
-
-
 form {
   color: #000000;
 }
 
 body {
-  font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; */
   font-size:14px;
   line-height:1.42857143;
   color:#000000;
@@ -269,7 +260,6 @@ body {
     color: #BF2C37;
   }
 }
-
 
 .user-email-link a {
   color: #fff;

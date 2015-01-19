@@ -27,7 +27,7 @@ module Americo
 
     config.assets.initialize_on_precompile = true
 
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.woff *.eot *.svg *.ttf application.js application.css admin.js admin.css)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.woff *.eot *.svg *.ttf application.js application.css admin.css admin.js)
 
     config.i18n.enforce_available_locales = false
 

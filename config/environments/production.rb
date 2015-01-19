@@ -20,7 +20,7 @@ Americo::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -60,7 +60,7 @@ Americo::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( galleria.classic.js *.woff *.eot *.svg *.ttf  application.js application.css admin.css admin.js )
+  config.assets.precompile += %w( galleria.classic.js *.woff *.eot *.svg *.ttf  application.js application.css admin.css admin.js)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -83,16 +83,6 @@ Americo::Application.configure do
     enable_starttls_auto: true
   }
 
-  # Action Mailer config setting
-#  ActionMailer::Base.smtp_settings = {
-#  :address        => 'smtp.sendgrid.net',
-#  :port           => '587',
-#  :authentication => :plain,
-#  :user_name      => ENV['SENDGRID_USERNAME'],
-#  :password       => ENV['SENDGRID_PASSWORD'],
-#  :domain         => 'heroku.com',
-#  :enable_starttls_auto => true
-#}
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
