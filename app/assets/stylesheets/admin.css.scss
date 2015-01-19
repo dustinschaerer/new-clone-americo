@@ -10,27 +10,50 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require_directory ./admin
  *= require morris
 */
 
 
-// First import cerulean variables
-@import "admin/bootswatch/spacelab/variables";
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff2"
 
-// Import bootstrap
-//@import "admin/bootstrap";
-@import "admin/bootstrap.min";
-@import "admin/sb-admin";
 
-// Bootstrap body padding for fixed navbar
-// body { padding-top: 60px; }
+//= depend_on_asset "font-awesome/fontawesome-webfont.eot"
+//= depend_on_asset "font-awesome/fontawesome-webfont.svg"
+//= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
+//= depend_on_asset "font-awesome/fontawesome-webfont.woff"
 
-// And finally bootswatch style itself
-// @import "admin/bootswatch/spacelab/bootswatch";
+//= depend_on_asset "font-awesome/fontawesome-webfont.eot"
+//= depend_on_asset "font-awesome/fontawesome-webfont.svg"
+//= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
+//= depend_on_asset "font-awesome/fontawesome-webfont.woff"
 
+
+
+
+ @font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-path('bootstrap/glyphicons-halflings-regular.eot');
+  src: font-path('bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    font-path('bootstrap/glyphicons-halflings-regular.woff') format('woff'),
+    font-path('bootstrap/glyphicons-halflings-regular.ttf') format('truetype'),
+    font-path('bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "./admin/bootswatch/spacelab/variables";
+@import "./admin/sb-admin";
+@import "./admin/bootswatch/spacelab/bootswatch";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import url(//fonts.googleapis.com/css?family=Roboto:400,600,700&subset=latin,latin-ext);
+
 
 body,
 h1,
@@ -140,14 +163,6 @@ h6,
   margin-top: 25px;
 }
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.eot');
-  src: font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.woff') format('woff'),
-    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-    font-path('admin/font-awesome/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
 
 .invoice-title {
   font-size: 16px;
@@ -262,9 +277,4 @@ body {
 .user-email-link a:hover {
   color: #fff;
 }
-
-@import "font-awesome-sprockets";
-@import "font-awesome";
-
-
 
