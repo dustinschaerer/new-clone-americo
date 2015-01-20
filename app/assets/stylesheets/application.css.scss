@@ -12,7 +12,17 @@
  *
  *= require galleria.classic
  *= require jquery-ui
+ *= require_self
  */
+
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff2"
+//= depend_on_asset "loading.gif"
+//= depend_on_asset "bullets.png"
+//= depend_on_asset "arrows.png"
 
 #galleria {
 
@@ -64,6 +74,7 @@ $grid-float-breakpoint: 992px;
     font-path('bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "carts";
 @import "store";
