@@ -53,19 +53,7 @@
 
 /* Set custom font for main elements
 -------------------------------------------------- */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Roboto", Helvetica, Arial, sans-serif!important;
 }
 
@@ -149,6 +137,8 @@ h6,
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
 }
+
+/* UTILITY */
 .top10 {
   margin-top: 10px;
 }
@@ -159,12 +149,13 @@ h6,
   margin-top: 25px;
 }
 
-
+/* Invoice like form styles */
 .invoice-title {
   font-size: 16px;
   padding-left: 10px;
 }
 
+/* Admin index table hover effects */
 #user-bg-row {
   background: #333;
   color: white;
@@ -175,7 +166,6 @@ h6,
 #user-bg-row a {
   color: white;
 }
-
 #user-bg-row-quote {
   background: #446E9B;
   color: white;
@@ -198,6 +188,7 @@ h6,
   color: white;
 }
 
+/* Remove selectors frmo view for Google API charts */
 #view-selector-1-container {
   margin-left: -9999px;
   height: 1px;
@@ -231,6 +222,7 @@ h6,
   letter-spacing: 2px;
 }
 
+/* Set status colors */
 .warn {
   background: #1Ea0E5;
 
@@ -238,7 +230,6 @@ h6,
 .ok {
   background: #03721E;
 }
-
 .offline_purchased {
   background: #8C5C37;
 }
@@ -246,12 +237,13 @@ h6,
   background: #BF2C37;
 }
 
+/* Set form dropdown color to black to so it shows up */
 form {
   color: #000000;
 }
 
+/* Set overall link styles for admin */
 body {
-  /* font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; */
   font-size:14px;
   line-height:1.42857143;
   color:#000000;
@@ -260,7 +252,6 @@ body {
     color: #BF2C37;
   }
 }
-
 .user-email-link a {
   color: #fff;
 }
