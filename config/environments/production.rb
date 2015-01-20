@@ -60,7 +60,7 @@ Americo::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( galleria.classic.js *.woff *.eot *.svg *.ttf application.js application.css admin.css admin.js)
+  config.assets.precompile += ['galleria.classic.js', "*.woff", "*.eot", "*.svg", "*.ttf", "admin.css", "admin.js", "application.js", "application.css"]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
