@@ -1,0 +1,263 @@
+/*
+ * This is a manifest file that'll be compiled into admin.css, which will include all the files
+ * listed below.git
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require morris
+ *= require_self
+ */
+
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff2"
+
+//= depend_on_asset "font-awesome/fontawesome-webfont.eot"
+//= depend_on_asset "font-awesome/fontawesome-webfont.svg"
+//= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
+//= depend_on_asset "font-awesome/fontawesome-webfont.woff"
+
+//= depend_on_asset "font-awesome/fontawesome-webfont.eot"
+//= depend_on_asset "font-awesome/fontawesome-webfont.svg"
+//= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
+//= depend_on_asset "font-awesome/fontawesome-webfont.woff"
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-path('bootstrap/glyphicons-halflings-regular.eot');
+  src: font-path('bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    font-path('bootstrap/glyphicons-halflings-regular.woff') format('woff'),
+    font-path('bootstrap/glyphicons-halflings-regular.ttf') format('truetype'),
+    font-path('bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "./admin/bootswatch/spacelab/variables";
+@import "./admin/bootswatch/spacelab/bootswatch";
+@import "./admin/sb-admin";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import url(//fonts.googleapis.com/css?family=Roboto:400,600,700&subset=latin,latin-ext);
+
+
+
+/* Set custom font for main elements
+-------------------------------------------------- */
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto", Helvetica, Arial, sans-serif!important;
+}
+
+.admin_swatch {
+  max-height: 80px;
+  max-width: 80px;
+}
+
+/* Side notes for calling out invoice like object
+-------------------------------------------------- */
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 50px 15px 30px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-primary {
+  background-color: #F6F6F6;
+  border-color: #446E9B;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+.bs-callout-default {
+  background-color: #F6F6F6;
+  border-color: #474949;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-warning {
+  background-color: #F6F6F6;
+  border-color: #D47500;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+
+.bs-callout-danger {
+  background-color: #F6F6F6;
+  border-color: #5cb85c;;
+    border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-info {
+  background-color: #F6F6F6;
+  border-color: #8A1921;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-yellow {
+  background-color: #F6F6F6;
+  border-color: #f0ad4e;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.bs-callout-green {
+  background-color: #F6F6F6;
+  border-color: #5CB85C;;
+  border-right: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+/* UTILITY */
+.top10 {
+  margin-top: 10px;
+}
+.top20 {
+  margin-top: 20px;
+}
+.top25 {
+  margin-top: 25px;
+}
+.padtop40 {
+  padding-top: 40px;
+}
+
+/* Invoice like form styles */
+.invoice-title {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+/* Admin index table hover effects */
+#user-bg-row {
+  background: #333;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+  border-bottom: solid 3px #999999;
+}
+#user-bg-row a {
+  color: white;
+}
+#user-bg-row-quote {
+  background: #446E9B;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+  border-bottom: solid 3px #999999;
+}
+#user-bg-row-quote a {
+  color: white;
+}
+
+#user-bg-row-purchase {
+  background: #8A1921;
+  color: white;
+  padding: 10px 10px 0 20px;
+  font-size: 1.5em;
+  border-bottom: solid 3px #999999;
+}
+#user-bg-row-purchase a {
+  color: white;
+}
+
+/* Remove selectors frmo view for Google API charts */
+#view-selector-1-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-2-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-3-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-4-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-5-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+#view-selector-6-container {
+  margin-left: -9999px;
+  height: 1px;
+}
+
+.label-status {
+  color: white;
+  text-transform: uppercase;
+  padding: 6px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* Set status colors */
+.warn {
+  background: #1Ea0E5;
+
+}
+.ok {
+  background: #03721E;
+}
+.offline_purchased {
+  background: #8C5C37;
+}
+.purchased, .error {
+  background: #BF2C37;
+}
+
+/* Set form dropdown color to black to so it shows up */
+form {
+  color: #000000;
+}
+
+/* Set overall link styles for admin */
+body {
+  font-size:14px;
+  line-height:1.42857143;
+  color:#000000;
+  background-color:#ffffff;
+  a {
+    color: #BF2C37;
+  }
+}
+.user-email-link a {
+  color: #fff;
+}
+.user-email-link a:hover {
+  color: #fff;
+}
+
