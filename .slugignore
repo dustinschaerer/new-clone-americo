@@ -7,8 +7,3 @@ log/development.log
 
 public/assets/swatches/swatches.zip
 /assets/images/swatches/swatches.zip
-public/assets
-public/assets/*
-app/assets
-
-/public/assets
