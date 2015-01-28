@@ -1,5 +1,8 @@
 /* Galleria Classic Theme 2012-08-07 | https://raw.github.com/aino/galleria/master/LICENSE | (c) Aino */
 
+//= depend_on_asset "loading.gif"
+//= depend_on_asset "classic-map.png"
+
 #galleria-loader{height:1px!important}
 
 .galleria-container {
@@ -59,7 +62,7 @@
     right: 10px;
     z-index: 2;
     display: none;
-    background: image-url("classic-loader.gif") no-repeat 2px 2px;
+    background: image-url("loading.gif") no-repeat 2px 2px;
 }
 .galleria-info {
     width: 35%;
@@ -217,3 +220,4 @@
 }
 .galleria-container.videoplay .galleria-info,
 .galleria-container.videoplay .galleria-counter{ display:none!important; }
+

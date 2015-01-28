@@ -41,7 +41,7 @@
                 <td data-title="Order ID"><%= link_to "#{order.id}", [:admin, order], class: "order-link" %></td>
                 <td data-title="Status"><span class="<%= order.current_color %> label-status"><%= order.status %></span></td>
                 <td data-title="Customer"><%= order.firstname %> <%= order.lastname %></td>
-                <td data-title="User"><a href="/admin/users/<%= order.user_id %>"><%= order.user.email %></a></td>
+                <td data-title="User"><a href="/admin/users/<%= order.user_id %>"><%= order.email %></a></td>
                 <td data-title="City"><%= order.city %></td>
                 <td data-title="State"><%= order.state %></td>
                 <td data-title="Date"><%= order.created_at.strftime("%-m-%d-%Y") %></td>
