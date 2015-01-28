@@ -1,6 +1,6 @@
 /*
  * This is a manifest file that'll be compiled into admin.css, which will include all the files
- * listed below.git
+ * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
  * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
@@ -13,6 +13,19 @@
  *= require morris
  *= require_self
  */
+
+
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff2"
+//= depend_on_asset "font-awesome/fontawesome-webfont.eot"
+//= depend_on_asset "font-awesome/fontawesome-webfont.woff"
+//= depend_on_asset "font-awesome/fontawesome-webfont.ttf"
+//= depend_on_asset "font-awesome/fontawesome-webfont.svg"
+
 
 @font-face {
   font-family: 'Glyphicons Halflings';
