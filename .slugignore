@@ -11,3 +11,4 @@ public/assets
 public/assets/*
 app/assets
 
+/public/assets

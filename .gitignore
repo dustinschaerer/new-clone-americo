@@ -44,3 +44,4 @@ certs/*
 /spring/*.pid
 
 /public/assets/images/swatches/swatches.zip
+/public/assets
