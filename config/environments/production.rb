@@ -55,13 +55,13 @@ Americo::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
-  #config.action_controller.asset_host = "//d2toj5os2nl93d.cloudfront.net"
+  # config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+  config.action_controller.asset_host = "//d2toj5os2nl93d.cloudfront.net"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += ["admin.css", "admin.js", "application.js", "application.css", 'galleria.classic.js', "*.png", "*.jpg", "*.jpeg", "*.gif", "*.woff", "*.eot", "*.svg", "*.ttf"]
-  config.assets.precompile += %w( admin/admin.css admin/admin.js application.js application.css *.png *.jpg *.jpeg *.gif *.woff *.eot *.svg *.ttf )
+  config.assets.precompile += %w( admin/admin.js admin/admin.css application.js application.css *.png *.jpg *.jpeg *.gif *.woff *.eot *.svg *.ttf )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
