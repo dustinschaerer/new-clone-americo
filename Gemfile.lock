@@ -374,6 +374,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   figaro
+  fog (~> 1.20)
   font-awesome-sass
   friendly_id (~> 5.0.0)
   jbuilder (= 1.0.2)
