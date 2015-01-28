@@ -317,9 +317,6 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
-    simple_form (3.1.0)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -395,7 +392,6 @@ DEPENDENCIES
   sdoc (= 0.4.0)
   selenium-webdriver (= 2.35.1)
   shoulda
-  simple_form
   sprockets_better_errors
   tilt (= 1.4.1)
   uglifier (= 2.1.1)
