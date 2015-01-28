@@ -28,3 +28,17 @@ order_two:
   status: Submitted
   zipcode: 95555
   company: NetworkGeeks
+
+order_three:
+  user_id: 2
+  firstname: Dude
+  lastname:  Fakename
+  street_address: 123 Pizza Street
+  city: Knoxville
+  state: Tennnessee
+  country: United States
+  email: timsmith@example.com
+  telephone: 555-555-5555
+  status: Submitted
+  zipcode: 37934
+  company: Fanderland

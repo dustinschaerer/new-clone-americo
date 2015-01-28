@@ -11,6 +11,6 @@ line_items_one:
 line_items_two:
   cart_id: 1
   order_id: 1
-  series_id: 1
-  color_id: 1
-  quantity: 1
+  series_id: 2
+  color_id: 2
+  quantity: 2

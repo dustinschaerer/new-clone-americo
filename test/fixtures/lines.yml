@@ -5,7 +5,7 @@ one:
   length: 1
   width: 1
   height: 1
-  cover_id: 
+  cover_id:
   series_id: 1
   color_id: 1
   shape_id: 1
@@ -32,8 +32,65 @@ two:
   velcro: false
   yards: 1
   size_id: 1
-  quantity: 1
-  price: 9.99
+  quantity: 2
+  price: 10.00
   quoteholder_id: 1
   quote_id: 1
   purchase_id: 1
+
+three:
+  quote_product_id: 2
+  length: 1
+  width: 1
+  height: 1
+  cover_id:
+  series_id: 1
+  color_id: 1
+  shape_id: 1
+  umbrella: false
+  velcro: false
+  yards: 1
+  size_id: 1
+  quantity: 3
+  price: 8.00
+  quoteholder_id: 1
+  quote: two
+  purchase_id: 1
+
+four:
+  quote_product_id: 2
+  length: 1
+  width: 1
+  height: 1
+  cover_id: 1
+  series_id: 1
+  color_id: 1
+  shape_id: 1
+  umbrella: false
+  velcro: false
+  yards: 1
+  size_id: 1
+  quantity: 2
+  price: 10.00
+  quoteholder_id: 1
+  quote: two
+  purchase_id: 1
+
+five:
+  quote_product_id: 1
+  length: 42
+  width: 42
+  height: nil
+  cover_id: 1
+  series_id: 1
+  color_id: 1
+  shape_id: 1
+  umbrella: false
+  velcro: false
+  yards: nil
+  size_id: nil
+  quantity: 2
+  price: 50.00
+  quoteholder_id: 1
+  quote_id: 6
+  purchase_id:

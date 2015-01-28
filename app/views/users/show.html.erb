@@ -1,9 +1,6 @@
 <% provide(:title ,'User Profile') %>
-
-
 <h1 style="display:inline;">Hello, <%= @user.email %></h1>     <%= link_to 'Change My Email Address', edit_user_registration_path %>
 <p>&nbsp;</p>
-
 <h3>My Swatch Order History</h3>
 <div class="table-responsive" id="orders_table">
 	<table class="table table-bordered">
@@ -18,7 +15,6 @@
 			<th>City</th>
 			<th>State</th>
 			<th>Zip</th>
-
 		</tr>
 		<% @orders.each do |order|%>
 		<tr>
@@ -32,12 +28,10 @@
 			<td><%= order.city %></td>
 			<td><%= order.state %></td>
 			<td><%= order.zipcode %></td>
-
 		</tr>
 		<% end %>
 	</table>
 </div>
-
 <h3>My Quote Request History</h3>
 <div class="table-responsive" id="quotes_table">
 	<table class="table table-bordered">

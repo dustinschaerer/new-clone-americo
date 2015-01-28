@@ -1,54 +1,48 @@
 require 'test_helper'
 
 class StylesControllerTest < ActionController::TestCase
+
   setup do
     @style = styles(:style_one)
   end
 
-  
   test "should show style" do
     get :show, id: @style
     assert_response :success
   end
-  
 
-=begin
-  test "should get index" do
+  test "should redirect to admin on get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:styles)
+    assert_redirected_to new_admin_user_session_path
   end
 
-  test "should get new" do
+  test "should redirect to admin on get new" do
     get :new
-    assert_response :success
+    assert_redirected_to new_admin_user_session_path
   end
 
-  test "should create style" do
-    assert_difference('Style.count') do
+  test "should redirect to admin on create style" do
+    assert_no_difference('Style.count') do
       post :create, style: { description: @style.description, image_url: @style.image_url, name: @style.name, title: @style.title }
     end
-
-    assert_redirected_to style_path(assigns(:style))
+    assert_redirected_to new_admin_user_session_path
   end
 
-  test "should get edit" do
+  test "should redirect to admin on get edit" do
     get :edit, id: @style
-    assert_response :success
+    assert_redirected_to new_admin_user_session_path
   end
 
-  test "should update style" do
+  test "should redirect to admin on update style" do
     patch :update, id: @style, style: { description: @style.description, image_url: @style.image_url, name: @style.name, title: @style.title }
-    assert_redirected_to style_path(assigns(:style))
+    assert_redirected_to new_admin_user_session_path
   end
 
-  test "should destroy style" do
-    assert_difference('Style.count', -1) do
+  test "should redirect to admin on destroy style" do
+    assert_no_difference('Style.count') do
       delete :destroy, id: @style
     end
-
-    assert_redirected_to styles_path
+    assert_redirected_to new_admin_user_session_path
   end
-=end
 
 end

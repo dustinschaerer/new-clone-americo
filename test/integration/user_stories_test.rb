@@ -2,76 +2,14 @@ require 'test_helper'
 
 class UserStoriesTest < ActionDispatch::IntegrationTest
 
-  fixtures :all
+fixtures :quotes
+fixtures :lines
 
-  setup do
+  test "ordering a catalog" do
     @user = FactoryGirl.create(:user)
     @emails = ActionMailer::Base.deliveries
     @emails.clear
 
-
-  end
-
-  # # A user goes to the index page. They select a product, adding it to their
-  # # cart, and check out, filling in their details on the checkout form. When
-  # # they submit, an order is created containing their information, along with a
-  # # single line item corresponding to the product they added to their cart.
-
-  # test "buying a product" do
-  #   LineItem.delete_all
-  #   Order.delete_all
-  #   color_swatch = colors(:one)
-  #   series_swatch = series(:series_two)
-
-  #   get "/series/1"
-  #   assert_response :success
-  #   assert_template "show"
-
-  #   xml_http_request :post, "/line_items?color_id=#{color_swatch.id}&series_id=#{series_swatch.id}"
-  #   assert_response :success
-
-  #   cart = Cart.find(session[:cart_id])
-  #   assert_equal 1, cart.line_items.size
-  #   assert_equal color_swatch, cart.line_items[0].color
-
-  #   get "/orders/new"
-  #   assert_response :success
-  #   assert_template "new"
-
-  #   post_via_redirect "/orders",
-  #                     order: { name:     "Tim Smith",
-  #                              email:    "tim@example.org",
-  #                              ship_street_address: "123 Way Street",
-  #                              ship_city: "Vancouver",
-  #                              ship_state: "Washington",
-  #                              ship_country: "United States",
-  #                              telephone: "555-555-5555" }
-  #   assert_response :success
-  #   assert_template "index"
-  #   cart = Cart.find(session[:cart_id])
-  #   assert_equal 0, cart.line_items.size
-
-  #   orders = Order.all
-  #   assert_equal 1, orders.size
-  #   order = orders[0]
-
-  #   assert_equal "Tim Smith",       order.name
-  #   assert_equal "123 Way Street",  order.ship_street_address
-  #   assert_equal "tim@example.org", order.email
-  #   assert_equal "Vancouver",       order.ship_city
-
-  #   assert_equal 1, order.line_items.size
-  #   line_item = order.line_items[0]
-  #   assert_equal color_swatch, line_item.color
-  #   assert_equal series_swatch, line_item.series
-
-  #   mail = ActionMailer::Base.deliveries.last
-  #   assert_equal ["tim@example.org"], mail.to
-  #   assert_equal 'staff@americo-test.us', mail[:from].value
-  #   assert_equal "Americo Swatch Order Confirmation", mail.subject
-  # end
-
-  test "ordering a catalog" do
     visit root_url
     click_link 'FREE Catalog'
     assert has_content? "Request a Free Catalog"
@@ -135,6 +73,10 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "user can submit a quote" do
+    @user = FactoryGirl.create(:user)
+    @emails = ActionMailer::Base.deliveries
+    @emails.clear
+
     visit root_url
     click_link "SIGN IN TO MY ACCOUNT", match: :first
     assert_equal "/users/sign_in", current_path
@@ -144,17 +86,16 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert has_content?("Logged in as #{@user.email}"), "Did not display Logged in as message"
     click_link "Request a Quote", match: :first
     assert_equal "/request_quote", current_path, "Incorrect path, not request quote path"
-    click_link "Value Vinyl Roll Goods"
+    click_link "Value Vinyl Roll Goods", match: :first
     assert has_content?("Value Vinyl Roll Goods"), "Page does not display Value Vinyl Roll Goods"
     select '7101', from: 'Series'
     select 'Cumin', from: 'Color'
-    #select('', from: 'Color')
     fill_in 'Quantity', with: 10
     click_button "Add Product to Quote Now"
-    assert has_content? "Quote item was successfully created"
-    assert has_content? "Quote Product: VALUE VINYL ROLL GOODS"
-    assert has_content? "7101"
-    assert has_content? "Cumin"
+    assert has_content?("Quote Item was successfully created and added to your Quoteholder."), "Page does not display the flash"
+    assert has_content?("Quote Product: VALUE VINYL ROLL GOODS"), "Page does not display the Quote Product - VALUE VINYL ROLL GOODS"
+    assert has_content?("7101"), "Page does not display the Series - 7101"
+    assert has_content?("Cumin"), "Page does not display the color - Cumin"
     within("#total_price") do
       assert has_content? "$0.00"
     end
@@ -197,6 +138,43 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     end
     find("a[href='/quotes/#{quote.id}']").click
     assert_equal quote_path(quote), current_path
+  end
+
+  test "user can make a purchase" do
+    @user = FactoryGirl.create(:user, :id => 3)
+    @quote_nine = quotes(:nine)
+    @line_one = lines(:one)
+    @line_two = lines(:two)
+
+    visit root_url
+    click_link "SIGN IN TO MY ACCOUNT", match: :first
+    assert_equal "/users/sign_in", current_path
+    fill_in "Email", :with => @user.email
+    fill_in "Password", :with => @user.password
+    click_button "Sign in"
+    assert_equal current_path, "/", "Should be at root path"
+    assert has_content? "Logged in as"
+    click_link "MY ACCOUNT", match: :first
+    assert_equal user_path(@user), current_path
+    assert_equal '/users/3', current_path
+    assert has_content? "Hello, #{@user.email}"
+    assert has_content? "My Quote Request History"
+
+    find("a[href='/quotes/#{@quote_nine.id}']").click
+    assert_equal quote_path(@quote_nine), current_path
+    click_link "MY ACCOUNT", match: :first
+    assert_equal user_path(@user), current_path
+    find("a[href='/purchases/new?quote_id=#{@quote_nine.id}']").click
+    assert has_content? "Secure Checkout"
+    check "make_same_address"
+    assert has_content? @quote_nine.subtotal
+    assert has_content? @quote_nine.total
+    fill_in "Card number", :with => "4111111111111111"
+    fill_in "Card Verification Value (CVV)", :with => "111"
+    select '2015', from: 'purchase_card_expires_on_1i'
+    select '4 - April', from: 'purchase_card_expires_on_2i'
+    click_on "Place Order Now"
+
   end
 
 end

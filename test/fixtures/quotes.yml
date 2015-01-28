@@ -11,14 +11,207 @@ quote_one:
   ship_state: Washington
   ship_zipcode: 95555
   ship_country: United States
-  subtotal: 9.99
+  subtotal: 29.99
   shipping: 1.99
   sales_tax: 0.00
-  total: 11.98
+  total: 31.98
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Priced
+  email: tim@example.org
+  amount: 3198
+  tax_id:
+  question:
+  id: 1
+
+two:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Arkansas Street
+  ship_city: Little Rock
+  ship_state: Arkansas
+  ship_zipcode: 95555
+  ship_country: United States
+  subtotal: 0
+  shipping: 0
+  sales_tax: 0
+  total: 0
   pay_type: Credit Card
   company: TimsGeeks
   status: Submitted
   email: tim@example.org
-  amount: 1198
-  tax_id: nil
-  question: nil
+  amount:
+  tax_id:
+  question:
+  id: 2
+
+three:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Way Street
+  ship_city: Vancouver
+  ship_state: Washington
+  ship_zipcode: 95555
+  ship_country: United States
+  subtotal: 0.00
+  shipping: 0.00
+  sales_tax: 0.00
+  total: 0.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Submitted
+  email: tim@example.org
+  amount:
+  tax_id:
+  question:
+  id: 3
+
+four:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 321 Minnesota Street
+  ship_city: Minneapolis
+  ship_state: Minnesota
+  ship_zipcode: 32555
+  ship_country: United States
+  subtotal: 19.00
+  shipping: 1.00
+  sales_tax: 0.00
+  total: 20.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Offline-Purchased
+  email: tim@example.org
+  amount: 2000
+  tax_id:
+  question:
+  id: 4
+
+five:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Way Street
+  ship_city: Vancouver
+  ship_state: Washington
+  ship_zipcode: 95555
+  ship_country: United States
+  subtotal: 39.00
+  shipping: 11.00
+  sales_tax: 0.00
+  total: 50.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Purchased
+  email: tim@example.org
+  amount: 5000
+  tax_id:
+  question: Do you like bananas?
+  id: 5
+
+six:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Way Street
+  ship_city: Newark
+  ship_state: New Jersey
+  ship_zipcode: 55555
+  ship_country: United States
+  subtotal: 100.00
+  shipping: 10.00
+  sales_tax: 0.00
+  total: 110.00
+  pay_type: Credit Card
+  company: New Jersey Pizza
+  status: Submitted
+  email: tim@example.org
+  amount: 11000
+  tax_id:
+  question: Do you like number six?
+  id: 6
+
+seven:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 321 Minnesota Street
+  ship_city: Minneapolis
+  ship_state: Minnesota
+  ship_zipcode: 32555
+  ship_country: United States
+  subtotal: 100.00
+  shipping: 10.00
+  sales_tax: 0.00
+  total: 0.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Submitted
+  email: tim@example.org
+  amount: nil
+  tax_id:
+  question:
+  id: 7
+
+eight:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 321 Minnesota Street
+  ship_city: Little Rock
+  ship_state: Arkansas
+  ship_zipcode: 32555
+  ship_country: United States
+  subtotal: 100.00
+  shipping: 10.00
+  sales_tax: 0.00
+  total: 0.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Submitted
+  email: tim@example.org
+  amount: 10000
+  tax_id:
+  question:
+  id: 8
+
+nine:
+  user_id: 3
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Way Street
+  ship_city: Vancouver
+  ship_state: Washington
+  ship_zipcode: 95555
+  ship_country: United States
+  subtotal: 50.00
+  shipping: 5.00
+  sales_tax: 0.00
+  total: 55.00
+  pay_type: Credit Card
+  company: TimsGeeks
+  status: Priced
+  email: tim@example.org
+  amount: 5500
+  tax_id:
+  question:
+  id: 9

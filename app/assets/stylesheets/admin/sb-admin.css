@@ -25,7 +25,7 @@ body {
 
 @media(min-width:768px) {
     body {
-        margin-top: 50px;
+        margin-top: 80px;
     }
 }
 
@@ -64,13 +64,30 @@ body {
     display: inline-block;
     float: left;
 }
+@media(max-width:767px) {
+  .top-nav>li>a {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    line-height: 18px;
+    color: #999;
+  }
+}
 
-.top-nav>li>a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+@media(min-width:768px) {
+  .top-nav>li>a {
+    padding-top: 30px;
+    padding-bottom: 30px;
     line-height: 20px;
     color: #999;
+  }
 }
+
+
+
+
+
+
+
 
 .top-nav>li>a:hover,
 .top-nav>li>a:focus,
@@ -123,11 +140,15 @@ ul.alert-dropdown {
 }
 
 /* Side Navigation */
-
+@media(max-width:767px) {
+    .side-nav {
+        background-color: #222;
+    }
+  }
 @media(min-width:768px) {
     .side-nav {
         position: fixed;
-        top: 51px;
+        top: 81px;
         left: 225px;
         width: 225px;
         margin-left: -225px;
@@ -235,7 +256,6 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
-
 .panel-gray {
     border-color: #737373;
 }
@@ -254,7 +274,6 @@ ul.alert-dropdown {
     color: #3D3D3D;
 }
 
-
 .panel-primary {
     border-color: #446e9b;
 }
@@ -272,8 +291,6 @@ ul.alert-dropdown {
 .panel-primary a:hover {
     color: #28415B;
 }
-
-
 
 .panel-dark {
     border-color: #333333;
@@ -295,8 +312,6 @@ ul.alert-dropdown {
 .black {
   color: #000000;
 }
-
-
 
 a.order-link {
   background: #333333;
@@ -354,10 +369,12 @@ a.admin-link:hover {
   padding: 5px 10px 5px 10px;
 }
 
+a.order-dash, a.quote-dash, a.purchase-dash {
+  padding: 3px;
+}
 a.order-dash:hover {
   color: #FFFFFF;
   background: #333333;
-  padding: 3px;
 }
 a.quote-dash:hover {
   color: #FFFFFF;
@@ -372,8 +389,11 @@ a.purchase-dash:hover {
 }
 
 .top-nav > li > a {
-
     color: #fff;
+}
+
+.admin_link {
+  color: #fff;
 }
 
 #user-email-link a {
@@ -381,4 +401,70 @@ a.purchase-dash:hover {
 }
 #user-email-link a:hover {
   color: #CDCDCD;
+}
+.navbar-brand {
+  max-width: 250px;
+}
+.navbar-brand .navbar-inverse a {
+  color: #fff;
+}
+
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse {
+  max-height: 400px;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+  .no-more-tables table,
+  .no-more-tables thead,
+  .no-more-tables tbody,
+  .no-more-tables th,
+  .no-more-tables td,
+  .no-more-tables tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .no-more-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .no-more-tables tr { border: 1px solid #ccc; }
+
+  .no-more-tables td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50% !important;
+    white-space: normal;
+    text-align:left;
+  }
+
+  .no-more-tables td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+
+  /*
+  Label the data
+  */
+  .no-more-tables td:before { content: attr(data-title); }
 }

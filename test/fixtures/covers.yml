@@ -1,7 +1,14 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+regular:
+  name: Regular Drape
 
-one:
-  name: MyString
+fitted:
+  name: Fitted (Hat Box)
 
-two:
-  name: MyString
+three:
+  name: Elastic Contour
+
+fitted_to_floor:
+  name: Fitted-to-Floor (Hat Box
+
+drape_floor:
+  name: Regular Drape-to-Floor

@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+round:
   name: Round
 
-two:
+rectangle:
   name: Rectangle
 
-three:
+square:
   name: Square

@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-purchase_one:
+one:
   user_id: 1
   firstname: Tim
   lastname: Smith
@@ -27,10 +27,45 @@ purchase_one:
   pay_telephone: 555-555-5555
   status: Purchased
   state: pending
-  card_type:
+  card_type: visa
   card_expires_on:
   ip_address:
   email: tim@example.org
   quote_id: 1
+  tax_id: nil
+  question: nil
+
+two:
+  user_id: 2
+  firstname: Tim
+  lastname: Smith
+  telephone: 555-555-5555
+  contactby: email
+  ship_street_address: 123 Way Street
+  ship_city: Vancouver
+  ship_state: Washington
+  ship_zipcode: 95555
+  ship_country: United States
+  pay_street_address: 123 Delivery Street
+  pay_city: Vancouver
+  pay_state: Washington
+  pay_zipcode: 95555
+  pay_country: United States
+  subtotal: 9.99
+  shipping: 1.99
+  sales_tax: 0.00
+  total: 11.98
+  pay_type: Credit Card
+  company: TimsGeeks
+  pay_firstname: Tim
+  pay_lastname: Smith
+  pay_telephone: 555-555-5555
+  status: Shipped
+  state: pending
+  card_type: visa
+  card_expires_on:
+  ip_address:
+  email: tim@example.org
+  quote_id: 5
   tax_id: nil
   question: nil

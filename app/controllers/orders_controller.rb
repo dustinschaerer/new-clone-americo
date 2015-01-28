@@ -17,6 +17,12 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    # make sure users only see their own orders look up the user attached to order
+    if (@order.user_id) == (current_user.id)
+      # show this order since it belongs to the signed in user
+    else
+      redirect_to root_url, notice: "The order you tried to access does not belong to you."
+    end
   end
 
   # GET /orders/new
@@ -25,17 +31,17 @@ class OrdersController < ApplicationController
       redirect_to store_url, notice: "Your cart is empty, you must select a sample swatch to proceed to checkout."
       return
     end
-
     @order = Order.new
-    #@order.email = current_user.email
   end
 
   # GET /orders/1/edit
   def edit
-     if (@order.user_id) == (current_user.id)
+    if (@order.user_id) == (current_user.id)
       # only edit this quote if it belongs to the signed in user
+    elsif current_user
+      redirect_to root_url, notice: "The order you tried to edit does not belong to you."
     else
-      redirect_to root_url, notice: "You must sign in to edit your order."
+      redirect_to root_url, notice: "Sign in to your account to edit an order."
     end
   end
 
@@ -44,9 +50,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-
-    respond_to do |format|
-      if @order.save
+    respond_to do |format| if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         #send email

@@ -3,13 +3,8 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  jQuery('.best_in_place').best_in_place();
-});
-
-
-$(document).ready(function() {
 	$('#slider').nivoSlider({
 		startSlide:0, //Set starting Slide (0 index)
-		slideshowEnd: function(){$('#slider').data('nivo:vars').stop = true;} 
+		slideshowEnd: function(){$('#slider').data('nivo:vars').stop = true;}
 	});
 });

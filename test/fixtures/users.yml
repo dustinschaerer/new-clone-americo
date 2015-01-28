@@ -1,5 +1,11 @@
 user_one:
   id: 1
   email: simon@other.com
-  encrypted_password: sdfadsadsagda
+  encrypted_password: <%= Devise.bcrypt(User, 'mypassword') %>
+  admin: false
+
+tim:
+  id: 2
+  email: timsmith@example.com
+  encrypted_password: <%= Devise.bcrypt(User, 'mypassword') %>
   admin: false

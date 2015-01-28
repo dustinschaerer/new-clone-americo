@@ -1,6 +1,5 @@
 Americo::Application.routes.draw do
 
-  root :to => "static_pages#home"
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
   end
@@ -9,6 +8,7 @@ Americo::Application.routes.draw do
   end
   devise_for :users
   devise_for :admin_users
+  root :to => "static_pages#home"
 
   resources :users, only: [:show, :edit, :update]
   resources :quoteholders

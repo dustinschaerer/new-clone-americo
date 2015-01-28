@@ -1,4 +1,7 @@
 class Purchase < ActiveRecord::Base
+
+  require "active_merchant/billing/rails"
+
   PAYMENT_TYPES = [ "Credit Card" ]
 
   belongs_to :user

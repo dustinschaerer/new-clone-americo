@@ -4,7 +4,6 @@ class Product < ActiveRecord::Base
     has_many :styles
     has_many :series, through: :styles
 
-
 #	before_destroy :ensure_not_referenced_by_any_line_item
 
 	validates :title, :description, :image_url, :thumbnail_url, presence: true

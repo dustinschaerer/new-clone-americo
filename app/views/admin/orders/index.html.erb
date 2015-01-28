@@ -20,10 +20,8 @@
 <%= paginate @orders %>
 
 <div class="row">
-  <div class="col-lg-12">
-    <div class="table-responsive">
-      <table class="table table-hover table-striped">
-
+  <div class="no-more-tables">
+      <table class="col-md-12 table table-hover table-striped table-condensed">
         <thead>
             <tr>
               <th>Order ID</th>
@@ -40,20 +38,19 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-                <td><%= link_to "#{order.id}", [:admin, order], class: "order-link" %></td>
-                <td><span class="<%= order.current_color %> label-status"><%= order.status %></span></td>
-                <td><%= order.firstname %> <%= order.lastname %></td>
-                <td><a href="/admin/users/<%= order.user_id %>"><%= order.user.email %></a></td>
-                <td><%= order.city %></td>
-                <td><%= order.state %></td>
-                <td><%= order.created_at.strftime("%-m-%d-%Y") %></td>
-                <td></td>
+                <td data-title="Order ID"><%= link_to "#{order.id}", [:admin, order], class: "order-link" %></td>
+                <td data-title="Status"><span class="<%= order.current_color %> label-status"><%= order.status %></span></td>
+                <td data-title="Customer"><%= order.firstname %> <%= order.lastname %></td>
+                <td data-title="User"><a href="/admin/users/<%= order.user_id %>"><%= order.user.email %></a></td>
+                <td data-title="City"><%= order.city %></td>
+                <td data-title="State"><%= order.state %></td>
+                <td data-title="Date"><%= order.created_at.strftime("%-m-%d-%Y") %></td>
+                <td</td>
             </tr>
           <% end  %>
 
         </tbody>
       </table>
-    </div>
   </div>
 </div>
 <!-- /.row -->

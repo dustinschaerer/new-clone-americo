@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 
 jQuery ->
   colors = $('#upholsterycut_color_id').html();
@@ -10,5 +6,5 @@ jQuery ->
     options = $(colors).filter("optgroup[label='#{series}']").html()
     if options
       $('#upholsterycut_color_id').html(options)
-    else 
-      $('#upholsterycut_color_id').empty() 
+    else
+      $('#upholsterycut_color_id').empty()

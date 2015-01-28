@@ -35,6 +35,8 @@ class Quote < ActiveRecord::Base
   def is_complete?
     if (self.status == "Priced")
       true
+    else
+      false
     end
   end
 

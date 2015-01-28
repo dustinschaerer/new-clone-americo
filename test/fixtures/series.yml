@@ -2,7 +2,7 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 series_one:
-  style_id: 1
+  style: style_one
   name: 9801
   description: This is the description text.
   image_url: swatches/9800/9801/9801_hl.jpg
@@ -15,6 +15,7 @@ series_one:
   smallimage: nil
   slug: style-9801-vinyl-table-covers
   id: 1
+  colors_count: 2
 
 series_two:
   style_id: 1
@@ -30,6 +31,7 @@ series_two:
   smallimage: nil
   slug: style-9802-vinyl-table-covers
   id: 2
+  colors_count: 2
 
 catalog:
   id: 80
