@@ -4,15 +4,13 @@ class Admin::DashboardController < AdminController
 
   def index
     @new_users =  User.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
-
+    @users_last_month =  User.created_between(Time.zone.now.beginning_of_month.beginning_of_day - 1.month, Time.zone.now.end_of_month.end_of_day - 1.month)
     @pending_orders = Order.all.where(status: "Submitted")
     @pending_quotes = Quote.pending
     @pending_purchases = Purchase.all.where(status: "Purchased")
-
     @orders = Order.all.order(id: :desc).limit(10)
     @quotes = Quote.all.order(id: :desc).limit(10)
     @purchases = Purchase.all.order(id: :desc).limit(10)
-
     @orders_this_month = Order.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
     @orders_last_month = Order.created_between(Time.zone.now.beginning_of_month.beginning_of_day - 1.month, Time.zone.now.end_of_month.end_of_day - 1.month)
     @orders_2_months_ago = Order.created_between(Time.zone.now.beginning_of_month.beginning_of_day - 2.month, Time.zone.now.end_of_month.end_of_day - 2.month)
