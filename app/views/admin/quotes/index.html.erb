@@ -11,7 +11,13 @@
         </ol>
 
         <h1 class="page-header">
+            <% if (params[:status] == "Submitted") %>
+              Pending
+            <% end %>
             Quotes
+            <% if (params[:status] == "Submitted") %>
+              <small>(with Status: Submitted)</small>
+            <% end %>
         </h1>
     </div>
 </div>

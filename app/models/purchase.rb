@@ -29,6 +29,8 @@ class Purchase < ActiveRecord::Base
   #validates :state, inclusion: ::PROVINCES, if: :is_usa?
   #validates :state, inclusion: ::PROVINCES, if: :is_canada?
 
+  scope :pending, -> { where(status: "Purchased")}
+
   def is_usa?
     (pay_country == 'United States')
   end

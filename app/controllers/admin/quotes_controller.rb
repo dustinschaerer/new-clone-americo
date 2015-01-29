@@ -5,7 +5,11 @@ class Admin::QuotesController < AdminController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.all.order("id DESC").includes(:user).page(params[:page]).per(50)
+    if (params[:status] == "Submitted")
+      @quotes = Quote.pending.order("id DESC").includes(:user).page(params[:page]).per(50)
+    else
+      @quotes = Quote.all.order("id DESC").includes(:user).page(params[:page]).per(50)
+    end
   end
 
   def show

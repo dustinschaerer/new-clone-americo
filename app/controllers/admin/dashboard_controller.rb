@@ -5,9 +5,9 @@ class Admin::DashboardController < AdminController
   def index
     @new_users =  User.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
 
-    @new_orders = Order.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
-    @new_quotes = Quote.all.where(status: "Submitted")
-    @new_purchases = Purchase.all.where(status: "Purchased")
+    @pending_orders = Order.all.where(status: "Submitted")
+    @pending_quotes = Quote.pending
+    @pending_purchases = Purchase.all.where(status: "Purchased")
 
     @orders = Order.all.order(id: :desc).limit(10)
     @quotes = Quote.all.order(id: :desc).limit(10)

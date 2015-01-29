@@ -18,6 +18,7 @@ class Quote < ActiveRecord::Base
   validates :ship_state, inclusion: ::STATES, if: :is_usa?
   validates :ship_state, inclusion: ::PROVINCES, if: :is_canada?
 
+  scope :pending, -> { where(status: "Submitted")}
 
   def update_status_to_purchased
     self.status = "Purchased"

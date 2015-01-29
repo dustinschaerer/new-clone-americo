@@ -11,7 +11,12 @@
             </li>
         </ol>
         <h1 class="page-header">
+            <% if (params[:status] == "Purchased") %> Pending
+            <% end %>
             Purchases
+            <% if (params[:status] == "Purchased") %>
+              <small>(with Status: Purchased)</small>
+            <% end %>
         </h1>
 
     </div>

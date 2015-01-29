@@ -5,7 +5,11 @@ class Admin::PurchasesController < AdminController
   # GET /purchases
   # GET /purchsases.json
   def index
-    @purchases = Purchase.all.order("id DESC").includes(:user).page(params[:page]).per(20)
+    if (params[:status] == "Purchased")
+      @purchases = Purchase.pending.order("id DESC").includes(:user).page(params[:page]).per(50)
+    else
+      @purchases = Purchase.all.order("id DESC").includes(:user).page(params[:page]).per(20)
+    end
   end
 
   # GET /purchases/1

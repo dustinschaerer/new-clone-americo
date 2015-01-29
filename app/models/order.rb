@@ -9,6 +9,8 @@ class Order < ActiveRecord::Base
   validates :state, inclusion: ::STATES, if: :is_usa?
   validates :state, inclusion: ::PROVINCES, if: :is_canada?
 
+  scope :pending, -> { where(:status => "Submitted")}
+
   def is_usa?
     (country == 'United States')
   end

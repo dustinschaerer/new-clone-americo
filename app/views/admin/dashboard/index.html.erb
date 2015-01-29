@@ -110,7 +110,8 @@
     <div class="col-lg-4">
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-shopping-cart fa-fw"></i> Recent Orders</h3>
+                <h3 class="panel-title no-block"><i class="fa fa-shopping-cart fa-fw"></i> Recent Orders</h3>
+                <%= link_to "Pending: #{@pending_orders.count}", admin_orders_path(:status => "Submitted"), class: "pull-right white"  %>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -143,7 +144,9 @@
     <div class="col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-tags fa-fw"></i> Recent Quotes</h3>
+                <h3 class="panel-title no-block"><i class="fa fa-tags fa-fw"></i> Recent Quotes</h3>
+
+                <%= link_to "Pending: #{@pending_quotes.count}", admin_quotes_path(:status => "Submitted"), class: "pull-right white"  %>
             </div>
             <div class="panel-body">
                 <!--<div id="morris-area-chart"></div>-->
@@ -180,7 +183,8 @@
     <div class="col-lg-4">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-credit-card fa-fw"></i> Recent Purchases</h3>
+                <h3 class="panel-title no-block"><i class="fa fa-credit-card fa-fw"></i> Recent Purchases</h3>
+                <%= link_to "Pending: #{@pending_purchases.count}", admin_purchases_path(:status => "Purchased"), class: "pull-right white"  %>
             </div>
             <div class="panel-body">
                 <!--<div id="morris-area-chart"></div>-->

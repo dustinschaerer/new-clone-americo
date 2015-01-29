@@ -41,6 +41,7 @@ gem 'kaminari'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'sprockets_better_errors'
+gem 'has_scope'
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'

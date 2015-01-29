@@ -3,10 +3,18 @@ class Admin::OrdersController < AdminController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :send_question_email, :send_shipped_email]
   after_action :reset_current_color, only: [:update]
 
+  #has_scope :pending
+
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order("id DESC").includes(:user).page(params[:page]).per(50)
+    if (params[:status] == "Submitted")
+      @orders = Order.pending.order("id DESC").includes(:user).page(params[:page]).per(50)
+    else
+      @orders = Order.all.order("id DESC").includes(:user).page(params[:page]).per(50)
+    end
+    #@orders = Order.all.where(nil)
+    #@orders = @orders.pending if params[:status].present?
   end
 
   # GET /orders/1
