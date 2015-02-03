@@ -366,8 +366,6 @@
     </table>
   </div>
 
-
-
     <% elsif (line.quote_product_id == 13 ) %>
     <!-- show  -->
     <div class="table-responsive">
@@ -393,6 +391,95 @@
           <td class="col col-quantity"><%= best_in_place line, :quantity %></td>
           <td class="col col-price"><%= best_in_place line, :price, :type => :input, :display_with => lambda{ |v| number_to_currency(v) } %></td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% elsif (line.quote_product_id == 14) %>
+  <div class="table-responsive">
+    <table class="table table-hover table-striped" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th class="col col-quote_product_type">Product Type</th>
+          <th class="col col-series">Series</th>
+          <th class="col col-color">Color</th>
+          <th class="col col-color">Swatch</th>
+          <th class="col col-quantity">Quantity</th>
+          <th class="col col-price">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd" id="">
+          <td class="col col-quote_product_type"><%= line.quote_product_name %></td>
+          <td class="col col-series"><%= line.series_name %></td>
+          <td class="col col-color"><%= line.color_name %></td>
+          <td class="col col-color"><%= image_tag(line.color_image_url, :class => "admin_swatch") %></td>
+          <td class="col col-quantity"><%= best_in_place line, :quantity %></td>
+          <td class="col col-price"><%= best_in_place line, :price, :type => :input, :display_with => lambda{ |v| number_to_currency(v) } %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% elsif (line.quote_product_id == 15) %>
+    <div class="table-responsive">
+    <table class="table table-hover table-striped" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th class="col col-quote_product_type">Product Type</th>
+          <th class="col col-series">Series</th>
+          <th class="col col-color">Color</th>
+          <th class="col col-color">Swatch</th>
+          <th class="col col-table_shape">Table Shape</th>
+          <th class="col col-length">Length</th>
+          <th class="col col-width">Width</th>
+          <th class="col col-quantity">Quantity</th>
+          <th class="col col-price">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd" id="">
+          <td class="col col-quote_product_type"><%= line.quote_product_name %></td>
+          <td class="col col-series"><%= line.series_name %></td>
+          <td class="col col-color"><%= line.color_name %></td>
+          <td class="col col-color"><%= image_tag(line.color_image_url, :class => "admin_swatch") %></td>
+          <td class="col col-table_shape"><%= line.shape_name %></td>
+          <td class="col col-length"><%= line.length %></td>
+          <td class="col col-width"><%= line.width %></td>
+          <td class="col col-quantity"><%= best_in_place line, :quantity %></td>
+          <td class="col col-price"><%= best_in_place line, :price, :type => :input, :display_with => lambda{ |v| number_to_currency(v) } %></td>
+       </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% elsif (line.quote_product_id == 16) %>
+  <div class="table-responsive">
+    <table class="table table-hover table-striped" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th class="col col-quote_product_type">Product Type</th>
+          <th class="col col-series">Series</th>
+          <th class="col col-color">Color</th>
+          <th class="col col-color">Swatch</th>
+          <th class="col col-table_shape">Table Shape</th>
+          <th class="col col-length">Length</th>
+          <th class="col col-width">Width</th>
+          <th class="col col-quantity">Quantity</th>
+          <th class="col col-price">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd" id="">
+          <td class="col col-quote_product_type"><%= line.quote_product_name %></td>
+          <td class="col col-series"><%= line.series_name %></td>
+          <td class="col col-color"><%= line.color_name %></td>
+          <td class="col col-color"><%= image_tag(line.color_image_url, :class => "admin_swatch") %></td>
+          <td class="col col-table_shape"><%= line.shape_name %></td>
+          <td class="col col-length"><%= line.length %></td>
+          <td class="col col-width"><%= line.width %></td>
+          <td class="col col-quantity"><%= best_in_place line, :quantity %></td>
+          <td class="col col-price"><%= best_in_place line, :price, :type => :input, :display_with => lambda{ |v| number_to_currency(v) } %></td>
+       </tr>
       </tbody>
     </table>
   </div>
