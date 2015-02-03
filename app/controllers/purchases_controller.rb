@@ -130,14 +130,19 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   # PATCH/PUT /purchases/1.json
   def update
-    respond_to do |format|
-      if @purchase.update(purchase_params)
-            format.html { redirect_to @purchase, notice: "PURCHASE COMPLETED! We'll send a confirmation email about your purchase and another email once your order has shipped. Check your account Dashboard to see your Purchase, Quote, and free Swatch Order Histories." }
-            format.json { render action: 'show', status: :created, location: @purchase }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @cover.errors, status: :unprocessable_entity }
+    if (@purchase.user_id) == (current_user.id)
+      # only show this purchase if it belongs to the signed in user
+      respond_to do |format|
+        if @purchase.update(purchase_params)
+              format.html { redirect_to @purchase, notice: "PURCHASE COMPLETED! We'll send a confirmation email about your purchase and another email once your order has shipped. Check your account Dashboard to see your Purchase, Quote, and free Swatch Order Histories." }
+              format.json { render action: 'show', status: :created, location: @purchase }
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: @cover.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_url, notice: "The purchase you tried to access does not belong to you."
     end
   end
 

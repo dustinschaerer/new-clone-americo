@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :authenticate_admin_user!, :except => [:new, :create, :show, :edit]
+  before_action :authenticate_admin_user!, :except => [:new, :create, :show, :edit, :update]
   include CurrentQuoteholder
   include CurrentCart
   before_action :set_quoteholder, only: [:new, :create]
@@ -69,17 +69,23 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-#        format.json { head :no_content }
-        format.json { respond_with_bip(@order) }
-
-      else
-        format.html { render action: 'edit' }
- #       format.json { render json: @order.errors, status: :unprocessable_entity }
-        format.json { respond_with_bip(@order) }
+    if (@order.user_id) == (current_user.id)
+      # only update this quote if it belongs to the signed in user
+      respond_to do |format|
+        if @order.update(order_params)
+          format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+  #        format.json { head :no_content }
+          format.json { respond_with_bip(@order) }
+        else
+          format.html { render action: 'edit' }
+   #       format.json { render json: @order.errors, status: :unprocessable_entity }
+          format.json { respond_with_bip(@order) }
+        end
       end
+    elsif current_user
+      redirect_to root_url, notice: "The order you tried to edit does not belong to you."
+    else
+      redirect_to root_url, notice: "Sign in to your account to edit an order."
     end
   end
 

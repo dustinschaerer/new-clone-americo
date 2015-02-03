@@ -19,7 +19,7 @@ class OrderNotifier < ActionMailer::Base
   def question(order, current_user)
     @order = order
     @current_user = current_user
-    mail to: order.email, subject: 'Response needed to ship Americo Order #'
+    mail to: order.email, subject: "Response needed to ship Americo Order ##{@order.id}"
   end
 
   def notify_admin(order)

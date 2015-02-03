@@ -79,7 +79,7 @@ class Admin::OrdersController < AdminController
       if @order.save
         redirect_to admin_order_path, {:notice => "order ##{@order.id} Shipped Email has been sent to #{@current_user.email}."}
       else
-        redirect_to admin_order_path(@order), {:notice => "Purchase Status could not be saved. Please review the status and try again."}
+        redirect_to admin_order_path(@order), {:notice => "Order Status could not be saved. Please review the status and try again."}
       end
     end
   end
