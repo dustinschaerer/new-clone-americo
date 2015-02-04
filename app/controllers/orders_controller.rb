@@ -69,21 +69,31 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    if (@order.user_id) == (current_user.id)
-      # only update this quote if it belongs to the signed in user
+    if current_admin_user
       respond_to do |format|
         if @order.update(order_params)
           format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-  #        format.json { head :no_content }
           format.json { respond_with_bip(@order) }
         else
           format.html { render action: 'edit' }
-   #       format.json { render json: @order.errors, status: :unprocessable_entity }
           format.json { respond_with_bip(@order) }
         end
       end
     elsif current_user
-      redirect_to root_url, notice: "The order you tried to edit does not belong to you."
+      if (@order.user_id) == (current_user.id)
+        # only update this quote if it belongs to the signed in user
+        respond_to do |format|
+          if @order.update(order_params)
+            format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+            format.json { respond_with_bip(@order) }
+          else
+            format.html { render action: 'edit' }
+            format.json { respond_with_bip(@order) }
+          end
+        end
+      else
+        redirect_to root_url, notice: "The order you tried to edit does not belong to you."
+      end
     else
       redirect_to root_url, notice: "Sign in to your account to edit an order."
     end
