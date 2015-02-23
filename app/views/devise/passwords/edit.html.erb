@@ -1,38 +1,30 @@
-<div class="border-form-div">
+<div class="container log-in">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h2>Change your password</h2>
+</div>
+<div class="panel-body">
+ <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+ <%= devise_error_messages! %>
+ <%= f.hidden_field :reset_password_token %>
 
-     <div class="row">
-      <div class="col-sm-12 col-lg-offset-3 col-lg-6">
+ <div class="form-group">
+  <%= f.label :password, "New password" %>
+   <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control" %>
+ </div>
 
-  <h1>Change your password</h1>
+ <div class="form-group">
+  <%= f.label :password_confirmation, "Confirm new password" %>
+   <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+ </div>
 
-<%= bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= f.alert_message "Please fix the following errors:" %>
-
-
-  <%= f.hidden_field :reset_password_token %>
-  <%=
-  #f.full_error :reset_password_token
-  %>
-
-
-
-  <div class="form-inputs">
-
-
-        <%= f.password_field :password, :label => "New password", :required => true, :autofocus => true %>
-        <%= f.password_field :password_confirmation, :label => "Confirm your new password", :required => true %>
-  </div>
-
-  <div class="form-actions">
-
-
-    <%= f.submit "Change my password", class: "btn btn-success btn-block bottom25" %>
-
-  </div>
-      </div>
-    </div>
-
+ <div class="form-group">
+  <%= f.submit "Change my password", class: "btn btn-default btn-lg standard-button2" %>
+ </div>
+<% end %>
 
 <%= render "devise/shared/links" %>
-<% end %>
 </div>
+</div>
+</div>
+
