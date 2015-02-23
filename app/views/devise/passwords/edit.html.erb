@@ -1,21 +1,36 @@
 <div class="border-form-div">
 
+     <div class="row">
+      <div class="col-sm-12 col-lg-offset-3 col-lg-6">
+
   <h1>Change your password</h1>
 
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= f.error_notification %>
+<%= bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= f.alert_message "Please fix the following errors:" %>
 
-  <%= f.input :reset_password_token, :as => :hidden %>
-  <%= f.full_error :reset_password_token %>
+
+  <%= f.hidden_field :reset_password_token %>
+  <%=
+  #f.full_error :reset_password_token
+  %>
+
+
 
   <div class="form-inputs">
-    <%= f.input :password, :label => "New password", :required => true, :autofocus => true %>
-    <%= f.input :password_confirmation, :label => "Confirm your new password", :required => true %>
+
+
+        <%= f.password_field :password, :label => "New password", :required => true, :autofocus => true %>
+        <%= f.password_field :password_confirmation, :label => "Confirm your new password", :required => true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Change my password", :class=> "btn btn-default btn-block bottom25" %>
+
+
+    <%= f.submit "Change my password", class: "btn btn-success btn-block bottom25" %>
+
   </div>
+      </div>
+    </div>
 
 
 <%= render "devise/shared/links" %>
