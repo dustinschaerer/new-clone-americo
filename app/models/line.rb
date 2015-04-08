@@ -12,7 +12,7 @@ class Line < ActiveRecord::Base
   delegate :id, :name, to: :quote_product, prefix: true
   delegate :name, to: :series, prefix: true
   delegate :name, :image_url, to: :color, prefix: true
-  delegate :name, :dimension, to: :size, prefix: true
+  delegate :dimension, to: :size, prefix: true
   delegate :name, to: :cover, prefix: true
   delegate :name, to: :shape, prefix: true
 
@@ -23,6 +23,8 @@ class Line < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 72 }, if: :is_placemat?
   validates :quantity, numericality: { greater_than_or_equal_to: 4 }, if: :is_value_one?
   validates :quantity, numericality: { greater_than_or_equal_to: 2 }, if: :is_value_two?
+
+  validates :size_id, presence: true, if: :is_value?
 
   validates :shape_id, presence: true, if: :is_shape?
   validates :shape_id, numericality: { greater_than: 0 }, if: :is_shape?
@@ -68,7 +70,9 @@ class Line < ActiveRecord::Base
     end
   end
 
-
+  def is_value?
+    (quote_product_id == 13)
+  end
 
   def is_shape?
     ((quote_product_id == 1) || (quote_product_id == 2) || (quote_product_id == 15) || (quote_product_id == 16))
