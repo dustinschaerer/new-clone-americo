@@ -1,0 +1,80 @@
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+    	<ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-bullhorn"></i> Prospects
+            </li>
+        </ol>
+        <h1 class="page-header">Prospects</h1>
+    </div>
+</div>
+<!-- /.row -->
+
+
+<%= bootstrap_form_for(@prospect, url: admin_prospects_path, layout: :inline) do |f| %>
+  <%= f.alert_message "Please fix the following errors:" %>
+  <%= f.email_field :email, :placeholder => "Enter Email", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
+  <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
+
+  <%=
+   #f.collection_select(:prospect_group_id, @prospect_groups, :id, :name, {:selected => "1", hide_label: true } )
+   %>
+
+  <%= f.form_group do %>
+    <%= f.submit "Add New Prospect", class: "btn btn-primary"  %>
+  <% end %>
+<% end -%>
+
+<%= paginate @prospects %>
+
+<div class="row">
+  <div class="no-more-tables">
+    <%= bootstrap_form_tag url: assign_groups_for_admin_prospects_url, method: :patch do |f| %>
+      <table class="col-md-12 table table-hover table-striped">
+        <thead>
+            <tr>
+              <th></th>
+              <th>Prospect ID</th>
+              <th>Prospect Group</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Unsubscribed</th>
+              <th>Validated</th>
+              <th>Date Joined On</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <% @prospects.each do |prospect| %>
+            <tr>
+                <td data-title="">
+                  <%= check_box_tag "prospect_ids[]", prospect.id %>
+                </td>
+                <td data-title="Prospect Id">
+                  <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-link" %>
+                </td>
+                <td data-title=""><%=
+                 prospect.prospect_group_id
+                %></td>
+                <td data-title="Email"><%= prospect.email %></td>
+                <td data-title="Name"><%= prospect.name %></td>
+                <td data-title="Unsubscribed"><span class="<%= prospect.unsubscribed %> label-status"><%= prospect.unsubscribed %></span></td>
+                <td data-title="Validated"><%= prospect.validated %></td>
+                <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
+            </tr>
+          <% end  %>
+        </tbody>
+      </table>
+      <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %>
+      <br><br>
+      <%= submit_tag "Assign Checked to Prospect Group" %>
+    <% end %>
+  </div>
+</div>
+<!-- /.row -->
+
+<%= paginate @prospects %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @prospect_group.name %>
+</p>
+
+<p>
+  <strong>Email message:</strong>
+  <%= @prospect_group.email_message %>
+</p>
+
+<p>
+  <strong>Last sent on:</strong>
+  <%= @prospect_group.last_sent_on %>
+</p>
+
+<%= link_to 'Edit', edit_prospect_group_path(@prospect_group) %> |
+<%= link_to 'Back', prospect_groups_path %>

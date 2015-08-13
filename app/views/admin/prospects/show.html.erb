@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+              <a href="/admin/prospect_groups"> <i class="fa fa-user"></i> Prospects</a>
+            </li>
+            <li class="active">
+              <%= @prospect.id %>
+            </li>
+        </ol>
+
+    </div>
+</div>
+<!-- /.row -->
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Prospect Id</th>
+          <th>Prospect Email</th>
+          <th>Prospect Name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr>
+        <td></td>
+        <td><%= @prospect.id %></td>
+        <td><%= @prospect.email %></td>
+        <td><%= @prospect.name %></td>
+        <td><%= link_to 'Edit', edit_admin_prospect_path(@prospect) %></td>
+        <td><%= link_to 'Destroy', admin_prospect_path(@prospect), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    </table>
+  </div>
+</div>
+

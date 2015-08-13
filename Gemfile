@@ -42,6 +42,7 @@ gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'sprockets_better_errors'
 gem 'has_scope'
+gem 'validates_email_format_of'
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'
@@ -54,6 +55,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails'
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'

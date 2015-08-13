@@ -80,6 +80,15 @@
                 <li>
                     <a href="/admin/admin_users/"><i class="fa fa-fw fa-bolt"></i> Administrators</a>
                 </li>
+                <li>
+                    <a href="/admin/prospects/"><i class="fa fa-fw fa-bullhorn"></i> Prospects</a>
+                </li>
+                <li>
+                    <a href="/admin/email_messages"><i class="fa fa-fw fa-envelope"></i> Email Templates</a>
+                </li>
+                <li>
+                    <a href="/admin/send_emails"><i class="fa fa-fw fa-envelope"></i> Send Emails</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -87,6 +96,8 @@
 
     <div id="page-wrapper">
       <div class="container-fluid">
+        <%= render 'layouts/messages' %>
+
         <%= yield %>
       </div>
     </div>

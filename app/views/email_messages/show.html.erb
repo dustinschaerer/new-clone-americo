@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @email_message.subject %>
+</p>
+
+<p>
+  <strong>Headers:</strong>
+  <%= @email_message.headers %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @email_message.content %>
+</p>
+
+<p>
+  <strong>Mandril tags:</strong>
+  <%= @email_message.mandril_tags %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @email_message.template %>
+</p>
+
+<%= link_to 'Edit', edit_email_message_path(@email_message) %> |
+<%= link_to 'Back', email_messages_path %>

@@ -1,5 +1,7 @@
 Americo::Application.routes.draw do
 
+  resources :prospect_groups
+
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
   end
@@ -29,54 +31,7 @@ Americo::Application.routes.draw do
   resources :quotecarts
   resources :quotes
   resources :purchases, :only => [:new, :create, :show, :update]
-
-  namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
-    get 'charts', to: 'dashboard#charts', as: '/charts'
-    get 'chartsuey', to: 'dashboard#chartsuey', as: '/chartsuey'
-    get 'geocharts', to: 'dashboard#geocharts', as: '/geocharts'
-    get 'single', to: 'dashboard#single', as: '/single'
-    get 'user_traffic', to: 'dashboard#user_traffic', as: '/user_traffic'
-    get 'visits', to: 'dashboard#visits', as: '/visits'
-    get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
-
-    resources :quoteholders
-    resources :lines
-    resources :quote_products
-    resources :sizes
-    resources :shapes
-    resources :covers
-    resources :categories
-    resources :line_items
-    resources :carts
-    resources :styles
-    resources :series
-    resources :colors
-    resources :orders do
-      member do
-        get 'send_shipped_email'
-        get 'send_question_email'
-      end
-    end
-    resources :messages
-    resources :subscribers
-    resources :quotecarts
-    resources :quotes do
-      member do
-        get 'recalculate'
-        get 'send_priced_email'
-        get 'send_question_email'
-      end
-    end
-    resources :purchases do
-      member do
-        get 'send_shipped_email'
-        get 'send_question_email'
-      end
-    end
-    resources :users
-    resources :admin_users
-  end
+  resources :email_messages
 
   get "store/index"
   resources :products do
@@ -120,6 +75,67 @@ Americo::Application.routes.draw do
   match '/technical_specs',   to: 'static_pages#technical_specs', via: 'get'
   match '/terms_and_conditions',   to: 'static_pages#terms_and_conditions', via: 'get'
   match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
+
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    get 'charts', to: 'dashboard#charts', as: '/charts'
+    get 'chartsuey', to: 'dashboard#chartsuey', as: '/chartsuey'
+    get 'geocharts', to: 'dashboard#geocharts', as: '/geocharts'
+    get 'single', to: 'dashboard#single', as: '/single'
+    get 'user_traffic', to: 'dashboard#user_traffic', as: '/user_traffic'
+    get 'visits', to: 'dashboard#visits', as: '/visits'
+    get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
+    resources :email_messages do
+      member do
+        get 'send_email_to_prospects'
+        get 'send_email_to_users'
+      end
+    end
+    resources :quoteholders
+    resources :lines
+    resources :quote_products
+    resources :sizes
+    resources :shapes
+    resources :covers
+    resources :categories
+    resources :line_items
+    resources :carts
+    resources :styles
+    resources :series
+    resources :colors
+    resources :orders do
+      member do
+        get 'send_shipped_email'
+        get 'send_question_email'
+      end
+    end
+    resources :messages
+    resources :subscribers
+    resources :quotecarts
+    resources :quotes do
+      member do
+        get 'recalculate'
+        get 'send_priced_email'
+        get 'send_question_email'
+      end
+    end
+    resources :purchases do
+      member do
+        get 'send_shipped_email'
+        get 'send_question_email'
+      end
+    end
+    resources :prospects do
+      collection do
+        patch :assign_groups_for
+      end
+    end
+    resources :users
+    resources :admin_users
+    resources :prospect_groups
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @admin_email_message.subject %>
+</p>
+
+<p>
+  <strong>Headers:</strong>
+  <%= @admin_email_message.headers %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @admin_email_message.content.html_safe %>
+</p>
+
+<p>
+  <strong>Mandril tags:</strong>
+  <%= @admin_email_message.mandril_tags %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @admin_email_message.template %>
+</p>
+
+<%= select_tag "prospect_group", options_for_select([ "All Users", "All Prospects", "Prospect list"], "one") %>
+
+<%= link_to send_email_to_prospects_admin_email_message_path, :class => "btn btn-primary"  do %>
+  <i class="glyphicon glyphicon-paper-plane"></i> Send Email to Prospects
+<% end %>
+
+
+<%= link_to send_email_to_users_admin_email_message_path, :class => "btn btn-primary"  do %>
+  <i class="glyphicon glyphicon-paper-plane"></i> Send Email to Users
+<% end %>
+
+<%= link_to 'Edit', edit_admin_email_message_path(@admin_email_message) %> |
+<%= link_to 'Back', admin_email_messages_path %>

@@ -1,0 +1,39 @@
+<h1>Listing email_messages</h1>
+<p><%= params.inspect %></p>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Subject</th>
+      <th>Headers</th>
+      <th>Content</th>
+      <th>Mandril tags</th>
+      <th>Template</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_email_messages.each do |email_message| %>
+      <tr>
+        <td><%= email_message.id %></td>
+        <td><%= email_message.subject %></td>
+        <td><%= email_message.headers %></td>
+        <td><%= truncate(email_message.content, length: 50) %></td>
+        <td><%= email_message.mandril_tags %></td>
+        <td><%= email_message.template %></td>
+        <td><%= link_to 'Show', admin_email_message_path(email_message) %></td>
+        <td><%= link_to 'Edit', edit_admin_email_message_path(email_message) %></td>
+        <td><%= link_to 'Destroy', admin_email_message_path(email_message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Send To', admin_email_message_path(email_message) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Email message', new_email_message_path %>

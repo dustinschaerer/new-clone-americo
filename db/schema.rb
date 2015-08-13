@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102231821) do
+ActiveRecord::Schema.define(version: 20150731221021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 20150102231821) do
 
   create_table "covers", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "email_messages", force: true do |t|
+    t.string   "subject"
+    t.string   "headers"
+    t.text     "content"
+    t.string   "mandril_tags"
+    t.string   "template"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -191,6 +201,29 @@ ActiveRecord::Schema.define(version: 20150102231821) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+
+  create_table "prospect_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "email_message_id"
+    t.date     "last_sent_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prospect_groups", ["email_message_id"], name: "index_prospect_groups_on_email_message_id", using: :btree
+
+  create_table "prospects", force: true do |t|
+    t.string   "email"
+    t.boolean  "unsubscribed"
+    t.boolean  "validated"
+    t.date     "date_joined_on"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "prospect_group_id"
+  end
+
+  add_index "prospects", ["prospect_group_id"], name: "index_prospects_on_prospect_group_id", using: :btree
 
   create_table "purchase_transactions", force: true do |t|
     t.integer  "purchase_id"
