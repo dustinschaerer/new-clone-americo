@@ -1,4 +1,10 @@
+require 'sidekiq/web'
+
 Americo::Application.routes.draw do
+
+  namespace :admin do
+    resources :user_groups
+  end
 
   resources :prospect_groups
 
@@ -11,6 +17,10 @@ Americo::Application.routes.draw do
   devise_for :users
   devise_for :admin_users
   root :to => "static_pages#home"
+
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
 
   resources :users, only: [:show, :edit, :update]
   resources :quoteholders
@@ -86,6 +96,7 @@ Americo::Application.routes.draw do
     get 'user_traffic', to: 'dashboard#user_traffic', as: '/user_traffic'
     get 'visits', to: 'dashboard#visits', as: '/visits'
     get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
+    get 'email_manager', to: 'email_messages#email_manager', as: '/email_manager'
     resources :email_messages do
       member do
         get 'send_email_to_prospects'

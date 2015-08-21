@@ -43,6 +43,9 @@ gem 'raphael-rails'
 gem 'sprockets_better_errors'
 gem 'has_scope'
 gem 'validates_email_format_of'
+gem 'sidekiq'
+gem 'sinatra', :require => nil
+gem 'rails-admin-scaffold'
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'

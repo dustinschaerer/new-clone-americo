@@ -1,0 +1,38 @@
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-bullhorn"></i> Prospects
+            </li>
+        </ol>
+        <h1 class="page-header">Email Manager</h1>
+    </div>
+</div>
+<!-- /.row -->
+<p><%= link_to 'New Email message', new_admin_email_message_path, class: 'btn btn-primary' %></p>
+
+
+<p><%= params.inspect %></p>
+
+<div class="row">
+   <div class="col-lg-12">
+    <div class="well pad-top-10">
+      <h3 class="top10">Schedule an Email to Send</h3>
+      <%= bootstrap_form_tag url: assign_groups_for_admin_prospects_url, method: :patch do |f| %>
+        <p>Select the Email to Send Out:</p>
+        <%= collection_select :admin_email_message, :id, @admin_email_messages, :id, :template %>
+        <br><br>
+        <p>Select which Prospect Froup to Send this message to:</p>
+        <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %>
+        <br><br>
+        <%= button_tag "Schedule this Email for Sending", data: { confirm: 'Are you sure you want to send this message now?' } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- /.row -->
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731221021) do
+ActiveRecord::Schema.define(version: 20150821230557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,6 +411,16 @@ ActiveRecord::Schema.define(version: 20150731221021) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "user_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "email_message_id"
+    t.date     "last_sent_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_groups", ["email_message_id"], name: "index_user_groups_on_email_message_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
