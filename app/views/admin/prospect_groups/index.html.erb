@@ -32,19 +32,18 @@
         </thead>
 
         <tbody>
-
-            <% @prospect_groups.each do |prospect_group| %>
-              <tr>
-                <td data-title="prospect_group_id"><%= link_to "#{prospect_group.id}", [:admin, prospect_group], class: "prospect-link" %>
-                </td>
-                <td data-title="name"><%= prospect_group.name %></td>
-                <td data-title="last_message_sent"><%= prospect_group.try(:email_message).try(:id) %></td>
-                <td data-title="id"><%= prospect_group.created_at %></td>
-                <td><%= link_to 'Show', admin_prospect_group_path(prospect_group) %></td>
-                <td><%= link_to 'Edit', edit_admin_prospect_group_path(prospect_group) %></td>
-                <td><%= link_to 'Destroy', admin_prospect_group_path(prospect_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
+          <% @prospect_groups.each do |prospect_group| %>
+            <tr>
+              <td data-title="prospect_group_id"><%= link_to "#{prospect_group.id}", [:admin, prospect_group], class: "prospect-link" %>
+              </td>
+              <td data-title="name"><%= prospect_group.name %></td>
+              <td data-title="last_message_sent"><%= prospect_group.try(:email_message).try(:id) %></td>
+              <td data-title="created_at"><%= prospect_group.created_at %></td>
+              <td><%= link_to 'Show', admin_prospect_group_path(prospect_group) %></td>
+              <td><%= link_to 'Edit', edit_admin_prospect_group_path(prospect_group) %></td>
+              <td><%= link_to 'Destroy', admin_prospect_group_path(prospect_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
   </div>
@@ -52,21 +51,18 @@
 <!-- /.row -->
 
 
-<%= bootstrap_form_for(@prospect_group, url: admin_prospect_groups_path, layout: :inline) do |f| %>
-  <%= f.alert_message "Please fix the following errors:" %>
-  <%= f.text_field :name, :placeholder => "Prospect Group Name", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
-  <%=
-   #f.collection_select(:prospect_group_id, @prospect_groups, :id, :name, {:selected => "1", hide_label: true } )
-   %>
-
-  <%= f.form_group do %>
-    <%= f.submit "Add New Prospect Group", class: "btn btn-primary"  %>
-  <% end %>
-<% end -%>
 
 <div class="row">
   <div class="col-lg-12">
 
+    <%= bootstrap_form_for(@prospect_group, url: admin_prospect_groups_path, layout: :inline) do |f| %>
+      <%= f.alert_message "Please fix the following errors:" %>
+      <%= f.text_field :name, :placeholder => "Prospect Group Name", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
+
+      <%= f.form_group do %>
+        <%= f.submit "Add New Prospect Group", class: "btn btn-primary"  %>
+      <% end %>
+    <% end -%>
 
   </div>
 </div>

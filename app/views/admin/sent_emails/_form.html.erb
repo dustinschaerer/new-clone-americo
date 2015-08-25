@@ -1,0 +1,48 @@
+
+<%= bootstrap_form_for([:admin, @sent_email]) do |f| %>
+  <% if @sent_email.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sent_email.errors.count, "error") %> prohibited this sent_email from being saved:</h2>
+      <ul>
+      <% @sent_email.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.collection_select :email_message_id, @admin_email_messages, :id, :template, { label: "Select Email to Send"} %>
+
+
+    <% if sendable_type == "user_group" %>
+      <%= f.collection_select :sendable_id, @user_groups, :id, :name, { label: "User Group"} %>
+    <% elsif sendable_type == "prospect_group" %>
+      <%= f.collection_select  :sendable_id, @prospect_groups, :id, :name, { label: "Prospect Group"} %>
+    <% elsif sendable_type == "user" %>
+      <%= f.collection_select  :id, @users, :id, :name, { label: "User"} %>
+    <% elsif sendable_type == "prospect" %>
+      <%= f.collection_select  :id, @prospects, :id, :name, { label: "Prospect"} %>
+    <% end %>
+
+    <%=
+    # f.text_area :actual_recipients
+    %>
+    <%=
+    #f.number_field :recipient_count
+    %>
+  </div>
+
+  <div class="form-inline">
+    <%= f.datetime_select :sent_at, { label: "Send At" } %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<br>
+<%= sendable_type %>
+<br>

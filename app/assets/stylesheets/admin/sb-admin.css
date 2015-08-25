@@ -379,6 +379,13 @@ a.admin-link {
   transition: 0.2s ease-in-out;
 }
 
+a.email-link {
+  background: #8B0000;
+  padding: 5px;
+  color: #FFFFFF;
+  transition: 0.2s ease-in-out;
+}
+
 a.order-link:hover {
   color: #FFFFFF;
   padding: 5px 10px 5px 10px;

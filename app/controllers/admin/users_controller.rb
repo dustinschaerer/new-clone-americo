@@ -11,6 +11,7 @@ class Admin::UsersController < AdminController
     @users_orders = Order.where(user_id: params[:id])
     @users_quotes = Quote.where(user_id: params[:id])
     @users_purchases = Purchase.where(user_id: params[:id])
+    # @users =
 
   end
 
@@ -24,6 +25,11 @@ class Admin::UsersController < AdminController
 
   def destory
 
+  end
+
+  def assign_groups_for
+    users = User.update_all({user_group_id: params[:user_group][:id]}, {id: params[:user_ids]})
+    redirect_to admin_users_path(params)
   end
 
 

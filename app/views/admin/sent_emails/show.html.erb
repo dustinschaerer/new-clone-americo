@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email message:</strong>
+  <%= @sent_email.email_message %>
+</p>
+
+<p>
+  <strong>Sendable:</strong>
+  <%= @sent_email.sendable %>
+</p>
+
+<p>
+  <strong>Actual recipients:</strong>
+  <%= @sent_email.actual_recipients %>
+</p>
+
+<p>
+  <strong>Recipient count:</strong>
+  <%= @sent_email.recipient_count %>
+</p>
+
+<p>
+  <strong>Sent at:</strong>
+  <%= @sent_email.sent_at %>
+</p>
+
+<%= link_to 'Edit', edit_admin_sent_email_path(@sent_email) %> |
+<%= link_to 'Back', admin_sent_emails_path %>

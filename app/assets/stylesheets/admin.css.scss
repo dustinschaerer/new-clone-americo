@@ -147,6 +147,12 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .padtop40 {
   padding-top: 40px;
 }
+.top_margin_10 {
+  margin-top: 10px;
+}
+.pad-top-10 {
+  padding-top: 10px;
+}
 
 /* Invoice like form styles */
 .invoice-title {
@@ -224,7 +230,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 /* Set status colors */
 .warn {
   background: #1Ea0E5;
-
 }
 .ok {
   background: #03721E;
@@ -265,9 +270,12 @@ body {
 #prospect_email {
   min-width: 325px;
 }
-.top_margin_10 {
-  margin-top: 10px;
-}
-.pad-top-10 {
+
+#sidebar .navbar-nav > li > a, #sidebar .navbar-nav > li > a:hover {
   padding-top: 10px;
+  padding-bottom: 10px;
+  &:hover {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }

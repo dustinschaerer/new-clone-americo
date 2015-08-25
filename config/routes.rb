@@ -2,10 +2,6 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
-  namespace :admin do
-    resources :user_groups
-  end
-
   resources :prospect_groups
 
   authenticated :user do
@@ -97,10 +93,15 @@ Americo::Application.routes.draw do
     get 'visits', to: 'dashboard#visits', as: '/visits'
     get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
     get 'email_manager', to: 'email_messages#email_manager', as: '/email_manager'
+
+    resources :sent_emails
+
     resources :email_messages do
       member do
         get 'send_email_to_prospects'
+        get 'send_email_to_prospect_groups'
         get 'send_email_to_users'
+        get 'send_email_to_user_groups'
       end
     end
     resources :quoteholders
@@ -142,11 +143,17 @@ Americo::Application.routes.draw do
         patch :assign_groups_for
       end
     end
-    resources :users
+    resources :users do
+      collection do
+        patch :assign_groups_for
+      end
+    end
     resources :admin_users
     resources :prospect_groups
+    resources :user_groups
   end
 
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -202,4 +209,4 @@ Americo::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821230557) do
+ActiveRecord::Schema.define(version: 20150824182814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -329,6 +329,20 @@ ActiveRecord::Schema.define(version: 20150821230557) do
 
   add_index "quotes", ["user_id"], name: "index_quotes_on_user_id", using: :btree
 
+  create_table "sent_emails", force: true do |t|
+    t.integer  "email_message_id"
+    t.integer  "sendable_id"
+    t.string   "sendable_type"
+    t.text     "actual_recipients"
+    t.integer  "recipient_count"
+    t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sent_emails", ["email_message_id"], name: "index_sent_emails_on_email_message_id", using: :btree
+  add_index "sent_emails", ["sendable_id", "sendable_type"], name: "index_sent_emails_on_sendable_id_and_sendable_type", using: :btree
+
   create_table "series", force: true do |t|
     t.integer  "style_id"
     t.string   "name"
@@ -437,9 +451,11 @@ ActiveRecord::Schema.define(version: 20150821230557) do
     t.datetime "updated_at"
     t.boolean  "admin"
     t.string   "username"
+    t.integer  "user_group_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["user_group_id"], name: "index_users_on_user_group_id", using: :btree
 
 end

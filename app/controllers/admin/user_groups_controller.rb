@@ -1,10 +1,13 @@
-class Admin::UserGroupsController < ApplicationController
+class Admin::UserGroupsController < AdminController
+
   before_action :set_user_group, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/user_groups
   # GET /admin/user_groups.json
   def index
     @user_groups = UserGroup.all
+    @user_group = UserGroup.new
+
   end
 
   # GET /admin/user_groups/1
@@ -28,7 +31,7 @@ class Admin::UserGroupsController < ApplicationController
 
     respond_to do |format|
       if @user_group.save
-        format.html { redirect_to [:admin, @user_group], notice: 'User group was successfully created.' }
+        format.html { redirect_to admin_user_groups_path, notice: 'User group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_group }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class Admin::UserGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @user_group.update(user_group_params)
-        format.html { redirect_to [:admin, @user_group], notice: 'User group was successfully updated.' }
+        format.html { redirect_to [:admin, admin_user_groups_path], notice: 'User group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

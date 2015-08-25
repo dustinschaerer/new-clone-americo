@@ -21,33 +21,44 @@
 <%= paginate @users %>
 
 <div class="row">
-  <div class="col-lg-12">
+  <div class="no-more-tables">
     <div class="table-responsive">
-      <table class="table table-hover table-striped">
+      <%= bootstrap_form_tag url: assign_groups_for_admin_users_url, method: :patch do |f| %>
+        <table class="table table-hover table-striped">
 
-        <thead>
-            <tr>
-              <th>User ID</th>
-              <th>Email</th>
-              <th>Created at</th>
-              <th>Last Sign in IP</th>
-              <th>Last Sign in Date</th>
-            </tr>
-        </thead>
+          <thead>
+              <tr>
+                <th></th>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>User Group ID</th>
+                <th>Created at</th>
+                <th>Last Sign in IP</th>
+                <th>Last Sign in Date</th>
+              </tr>
+          </thead>
 
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-                <td><%= link_to "#{user.id}", [:admin, user], class: "user-link" %></td>
-                <td><%= user.email %></td>
-                <td><%= user.created_at.strftime("%-m-%d-%Y") %></td>
-                <td><%= user.last_sign_in_ip %></td>
-                <td><%= user.last_sign_in_at %></td>
-            </tr>
-          <% end  %>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td data-title="">
+                  <%= check_box_tag "user_ids[]", user.id %>
+                </td>
+                <td data-title="User Id"><%= link_to "#{user.id}", [:admin, user], class: "user-link" %></td>
+                <td data-title="Email"><%= user.email %></td>
+                <td data-title="User Group Id"><%= link_to "#{user.user_group_id}", [:admin, user.user_group] %></td>
+                <td data-title="Created At"><%= user.created_at.strftime("%-m-%d-%Y") %></td>
+                <td data-title=""><%= user.last_sign_in_ip %></td>
+                <td data-title=""><%= user.last_sign_in_at %></td>
+              </tr>
+            <% end  %>
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        <%= collection_select :user_group, :id, UserGroup.all, :id, :name %>
+      <br><br>
+      <%= submit_tag "Assign Checked to User Group" %>
+      <% end %>
     </div>
   </div>
 </div>

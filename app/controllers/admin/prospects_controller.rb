@@ -48,8 +48,6 @@ class Admin::ProspectsController < AdminController
   def assign_groups_for
     # prospects = Prospect.update( params[:prospect_ids], {prospect_group_id: params[:prospect_groups][:id]})
     prospects = Prospect.update_all({prospect_group_id: params[:prospect_group][:id]}, {id: params[:prospect_ids]})
-    # prospects.each(&:save)
-    # raise params.inspect
     redirect_to admin_prospects_path(params)
   end
 

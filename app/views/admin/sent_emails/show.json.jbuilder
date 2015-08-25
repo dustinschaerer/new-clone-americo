@@ -1,0 +1,1 @@
+json.extract! @sent_email, :email_message_id, :sendable_id, :sendable_type, :actual_recipients, :recipient_count, :sent_at, :created_at, :updated_at

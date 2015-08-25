@@ -32,7 +32,7 @@ class Admin::ProspectGroupsController < AdminController
 
     respond_to do |format|
       if @prospect_group.save
-        format.html { redirect_to @prospect_group, notice: 'Prospect group was successfully created.' }
+        format.html { redirect_to admin_prospect_groups_path, notice: 'Prospect group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prospect_group }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::ProspectGroupsController < AdminController
   def update
     respond_to do |format|
       if @prospect_group.update(prospect_group_params)
-        format.html { redirect_to @prospect_group, notice: 'Prospect group was successfully updated.' }
+        format.html { redirect_to admin_prospect_groups_path, notice: 'Prospect group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

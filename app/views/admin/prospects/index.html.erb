@@ -57,9 +57,7 @@
                 <td data-title="Prospect Id">
                   <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-link" %>
                 </td>
-                <td data-title=""><%=
-                 prospect.prospect_group_id
-                %></td>
+                <td data-title="Prospect Group ID"><%= prospect.prospect_group_id %></td>
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
                 <td data-title="Unsubscribed"><span class="<%= prospect.unsubscribed %> label-status"><%= prospect.unsubscribed %></span></td>

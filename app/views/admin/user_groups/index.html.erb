@@ -1,31 +1,77 @@
-<h1>Listing user_groups</h1>
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-users"></i> User Groups
+            </li>
+        </ol>
+        <h1 class="page-header">User Groups</h1>
+    </div>
+</div>
+<!-- /.row -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email message</th>
-      <th>Last sent on</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="no-more-tables">
+    <table class="col-md-12 table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>User Group ID</th>
+          <th>Name</th>
+          <th>Last Email Sent</th>
+          <th>Last sent on</th>
+          <th>Date Created</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @user_groups.each do |user_group| %>
-      <tr>
-        <td><%= user_group.name %></td>
-        <td><%= user_group.email_message %></td>
-        <td><%= user_group.last_sent_on %></td>
-        <td><%= link_to 'Show', [:admin, user_group] %></td>
-        <td><%= link_to 'Edit', edit_admin_user_group_path(user_group) %></td>
-        <td><%= link_to 'Destroy', [:admin, user_group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+      <tbody>
+        <% @user_groups.each do |user_group| %>
+          <tr>
+            <td data-title="user_group_id"><%= link_to "#{user_group.id}", [:admin, user_group], class: "user-link" %></td>
+            <td data-title="name"><%= user_group.name %></td>
+            <td data-title="last_message_sent">
+              <%= user_group.try(:email_message).try(:subject) %></td>
+            <td data-title="last_sent_on"><%= user_group.last_sent_on %></td>
+            <td data-title="created_at"><%= user_group.created_at %></td>
+            <td><%= link_to 'Show', [:admin, user_group] %></td>
+            <td><%= link_to 'Edit', edit_admin_user_group_path(user_group) %></td>
+            <td><%= link_to 'Destroy', [:admin, user_group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- /.row -->
 <br>
 
+
+
+<div class="row">
+  <div class="col-lg-12">
+
+    <%= bootstrap_form_for(@user_group, url: admin_user_groups_path, layout: :inline) do |f| %>
+      <%= f.alert_message "Please fix the following errors:" %>
+      <%= f.text_field :name, :placeholder => "User Group Name", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
+
+      <%= f.form_group do %>
+        <%= f.submit "Add New User Group", class: "btn btn-primary"  %>
+      <% end %>
+    <% end -%>
+
+  </div>
+</div>
+
+
+<br><br><br>
 <%= link_to 'New User group', new_admin_user_group_path %>
+
+
+
+
