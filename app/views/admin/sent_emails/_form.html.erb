@@ -14,15 +14,18 @@
   <div class="form-inputs">
     <%= f.collection_select :email_message_id, @admin_email_messages, :id, :template, { label: "Select Email to Send"} %>
 
-
     <% if sendable_type == "user_group" %>
       <%= f.collection_select :sendable_id, @user_groups, :id, :name, { label: "User Group"} %>
+      <%= f.hidden_field :sendable_type, value: "user_group" %>
     <% elsif sendable_type == "prospect_group" %>
       <%= f.collection_select  :sendable_id, @prospect_groups, :id, :name, { label: "Prospect Group"} %>
+      <%= f.hidden_field :sendable_type, value: "prospect_group" %>
     <% elsif sendable_type == "user" %>
-      <%= f.collection_select  :id, @users, :id, :name, { label: "User"} %>
+      <%= f.text_field :user_email, data: {autocomplete_source: retrieve_for_autocomplete_admin_users_path} %>
+      <%= f.hidden_field :sendable_type, value: "user" %>
     <% elsif sendable_type == "prospect" %>
-      <%= f.collection_select  :id, @prospects, :id, :name, { label: "Prospect"} %>
+      <%= f.text_field :prospect_email, data: {autocomplete_source: retrieve_for_autocomplete_admin_prospects_path} %>
+      <%= f.hidden_field :sendable_type, value: "prospect" %>
     <% end %>
 
     <%=

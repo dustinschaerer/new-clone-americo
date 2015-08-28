@@ -5,17 +5,16 @@
               <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
             </li>
             <li>
-              <a href="/admin/prospect_groups"> <i class="fa fa-user"></i> Prospects</a>
+              <a href="/admin/prospects"> <i class="fa fa-bullhorn"></i> Prospects</a>
             </li>
             <li class="active">
               <%= @prospect.id %>
             </li>
         </ol>
-
+        <h1 class="page-header">Prospect <%= @prospect.id %></h1>
     </div>
 </div>
 <!-- /.row -->
-
 
 <div class="row">
   <div class="col-lg-12">
@@ -37,9 +36,10 @@
         <td><%= @prospect.name %></td>
         <td><%= link_to 'Edit', edit_admin_prospect_path(@prospect) %></td>
         <td><%= link_to 'Destroy', admin_prospect_path(@prospect), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
       </tr>
     </table>
   </div>
 </div>
 
+<br>
+<p><a href="/admin/prospects">Show All Prospects</a></p>

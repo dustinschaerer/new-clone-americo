@@ -12,8 +12,7 @@ class Admin::ProspectGroupsController < AdminController
   # GET /admin/prospect_groups/1.json
   def show
     @prospect_group = ProspectGroup.find(params[:id])
-    @prospects = @prospect_group.prospects
-
+    # @prospects = @prospect_group.prospects
   end
 
   # GET /admin/prospect_groups/new

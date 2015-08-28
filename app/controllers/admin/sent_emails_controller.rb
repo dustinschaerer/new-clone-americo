@@ -15,11 +15,12 @@ class Admin::SentEmailsController < AdminController
   # GET /admin/sent_emails/new
   def new
     @sent_email = SentEmail.new
+    @sent_emails = SentEmail.all
     @admin_email_messages = EmailMessage.all
     @prospect_groups = ProspectGroup.all
     @user_groups = UserGroup.all
-    @user = User.all
-    @prospect = Prospect.all
+    @users = User.all
+    @prospects = Prospect.all
   end
 
   # GET /admin/sent_emails/1/edit
@@ -29,7 +30,68 @@ class Admin::SentEmailsController < AdminController
   # POST /admin/sent_emails
   # POST /admin/sent_emails.json
   def create
+    actual_recipients_hash = {}
+    recipient_count = 0
     @sent_email = SentEmail.new(sent_email_params)
+    addy = params[:sent_email][:user_email]
+
+    if params[:sent_email][:user_email]
+      this_user = User.find_by_email(params[:sent_email][:user_email])
+      @sent_email.sendable_id = this_user.id
+    elsif params[:sent_email][:prospect_email]
+      this_prospect = Prospect.find_by_email(params[:sent_email][:prospect_email])
+      @sent_email.sendable_id = this_prospect.id
+    end
+
+    @list_entity = @sent_email.sendable_type.camelize.constantize.find(@sent_email.sendable_id)
+
+    if @sent_email.sendable_type == "user_group"
+      @list_entity.users.each do |user|
+        recipient_count += 1
+        actual_recipients_hash["#{user.email}"] = { user.id => "user"}
+        email_to_send = EmailMessage.find(@sent_email.email_message_id)
+        if email_to_send.mandril_tags == "dynamic_message"
+          EmailMessageNotifier.send(email_to_send.mandril_tags, user, email_to_send).deliver
+        else
+          EmailMessageNotifier.send(email_to_send.mandril_tags, user, email_to_send).deliver
+        end
+      end
+    elsif @sent_email.sendable_type == "prospect_group"
+      # extract users class method
+      @list_entity.prospects.each do |prospect|
+        recipient_count += 1
+        actual_recipients_hash["#{prospect.email}"] = { prospect.id => "prospect"}
+        email_to_send = EmailMessage.find(@sent_email.email_message_id)
+        if email_to_send.mandril_tags == "dynamic_message"
+          EmailMessageNotifier.send(email_to_send.mandril_tags, prospect, email_to_send).deliver
+        else
+          EmailMessageNotifier.send(email_to_send.mandril_tags, prospect, email_to_send).deliver
+        end
+      end
+    elsif @sent_email.sendable_type == "user"
+      # @list_entity # is a user object
+      recipient_count += 1
+      actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "user"}
+      email_to_send = EmailMessage.find(@sent_email.email_message_id)
+      if email_to_send.mandril_tags == "dynamic_message"
+        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      else
+        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      end
+    elsif @sent_email.sendable_type == "prospect"
+      # @list_entity #is a prospect object
+      recipient_count += 1
+      actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "prospect"}
+      email_to_send = EmailMessage.find(@sent_email.email_message_id)
+      if email_to_send.mandril_tags == "dynamic_message"
+        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      else
+        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      end
+    end
+
+    @sent_email.actual_recipients = actual_recipients_hash
+    @sent_email.recipient_count = recipient_count
 
     respond_to do |format|
       if @sent_email.save
@@ -74,6 +136,7 @@ class Admin::SentEmailsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sent_email_params
-      params.require(:sent_email).permit(:email_message_id, :sendable_id, :sendable_type, :actual_recipients, :recipient_count, :sent_at)
+      params.require(:sent_email).permit(:email_message_id, :sendable_id, :sendable_type, :actual_recipients,
+        :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email)
     end
 end

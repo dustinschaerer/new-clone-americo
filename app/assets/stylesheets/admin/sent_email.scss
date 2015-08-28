@@ -1,3 +1,24 @@
 // Place all the styles related to the Admin::SentEmail controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+
+  .ui-state-focus, .ui-state-hover, .ui-state-active {
+    background: #FFFCB2;
+  }
+
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 5px;
+
+  }
+}

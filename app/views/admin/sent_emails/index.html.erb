@@ -1,11 +1,12 @@
-<h1>Listing sent_emails</h1>
+<h1>Scheduled Emails / Sent Email History</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Email message ID</th>
+      <th>ID</th>
       <th>Email message subject</th>
-      <th>Sendable</th>
+      <th>Email message ID</th>
+      <th>Send To</th>
       <th>Actual recipients</th>
       <th>Recipient count</th>
       <th>Sent at</th>
@@ -18,11 +19,16 @@
   <tbody>
     <% @sent_emails.each do |sent_email| %>
       <tr>
-        <td><%= sent_email.email_message.id %></td>
+        <td><%= link_to sent_email.id, [:admin, sent_email]  %></td>
         <td><%= sent_email.email_message.subject %></td>
-        <td><%= sent_email.sendable %></td>
-        <td><%= sent_email.actual_recipients %></td>
-        <td><%= sent_email.recipient_count %></td>
+        <td><%= link_to sent_email.email_message.id, [:admin, sent_email.email_message] %></td>
+        <td><%= sent_email.sendable_type.humanize %> <%= sent_email.sendable_id %></td>
+        <td>
+          <% if sent_email.recipient_count.nil? %>
+            Not yet sent</td><td>N/A</td>
+          <% else %>
+            <%= link_to "Show Recipients", admin_sent_email_path(sent_email.id) %></td><td><%= sent_email.recipient_count %></td>
+        <% end %>
         <td><%= sent_email.sent_at %></td>
         <td><%= link_to 'Show', [:admin, sent_email] %></td>
         <td><%= link_to 'Edit', edit_admin_sent_email_path(sent_email) %></td>
@@ -34,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Sent email', new_admin_sent_email_path %>
+<%= link_to 'Schedule an Email to Send', new_admin_sent_email_path %>

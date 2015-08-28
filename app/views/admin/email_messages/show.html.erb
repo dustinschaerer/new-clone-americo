@@ -1,21 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+               <a href="/admin/email_messages"> <i class="fa fa-envelope"></i> Email Messages</a>
+            </li>
+            <li class="active">
+                <%= @admin_email_message.id %>
+            </li>
+        </ol>
+    <h1 class="page_header">Email Message #<%= @admin_email_message.id %></h1>
+    <hr>
+    </div>
+</div>
+<!-- /.row -->
 
-<p>
+
+<h4>
   <strong>Subject:</strong>
   <%= @admin_email_message.subject %>
-</p>
+</h4>
 
 <p>
   <strong>Headers:</strong>
   <%= @admin_email_message.headers %>
 </p>
 
+<hr>
+
 <p>
-  <strong>Content:</strong>
-  <hr>
+  <strong>HTML Content:</strong>
   <%= @admin_email_message.content.html_safe %>
-  <hr>
 </p>
+
+<hr>
+
+<p>
+  <strong>Text Only Content:</strong>
+  <hr>
+  <%= simple_format(@admin_email_message.text_content) %>
+</p>
+
+<hr>
 
 <p>
   <strong>Mandril tags:</strong>
@@ -27,6 +55,7 @@
   <%= @admin_email_message.template %>
 </p>
 
+<!--
 <%= select_tag "prospect_group", options_for_select([ "All Users", "All Prospects", "Prospect list"], "one") %>
 
 <%= link_to send_email_to_prospects_admin_email_message_path, :class => "btn btn-primary"  do %>
@@ -37,6 +66,6 @@
 <%= link_to send_email_to_users_admin_email_message_path, :class => "btn btn-primary"  do %>
   <i class="glyphicon glyphicon-paper-plane"></i> Send Email to Users
 <% end %>
-
+-->
 <%= link_to 'Edit', edit_admin_email_message_path(@admin_email_message) %> |
 <%= link_to 'Back', admin_email_messages_path %>

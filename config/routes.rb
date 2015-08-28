@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
-  resources :prospect_groups
+  # resources :prospect_groups
 
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
@@ -37,7 +37,7 @@ Americo::Application.routes.draw do
   resources :quotecarts
   resources :quotes
   resources :purchases, :only => [:new, :create, :show, :update]
-  resources :email_messages
+  # resources :email_messages
 
   get "store/index"
   resources :products do
@@ -141,11 +141,13 @@ Americo::Application.routes.draw do
     resources :prospects do
       collection do
         patch :assign_groups_for
+        get :retrieve_for_autocomplete
       end
     end
     resources :users do
       collection do
         patch :assign_groups_for
+        get :retrieve_for_autocomplete
       end
     end
     resources :admin_users

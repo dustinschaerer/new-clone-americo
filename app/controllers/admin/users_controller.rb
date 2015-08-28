@@ -32,11 +32,23 @@ class Admin::UsersController < AdminController
     redirect_to admin_users_path(params)
   end
 
+  def remove_from_group
+    ### TODO ###
+  end
 
-   private
+  def retrieve_for_autocomplete
+    @users = User.order(:email).where("email like ?", "%#{params[:term]}%")
+    render json: @users.map(&:email)
+  end
+
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:name)
     end
 
 end

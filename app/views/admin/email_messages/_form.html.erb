@@ -1,6 +1,4 @@
-
-
-<%= form_for(@admin_email_message) do |f| %>
+<%= form_for([:admin, @admin_email_message]) do |f| %>
   <% if @admin_email_message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_email_message.errors.count, "error") %> prohibited this email_message from being saved:</h2>
@@ -17,20 +15,29 @@
     <%= f.label :subject %><br>
     <%= f.text_field :subject %>
   </div>
+  <br>
   <div class="field">
     <%= f.label :headers %><br>
     <%= f.text_field :headers %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label :content, label: "HTML Content" %><br>
     <%= f.text_area :content, rows: 12, cols: 100 %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :mandril_tags %><br>
+    <%= f.label :text_content, label: "Text Only Content" %><br>
+    <%= f.text_area :text_content, rows: 12, cols: 100 %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :mandril_tag, label: "Tags" %><br>
     <%= f.text_field :mandril_tags %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :template %><br>
+    <%= f.label :template, "Template Name" %><br>
     <%= f.text_field :template %>
   </div>
   <br>

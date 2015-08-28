@@ -1,4 +1,4 @@
-class EmailMessagesController < ApplicationController
+class EmailMessagesController < AdminController
   before_action :set_email_message, only: [:show, :edit, :update, :destroy]
 
   # GET /email_messages
@@ -19,6 +19,7 @@ class EmailMessagesController < ApplicationController
 
   # GET /email_messages/1/edit
   def edit
+    raise 'hell'
   end
 
   # POST /email_messages

@@ -5,7 +5,7 @@
               <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
             </li>
             <li>
-               <a href="/admin/prospect_groups"> <i class="fa fa-user"></i> Prospect Group</a>
+               <a href="/admin/prospect_groups"> <i class="fa fa-bullhorn"></i><i class="fa fa-bullhorn"></i> Prospect Group</a>
             </li>
             <li class="active">
               <%= @prospect_group.id %>
@@ -21,7 +21,7 @@
     <p id="notice"><%= notice %></p>
 
     <h4>
-      <strong>Name:</strong>
+      <strong>Prospect Group Name:</strong>
       <%= @prospect_group.name %>
     </h4>
 
@@ -43,6 +43,7 @@
 
 <div class="row">
   <div class="col-lg-12">
+    <h4 class="text-center">Prospects in this Prospect Group</h4>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -53,7 +54,7 @@
           <th></th>
         </tr>
       </thead>
-      <%= @prospects.each do |prospect| %>
+      <%= @prospect_group.prospects.each do |prospect| %>
         <tr>
           <td></td>
           <td><%= prospect.id %></td>
@@ -65,5 +66,3 @@
     </table>
   </div>
 </div>
-
-

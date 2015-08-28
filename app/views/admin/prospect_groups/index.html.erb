@@ -6,7 +6,7 @@
                 <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
             </li>
             <li class="active">
-                <i class="fa fa-bullhorn"></i> Prospect Groups
+              <i class="fa fa-bullhorn"></i><i class="fa fa-bullhorn"></i> Prospect Groups
             </li>
         </ol>
         <h1 class="page-header">Prospect Groups</h1>
@@ -18,27 +18,32 @@
 <div class="row">
   <div class="no-more-tables">
       <table class="col-md-12 table table-hover table-striped">
-
         <thead>
             <tr>
-              <th>Prospect Group ID</th>
+              <th>ID</th>
               <th>Group Name</th>
-              <th>Last Email Sent</th>
+              <th>Number of Prospects</th>
               <th>Date Created</th>
+              <th>Last Email Sent</th>
               <th></th>
               <th></th>
               <th></th>
             </tr>
         </thead>
-
         <tbody>
-          <% @prospect_groups.each do |prospect_group| %>
+          <% @prospect_groups.sort.reverse.each do |prospect_group| %>
             <tr>
               <td data-title="prospect_group_id"><%= link_to "#{prospect_group.id}", [:admin, prospect_group], class: "prospect-link" %>
               </td>
               <td data-title="name"><%= prospect_group.name %></td>
-              <td data-title="last_message_sent"><%= prospect_group.try(:email_message).try(:id) %></td>
-              <td data-title="created_at"><%= prospect_group.created_at %></td>
+              <td data-title="name"><%= prospect_group.prospects.count %></td>
+              <td data-title="created_at"><%= prospect_group.created_at.strftime("%b/%d/%Y") %></td>
+              <td data-title="last_message_sent">
+                <% if prospect_group.email_message %>
+                 <a href="/admin/email_messages/<%= prospect_group.email_message.id %>"><%= prospect_group.email_message.id %> - <%= prospect_group.email_message.subject %></a>
+                <% else %>
+                  Not Sent to Yet
+                <% end %></td>
               <td><%= link_to 'Show', admin_prospect_group_path(prospect_group) %></td>
               <td><%= link_to 'Edit', edit_admin_prospect_group_path(prospect_group) %></td>
               <td><%= link_to 'Destroy', admin_prospect_group_path(prospect_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>

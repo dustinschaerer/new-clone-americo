@@ -41,6 +41,7 @@
 @import "./admin/bootswatch/spacelab/variables";
 @import "./admin/bootswatch/spacelab/bootswatch";
 @import "./admin/sb-admin";
+@import "./admin/sent_email";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import url(//fonts.googleapis.com/css?family=Roboto:400,600,700&subset=latin,latin-ext);
@@ -271,11 +272,13 @@ body {
   min-width: 325px;
 }
 
-#sidebar .navbar-nav > li > a, #sidebar .navbar-nav > li > a:hover {
+#side-nav .navbar-nav > li > a, #side-nav .navbar-nav > li > a:hover,
+.navbar-nav > li > a, .navbar-nav > li > a:hover {
   padding-top: 10px;
   padding-bottom: 10px;
   &:hover {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  border-bottom: solid 1px #333;
 }

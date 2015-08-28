@@ -57,7 +57,7 @@
                 <td data-title="Prospect Id">
                   <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-link" %>
                 </td>
-                <td data-title="Prospect Group ID"><%= prospect.prospect_group_id %></td>
+                <td data-title="Prospect Group ID"><a href=<%= "/admin/prospect_group/{prospect.prospect_group.id}"%>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a></td>
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
                 <td data-title="Unsubscribed"><span class="<%= prospect.unsubscribed %> label-status"><%= prospect.unsubscribed %></span></td>
@@ -67,9 +67,10 @@
           <% end  %>
         </tbody>
       </table>
-      <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %>
-      <br><br>
-      <%= submit_tag "Assign Checked to Prospect Group" %>
+      <p>Add checked prospects to
+      <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %></p>
+
+      <%= submit_tag "Assign Checked Selec to Prospect Group", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

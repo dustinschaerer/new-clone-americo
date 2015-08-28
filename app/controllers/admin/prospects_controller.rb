@@ -51,6 +51,14 @@ class Admin::ProspectsController < AdminController
     redirect_to admin_prospects_path(params)
   end
 
+  def remove_from_group
+    ### TODO ###
+  end
+
+  def retrieve_for_autocomplete
+    @prospects = Prospect.order(:email).where("email like ?", "%#{params[:term]}%")
+    render json: @prospects.map(&:email)
+  end
 
 
   private
