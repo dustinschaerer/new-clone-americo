@@ -1,4 +1,4 @@
-<%= form_for([:admin, @admin_email_message]) do |f| %>
+<%= bootstrap_form_for([:admin, @admin_email_message]) do |f| %>
   <% if @admin_email_message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_email_message.errors.count, "error") %> prohibited this email_message from being saved:</h2>
@@ -12,37 +12,30 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :subject %><br>
     <%= f.text_field :subject %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :headers %><br>
     <%= f.text_field :headers %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :content, label: "HTML Content" %><br>
-    <%= f.text_area :content, rows: 12, cols: 100 %>
+    <%= f.text_area :content, rows: 12, cols: 100, label: "HTML Content" %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :text_content, label: "Text Only Content" %><br>
     <%= f.text_area :text_content, rows: 12, cols: 100 %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :mandril_tags, label: "Tags" %><br>
     <%= f.text_field :mandril_tags %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :mailer_method, label: "Mailer Method" %><br>
     <%= f.text_field :mailer_method %>
   </div>
   <br>
   <div class="field">
-    <%= f.label :template, "Template Name" %><br>
     <%= f.text_field :template %>
   </div>
   <br>
