@@ -37,11 +37,9 @@
             </li>
         </ul>
         <ul class="nav navbar-right admin-link top-nav">
-            <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
             <li class="visible-md visible-lg">
               <%= link_to 'Sidekiq', sidekiq_web_path %>
             </li>
-            <% end %>
             <li class="visible-md visible-lg">
               <a href="/admin/admin_users/<%= current_admin_user.id %>"><i class="fa fa-user"></i> <%= current_admin_user.email %> </a>
             </li>
