@@ -64,6 +64,11 @@ class Admin::ProspectGroupsController < AdminController
     end
   end
 
+  def remove_from_group_for
+    prospects = Prospect.update_all({prospect_group_id: nil}, {id: params[:prospect_ids]})
+    redirect_to admin_prospect_groups_path(params)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_prospect_group

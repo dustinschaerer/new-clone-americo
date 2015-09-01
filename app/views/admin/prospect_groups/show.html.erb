@@ -43,26 +43,32 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h4 class="text-center">Prospects in this Prospect Group</h4>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Prospect Id</th>
-          <th>Prospect Email</th>
-          <th>Prospect Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <%= @prospect_group.prospects.each do |prospect| %>
-        <tr>
-          <td></td>
-          <td><%= prospect.id %></td>
-          <td><%= prospect.email %></td>
-          <td><%= prospect.name %></td>
-          <td></td>
-        </tr>
-      <% end %>
-    </table>
+    <%= bootstrap_form_tag url: remove_from_group_for_admin_prospects_url, method: :patch do |f| %>
+
+      <h4 class="text-center">Prospects in this Prospect Group</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Prospect Id</th>
+            <th>Prospect Email</th>
+            <th>Prospect Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <%= @prospect_group.prospects.each do |prospect| %>
+          <tr>
+            <td><%= check_box_tag "prospect_ids[]", prospect.id %></td>
+            <td><%= prospect.id %></td>
+            <td><%= prospect.email %></td>
+            <td><%= prospect.name %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <%= submit_tag "Remove Checked from Prospect Group", class: "btn btn-primary" %>
+
+    <% end -%>
   </div>
 </div>

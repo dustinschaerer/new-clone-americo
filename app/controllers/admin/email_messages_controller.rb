@@ -94,7 +94,7 @@ class Admin::EmailMessagesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_message_params
-      params.require(:email_message).permit(:id, :subject, :headers, :content, :text_content, :mandril_tags, :template)
+      params.require(:email_message).permit(:id, :subject, :headers, :content, :text_content, :mandril_tags, :template, :mailer_method)
     end
 
 end

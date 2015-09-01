@@ -141,12 +141,14 @@ Americo::Application.routes.draw do
     resources :prospects do
       collection do
         patch :assign_groups_for
+        patch :remove_from_group_for
         get :retrieve_for_autocomplete
       end
     end
     resources :users do
       collection do
         patch :assign_groups_for
+        patch :remove_from_group_for
         get :retrieve_for_autocomplete
       end
     end

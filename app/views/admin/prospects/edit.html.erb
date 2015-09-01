@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+              <a href="/admin/prospects"> <i class="fa fa-bullhorn"></i> Prospects</a>
+            </li>
+            <li class="active">
+              <%= @prospect.id %>
+            </li>
+        </ol>
+        <h1 class="page-header">Editing Prospect <%= @prospect.id %></h1>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= bootstrap_form_for([:admin, @prospect], layout: :horizontal, label_col: "col-sm-3 col-md-3", control_col: "col-sm-9 col-md-9") do |f| %>
+      <% if @prospect.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@prospect.errors.count, "error") %> prohibited this sent_email from being saved:</h2>
+          <ul>
+          <% @prospect.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <% if @prospect.active == false %>
+            <p class="alert alert-danger">WARNING: This prospect is NOT ACTIVE! Emails will NOT be sent to this prospect!</p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :email, label: "Prospect Email  (required)" %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.text_field :name, label: "Prospect Name" %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.collection_select :prospect_group_id, ProspectGroup.all.sort, :id, :name, :include_blank => true, :label => "Assigned to Prospect Group:" %>
+      </div>
+      <%= f.form_group do %>
+        <%= f.check_box :unsubscribed %>
+      <% end %>
+      <%= f.form_group do %>
+        <%= f.check_box :validated %>
+      <% end %>
+
+      <hr>
+      <% if @prospect.active == false %>
+        <%= f.static_control :active, :label => "Is Prospect Active?" %>
+      <% else %>
+      <%= f.form_group do %>
+        <%= f.check_box :active %>
+         <% end %>
+      <% end %>
+
+      <%= f.static_control :date_joined_on, :label => "Date Joined On:" %>
+      <hr>
+
+
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4 col-md-2">
+    <div class="form-actions">
+      <%= f.submit "Save Changes", :class => "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="col-sm-4 col-md-2">
+    <%= link_to 'Destroy This Prospect', admin_prospect_path(@prospect), method: :delete, data: { confirm: 'Are you sure?  WARNING: This cannot be undone.' }, class: "btn btn-danger" %>
+  </div>
+</div>
+<br>
+<br>
+<div>
+  <a href="/admin/prospects">Show All Prospects</a>
+</div>

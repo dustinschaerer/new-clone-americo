@@ -32,8 +32,9 @@ class Admin::UsersController < AdminController
     redirect_to admin_users_path(params)
   end
 
-  def remove_from_group
-    ### TODO ###
+  def remove_from_group_for
+     users = User.update_all({user_group_id: params[:user_group][:id]}, {id: params[:user_ids]})
+    redirect_to admin_user_groups_path(params)
   end
 
   def retrieve_for_autocomplete

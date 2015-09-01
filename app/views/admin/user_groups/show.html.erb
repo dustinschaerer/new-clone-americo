@@ -41,25 +41,30 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th>
-          <th>User Id</th>
-          <th>User Email</th>
-          <th>Created At</th>
-          <th></th>
-        </tr>
-      </thead>
-      <%= @user_group.users.each do |user| %>
-        <tr>
-          <td></td>
-          <td><%= user.id %></td>
-          <td><%= user.email %></td>
-          <td><%= user.created_at %></td>
-          <td></td>
-        </tr>
-      <% end %>
-    </table>
+    <%= bootstrap_form_tag url: remove_from_group_for_admin_users_url, method: :patch do |f| %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>User Id</th>
+            <th>User Email</th>
+            <th>Created At</th>
+            <th></th>
+          </tr>
+        </thead>
+        <%= @user_group.users.each do |user| %>
+          <tr>
+            <td><%= check_box_tag "user_ids[]", user.id %></td>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td><%= user.created_at %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <%= submit_tag "Remove Checked from User Group", class: "btn btn-primary" %>
+
+    <% end %>
   </div>
 </div>

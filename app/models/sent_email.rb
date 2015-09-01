@@ -2,6 +2,7 @@ class SentEmail < ActiveRecord::Base
   belongs_to :email_message
   belongs_to :sendable, polymorphic: true
   belongs_to :user, -> { where( sent_emails: {sendable_type: 'User'})}
+  belongs_to :prospect, -> { where( sent_emails: {sendable_type: 'Prospect'})}
 
   serialize :actual_recipients
 

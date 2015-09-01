@@ -45,6 +45,7 @@
               <th>Unsubscribed</th>
               <th>Validated</th>
               <th>Date Joined On</th>
+              <th>Active?</th>
             </tr>
         </thead>
 
@@ -57,20 +58,35 @@
                 <td data-title="Prospect Id">
                   <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-link" %>
                 </td>
-                <td data-title="Prospect Group ID"><a href=<%= "/admin/prospect_group/{prospect.prospect_group.id}"%>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a></td>
+                <td data-title="Prospect Group ID">
+                  <% if prospect.prospect_group %>
+                    <a href="<%= "/admin/prospect_group/#{prospect.prospect_group.id}" %>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a>
+                  <% else %>
+                    Not Assigned
+                  <% end %>
+                </td>
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
-                <td data-title="Unsubscribed"><span class="<%= prospect.unsubscribed %> label-status"><%= prospect.unsubscribed %></span></td>
+                <td data-title="Unsubscribed"><%= prospect.unsubscribed %></td>
                 <td data-title="Validated"><%= prospect.validated %></td>
                 <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
+                <td data-title="Active">
+                  <% if !prospect.active? %>
+                    <span class="inactive_prospect"><%= prospect.active %></span>
+                  <% else %>
+                    <span class="active_prospect"><%= prospect.active %></span>
+                  <% end %>
+                </td>
+
             </tr>
           <% end  %>
         </tbody>
       </table>
-      <p>Add checked prospects to
+      <br>
+      <p>Add checked prospects to this prospect group:
       <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %></p>
-
-      <%= submit_tag "Assign Checked Selec to Prospect Group", class: "btn btn-primary" %>
+      <br><br>
+      <%= submit_tag "Assign Checked to Selected Prospect Group", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

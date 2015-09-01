@@ -1,13 +1,16 @@
 class Admin::ProspectsController < AdminController
 
-  before_action :set_prospect, only: [:show, :destroy, :update]
+  before_action :set_prospect, only: [:show, :destroy, :update, :edit]
   def index
     @prospects = Prospect.order("id DESC").page(params[:page]).per(50)
     @prospect = Prospect.new
-    #@prospect_groups = Admin::ProspectGroup.all
   end
 
   def show
+
+  end
+
+  def edit
 
   end
 
@@ -16,7 +19,7 @@ class Admin::ProspectsController < AdminController
     email_validator = EmailValidator.new(@prospect.email)
     if email_validator.valid?
       exists = User.where(email: @prospect.email.chomp).exists?
-      if !exists
+      if exists == false
         respond_to do |format|
           if @prospect.save
             format.html { redirect_to action: 'index', notice: 'prospect was successfully created.' }
@@ -27,13 +30,23 @@ class Admin::ProspectsController < AdminController
           end
         end
       else
-        flash[:notice] = "The email address entered is already a current user"
+        this_user = User.find_by_email(@prospect.email.chomp)
+        flash[:error] = "The email address entered is already a current user. You can see #{view_context.link_to this_user.email, admin_user_path(this_user)}'s user profile here.".html_safe
         redirect_to :back and return
       end
     else
-      #this email was not valid, so do this...
       flash[:error] = "The email address upi entered is invalid. Please try again."
       redirect_to :back and return
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @prospect.update(prospect_params)
+        format.html { redirect_to admin_prospects_path, notice: 'Prospect was successfully updated.' }
+      else
+        format.html { render action: 'edit' }
+      end
     end
   end
 
@@ -51,8 +64,9 @@ class Admin::ProspectsController < AdminController
     redirect_to admin_prospects_path(params)
   end
 
-  def remove_from_group
-    ### TODO ###
+  def remove_from_group_for
+    prospects = Prospect.update_all({prospect_group_id: nil}, {id: params[:prospect_ids]})
+    redirect_to admin_prospect_groups_path(params)
   end
 
   def retrieve_for_autocomplete
@@ -68,7 +82,8 @@ class Admin::ProspectsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prospect_params
-      params.require(:prospect).permit(:id, :email, :unsubscribed, :validated, :date_joined_on, :name, :prospect_group_id)
+      params.require(:prospect).permit(:id, :email, :unsubscribed, :validated,
+        :date_joined_on, :name, :prospect_group_id, :active)
     end
 
 end

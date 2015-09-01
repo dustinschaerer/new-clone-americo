@@ -50,22 +50,24 @@ class Admin::SentEmailsController < AdminController
         recipient_count += 1
         actual_recipients_hash["#{user.email}"] = { user.id => "user"}
         email_to_send = EmailMessage.find(@sent_email.email_message_id)
-        if email_to_send.mandril_tags == "dynamic_message"
-          EmailMessageNotifier.send(email_to_send.mandril_tags, user, email_to_send).deliver
+        if email_to_send.mailer_method == "dynamic_message"
+          EmailMessageNotifier.send(email_to_send.mailer_method, user, email_to_send).deliver
         else
-          EmailMessageNotifier.send(email_to_send.mandril_tags, user, email_to_send).deliver
+          EmailMessageNotifier.send(email_to_send.mailer_method, user, email_to_send).deliver
         end
       end
     elsif @sent_email.sendable_type == "prospect_group"
       # extract users class method
       @list_entity.prospects.each do |prospect|
-        recipient_count += 1
-        actual_recipients_hash["#{prospect.email}"] = { prospect.id => "prospect"}
-        email_to_send = EmailMessage.find(@sent_email.email_message_id)
-        if email_to_send.mandril_tags == "dynamic_message"
-          EmailMessageNotifier.send(email_to_send.mandril_tags, prospect, email_to_send).deliver
-        else
-          EmailMessageNotifier.send(email_to_send.mandril_tags, prospect, email_to_send).deliver
+        if prospect.active == true && prospect.unsubscribed == false
+          recipient_count += 1
+          actual_recipients_hash["#{prospect.email}"] = { prospect.id => "prospect"}
+          email_to_send = EmailMessage.find(@sent_email.email_message_id)
+          if email_to_send.mailer_method == "dynamic_message"
+            EmailMessageNotifier.send(email_to_send.mailer_method, prospect, email_to_send).deliver
+          else
+            EmailMessageNotifier.send(email_to_send.mailer_method, prospect, email_to_send).deliver
+          end
         end
       end
     elsif @sent_email.sendable_type == "user"
@@ -73,20 +75,22 @@ class Admin::SentEmailsController < AdminController
       recipient_count += 1
       actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "user"}
       email_to_send = EmailMessage.find(@sent_email.email_message_id)
-      if email_to_send.mandril_tags == "dynamic_message"
-        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      if email_to_send.mailer_method == "dynamic_message"
+        EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
       else
-        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+        EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
       end
     elsif @sent_email.sendable_type == "prospect"
-      # @list_entity #is a prospect object
-      recipient_count += 1
-      actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "prospect"}
-      email_to_send = EmailMessage.find(@sent_email.email_message_id)
-      if email_to_send.mandril_tags == "dynamic_message"
-        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
-      else
-        EmailMessageNotifier.send(email_to_send.mandril_tags, @list_entity, email_to_send).deliver
+      if @list_entity.active == true && !@list_entity.unsubscribed == false
+        # @list_entity #is a prospect object
+        recipient_count += 1
+        actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "prospect"}
+        email_to_send = EmailMessage.find(@sent_email.email_message_id)
+        if email_to_send.mailer_method == "dynamic_message"
+          EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
+        else
+          EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
+        end
       end
     end
 

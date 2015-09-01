@@ -25,6 +25,9 @@
           <th>Prospect Id</th>
           <th>Prospect Email</th>
           <th>Prospect Name</th>
+          <th>Unsubscribed</th>
+          <th>Validated</th>
+          <th>Date Joined On</th>
           <th></th>
           <th></th>
         </tr>
@@ -34,6 +37,9 @@
         <td><%= @prospect.id %></td>
         <td><%= @prospect.email %></td>
         <td><%= @prospect.name %></td>
+        <td><%= @prospect.unsubscribed %></td>
+        <td><%= @prospect.validated %></td>
+        <td><%= @prospect.date_joined_on %></td>
         <td><%= link_to 'Edit', edit_admin_prospect_path(@prospect) %></td>
         <td><%= link_to 'Destroy', admin_prospect_path(@prospect), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
