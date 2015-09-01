@@ -1,4 +1,5 @@
-<%= form_for(@prospect_group) do |f| %>
+<%= bootstrap_form_for([:admin, @prospect_group]) do |f| %>
+
   <% if @prospect_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@prospect_group.errors.count, "error") %> prohibited this prospect_group from being saved:</h2>
@@ -12,13 +13,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name, "Prospect Group Name" %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, label: "Prospect Group Name" %>
   </div>
-
-  <br>
   <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit "Update Prospect Group", class: "btn btn-primary" %>
   </div>
   <br>
 <% end %>

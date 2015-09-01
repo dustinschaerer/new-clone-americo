@@ -34,16 +34,13 @@
       <strong>Last sent on:</strong>
       <%= @prospect_group.last_sent_on %>
     </h4>
-
-    <%= link_to 'Edit', edit_admin_prospect_group_path(@prospect_group) %> |
-    <%= link_to 'Back', admin_prospect_groups_path %>
   </div>
 </div>
 
-
+<hr>
 <div class="row">
   <div class="col-lg-12">
-    <%= bootstrap_form_tag url: remove_from_group_for_admin_prospects_url, method: :patch do |f| %>
+    <%= bootstrap_form_tag url: remove_from_group_for_admin_prospects_url, method: :patch do %>
 
       <h4 class="text-center">Prospects in this Prospect Group</h4>
       <table class="table table-striped">
@@ -56,10 +53,10 @@
             <th></th>
           </tr>
         </thead>
-        <%= @prospect_group.prospects.each do |prospect| %>
+        <% @prospect_group.prospects.each do |prospect| %>
           <tr>
             <td><%= check_box_tag "prospect_ids[]", prospect.id %></td>
-            <td><%= prospect.id %></td>
+            <td><%= link_to prospect.id, admin_prospect_path(prospect) %></td>
             <td><%= prospect.email %></td>
             <td><%= prospect.name %></td>
             <td></td>
@@ -69,6 +66,14 @@
 
       <%= submit_tag "Remove Checked from Prospect Group", class: "btn btn-primary" %>
 
-    <% end -%>
+    <% end %>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= link_to 'Edit', edit_admin_prospect_group_path(@prospect_group) %> |
+    <%= link_to 'Back', admin_prospect_groups_path %>
   </div>
 </div>

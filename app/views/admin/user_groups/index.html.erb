@@ -31,7 +31,7 @@
       </thead>
 
       <tbody>
-        <% @user_groups.each do |user_group| %>
+        <% @user_groups.sort.reverse.each do |user_group| %>
           <tr>
             <td data-title="user_group_id"><%= link_to "#{user_group.id}", [:admin, user_group], class: "user-link" %></td>
             <td data-title="name"><%= user_group.name %></td>

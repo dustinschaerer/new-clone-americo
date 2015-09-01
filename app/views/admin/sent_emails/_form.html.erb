@@ -27,13 +27,6 @@
       <%= f.text_field :prospect_email, data: {autocomplete_source: retrieve_for_autocomplete_admin_prospects_path} %>
       <%= f.hidden_field :sendable_type, value: "prospect" %>
     <% end %>
-
-    <%=
-    # f.text_area :actual_recipients
-    %>
-    <%=
-    #f.number_field :recipient_count
-    %>
   </div>
 
   <div class="form-inline">
@@ -44,8 +37,4 @@
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
-
-
-<br>
-<%= sendable_type %>
 <br>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901005010) do
+ActiveRecord::Schema.define(version: 20150901141611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,7 +216,6 @@ ActiveRecord::Schema.define(version: 20150901005010) do
 
   create_table "prospects", force: true do |t|
     t.string   "email"
-    t.boolean  "unsubscribed"
     t.boolean  "validated"
     t.date     "date_joined_on"
     t.string   "name"
@@ -224,6 +223,7 @@ ActiveRecord::Schema.define(version: 20150901005010) do
     t.datetime "updated_at"
     t.integer  "prospect_group_id"
     t.boolean  "active",            default: true
+    t.boolean  "subscribed",        default: true
   end
 
   add_index "prospects", ["prospect_group_id"], name: "index_prospects_on_prospect_group_id", using: :btree
@@ -455,7 +455,7 @@ ActiveRecord::Schema.define(version: 20150901005010) do
     t.boolean  "admin"
     t.string   "username"
     t.integer  "user_group_id"
-    t.boolean  "unsubscribed",           default: true
+    t.boolean  "subscribed",             default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

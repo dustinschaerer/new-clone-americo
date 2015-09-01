@@ -33,7 +33,6 @@ class EmailMessageNotifier < ActionMailer::Base
       if @email_message.headers == 'purchase'
         if @user.purchases.last
           # if this user has at least 1 purchase
-
           # find their last purchase and determine if it was for
           # table covers or for roll goods/upholstery
           @user.purchases.last.created_at.strftime("%B %d, %Y")

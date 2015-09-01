@@ -42,7 +42,7 @@
               <th>Prospect Group</th>
               <th>Email</th>
               <th>Name</th>
-              <th>Unsubscribed</th>
+              <th>Subscribed?</th>
               <th>Validated</th>
               <th>Date Joined On</th>
               <th>Active?</th>
@@ -67,14 +67,14 @@
                 </td>
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
-                <td data-title="Unsubscribed"><%= prospect.unsubscribed %></td>
+                <td data-title="Unsubscribed"><%= prospect.subscribed %></td>
                 <td data-title="Validated"><%= prospect.validated %></td>
                 <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
                 <td data-title="Active">
-                  <% if !prospect.active? %>
-                    <span class="inactive_prospect"><%= prospect.active %></span>
-                  <% else %>
+                  <% if prospect.active? %>
                     <span class="active_prospect"><%= prospect.active %></span>
+                  <% else %>
+                    <span class="inactive_prospect"><%= prospect.active %></span>
                   <% end %>
                 </td>
 
@@ -83,10 +83,15 @@
         </tbody>
       </table>
       <br>
-      <p>Add checked prospects to this prospect group:
-      <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name %></p>
-      <br><br>
-      <%= submit_tag "Assign Checked to Selected Prospect Group", class: "btn btn-primary" %>
+      <div class="form-group col-md-4">
+        <p>Add Prospects to this Prospect Group:</p>
+        <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name, { prompt: "Please Choose" }, {class: "form-control"} %>
+      </div>
+      <div class="col-md-4">
+        <p>&nbsp;</p>
+        <%= submit_tag "Assign Checked to selected Prospect Group", class: "btn btn-primary" %>
+      </div>
+
     <% end %>
   </div>
 </div>

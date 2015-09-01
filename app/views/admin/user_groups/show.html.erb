@@ -52,7 +52,7 @@
             <th></th>
           </tr>
         </thead>
-        <%= @user_group.users.each do |user| %>
+        <% @user_group.users.each do |user| %>
           <tr>
             <td><%= check_box_tag "user_ids[]", user.id %></td>
             <td><%= user.id %></td>

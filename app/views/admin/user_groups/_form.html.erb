@@ -1,4 +1,5 @@
-<%= form_for([:admin, @user_group]) do |f| %>
+<%= bootstrap_form_for([:admin, @user_group]) do |f| %>
+
   <% if @user_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_group.errors.count, "error") %> prohibited this user_group from being saved:</h2>
@@ -12,18 +13,10 @@
   <% end %>
 
   <div class="field">
-      <%= f.label :name %><br>
-    <%= f.text_field :name %>
-    </div>
-  <div class="field">
-      <%= f.label :email_message_id %><br>
-    <%= f.text_field :email_message_id %>
-    </div>
-  <div class="field">
-      <%= f.label :last_sent_on %><br>
-    <%= f.date_select :last_sent_on %>
-    </div>
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.text_field :name, label: "User Group Name" %>
   </div>
+  <div class="actions">
+    <%= f.submit "Update User Group", class: "btn btn-primary" %>
+  </div>
+  <br>
 <% end %>

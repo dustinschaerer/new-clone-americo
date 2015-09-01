@@ -4,15 +4,17 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Email message subject</th>
-      <th>Email message ID</th>
+      <th>Email Subject</th>
+      <th>Email Message ID#</th>
       <th>Send To</th>
-      <th>Actual recipients</th>
+      <th>Actual Recipients</th>
       <th>Recipient count</th>
       <th>Sent at</th>
       <th></th>
       <th></th>
+      <!--
       <th></th>
+      -->
     </tr>
   </thead>
 
@@ -31,8 +33,12 @@
         <% end %>
         <td><%= sent_email.sent_at %></td>
         <td><%= link_to 'Show', [:admin, sent_email] %></td>
-        <td><%= link_to 'Edit', edit_admin_sent_email_path(sent_email) %></td>
         <td><%= link_to 'Destroy', [:admin, sent_email], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td>
+        <%=
+        #link_to 'Edit', edit_admin_sent_email_path(sent_email)
+        %>
+        </td>-->
       </tr>
     <% end %>
   </tbody>

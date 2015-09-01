@@ -20,11 +20,12 @@
       <table class="col-md-12 table table-hover table-striped">
         <thead>
             <tr>
-              <th>ID</th>
+              <th>Prospect Group ID</th>
               <th>Group Name</th>
               <th>Number of Prospects</th>
-              <th>Date Created</th>
               <th>Last Email Sent</th>
+              <th>Last Sent On</th>
+              <th>Date Created</th>
               <th></th>
               <th></th>
               <th></th>
@@ -36,14 +37,11 @@
               <td data-title="prospect_group_id"><%= link_to "#{prospect_group.id}", [:admin, prospect_group], class: "prospect-link" %>
               </td>
               <td data-title="name"><%= prospect_group.name %></td>
-              <td data-title="name"><%= prospect_group.prospects.count %></td>
-              <td data-title="created_at"><%= prospect_group.created_at.strftime("%b/%d/%Y") %></td>
+              <td data-title="count"><%= prospect_group.prospects.count %></td>
               <td data-title="last_message_sent">
-                <% if prospect_group.email_message %>
-                 <a href="/admin/email_messages/<%= prospect_group.email_message.id %>"><%= prospect_group.email_message.id %> - <%= prospect_group.email_message.subject %></a>
-                <% else %>
-                  Not Sent to Yet
-                <% end %></td>
+                <%= prospect_group.try(:email_message).try(:subject) %></td>
+              <td data-title="last_sent_on"><%= prospect_group.last_sent_on %></td>
+              <td data-title="created_at"><%= prospect_group.created_at.strftime("%b/%d/%Y") %></td>
               <td><%= link_to 'Show', admin_prospect_group_path(prospect_group) %></td>
               <td><%= link_to 'Edit', edit_admin_prospect_group_path(prospect_group) %></td>
               <td><%= link_to 'Destroy', admin_prospect_group_path(prospect_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,11 +5,14 @@
             <li>
                 <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
             </li>
+            <li>
+              <i class="fa fa-bullhorn"></i> <a href="/admin/prospect_groups">Prospect Groups</a>
+            </li>
             <li class="active">
-                <i class="fa fa-bullhorn"></i> Prospect Groups
+              Editing #<%= @prospect_group.id %>
             </li>
         </ol>
-        <h1 class="page-header">Editing Prospect Group <%= @prospect_group.id %></h1>
+        <h1 class="page-header">Editing Prospect Group #<%= @prospect_group.id %></h1>
     </div>
 </div>
 <!-- /.row -->

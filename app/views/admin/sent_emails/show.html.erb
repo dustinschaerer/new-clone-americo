@@ -21,7 +21,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Email message:</strong>
+  <strong>Email Message:</strong>
   <%= @sent_email.email_message.subject %>
 </p>
 
@@ -39,7 +39,7 @@
   <strong>Number of Recipients:</strong>
   <%= @sent_email.recipient_count %>
 </p>
-
+<hr>
 <p>
   <strong>Actual recipients:</strong>
   <table class="table table-striped">
@@ -75,10 +75,5 @@
   </table>
 
 </p>
-
-<p>
-  <%= @sent_email.actual_recipients %>
-</p>
-
-<%= link_to 'Edit', edit_admin_sent_email_path(@sent_email) %> |
+<hr>
 <%= link_to 'Back', admin_sent_emails_path %>
