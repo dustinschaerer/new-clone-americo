@@ -1,52 +1,44 @@
 <div class="border-form-div">
-
   <h1>Edit <%= resource_name.to_s.humanize %></h1>
 
     <%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= f.alert_message "Please fix the following errors:" %>
 
-          <%= f.alert_message "Please fix the following errors:" %>
+        <div class="form-inputs" id="user_form">
+          <div class="field">
+            <%= f.email_field :email, :placeholder => "Email", :required => true, :autofocus => true, input_html: { maxlength: 60 }  %>
+          </div>
 
-<%=
-#simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-%>
-  <%=
-  # f.error_notification
-  %>-
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
 
+          <div class="field">
+            <%= f.password_field :password, :autocomplete => "off", :placeholder => "Password", :required => false, input_html: { maxlength: 40 }  %>
+          </div>
+          <div class="field">
+          <%= f.password_field :password_confirmation,  :placeholder => "Password Confirmation", :required => false, input_html: { maxlength: 40 }  %>
+          </div>
+          <div class="field">
+          <%= f.password_field :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+          </div>
+          <div>
+            <p>We send out a couple periodic emails each year with information regarding new products or specials. To Unsubscribe from our mailing list, remove the check in the box.</p>
+          </div>
+          <%= f.form_group :unsubscribed, help: "You can change this setting at anytime." do %>
+            <strong><%= f.check_box :unsubscribed, label: "Subscribed" -%></strong>
+          <% end %>
+        </div>
 
-
-  <div class="form-inputs">
-    <div class="field">
-      <%= f.email_field :email, :placeholder => "Email", :required => true, :autofocus => true, input_html: { maxlength: 40 }  %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <div class="form-actions">
+          <%= f.submit "Update", :class => "btn btn-lg btn-primary btn-block" %>
+        </div>
     <% end %>
-
-    <div class="field">
-      <%= f.password_field :password, :autocomplete => "off", :placeholder => "Password", :required => false, input_html: { maxlength: 40 }  %>
-    </div>
-
-    <%= f.password_field :password_confirmation,  :placeholder => "Password Confirmation", :required => false, input_html: { maxlength: 40 }  %>
-    </div>
-
-    <%= f.password_field :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+  <hr>
+  <div class="well">
+    <h3 class="top25">Cancel my account</h3>
+    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
   </div>
-
-  <div class="form-actions">
-    <%= f.submit "Update", :class => "btn btn-lg btn-primary btn-block" %>
-  </div>
-<% end %>
-
-<hr>
-
-<div class="well">
-  <h3 class="top25">Cancel my account</h3>
-
-  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
-</div>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back %>
 
 </div>
