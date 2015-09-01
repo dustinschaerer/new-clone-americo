@@ -83,6 +83,7 @@
         </tbody>
       </table>
       <br>
+      <hr>
       <div class="form-group col-md-4">
         <p>Add Prospects to this Prospect Group:</p>
         <%= collection_select :prospect_group, :id, ProspectGroup.all, :id, :name, { prompt: "Please Choose" }, {class: "form-control"} %>
