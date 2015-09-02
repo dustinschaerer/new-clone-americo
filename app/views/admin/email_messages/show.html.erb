@@ -62,17 +62,7 @@
   <%= @admin_email_message.template %>
 </p>
 
-<!--
-<%= select_tag "prospect_group", options_for_select([ "All Users", "All Prospects", "Prospect list"], "one") %>
-
-<%= link_to send_email_to_prospects_admin_email_message_path, :class => "btn btn-primary"  do %>
-  <i class="glyphicon glyphicon-paper-plane"></i> Send Email to Prospects
+<% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
+  <%= link_to 'Edit', edit_admin_email_message_path(@admin_email_message) %> |
 <% end %>
-
-
-<%= link_to send_email_to_users_admin_email_message_path, :class => "btn btn-primary"  do %>
-  <i class="glyphicon glyphicon-paper-plane"></i> Send Email to Users
-<% end %>
--->
-<%= link_to 'Edit', edit_admin_email_message_path(@admin_email_message) %> |
 <%= link_to 'Back', admin_email_messages_path %>

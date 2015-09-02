@@ -11,10 +11,9 @@
       <th>Recipient count</th>
       <th>Sent at</th>
       <th></th>
-      <th></th>
-      <!--
-      <th></th>
-      -->
+      <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -33,12 +32,9 @@
         <% end %>
         <td><%= sent_email.sent_at %></td>
         <td><%= link_to 'Show', [:admin, sent_email] %></td>
-        <td><%= link_to 'Destroy', [:admin, sent_email], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <!--<td>
-        <%=
-        #link_to 'Edit', edit_admin_sent_email_path(sent_email)
-        %>
-        </td>-->
+        <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
+          <td><%= link_to 'Destroy', [:admin, sent_email], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
