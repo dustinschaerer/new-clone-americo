@@ -65,7 +65,7 @@ class Admin::UserGroupsController < AdminController
   end
 
   def remove_from_group_for
-     users = User.update_all({user_group_id: params[:user_group][:id]}, {id: params[:user_ids]})
+    users = User.update_all({user_group_id: nil}, {id: params[:user_ids]})
     redirect_to admin_user_groups_path(params)
   end
 

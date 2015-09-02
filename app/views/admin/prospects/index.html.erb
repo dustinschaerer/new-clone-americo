@@ -60,7 +60,7 @@
                 </td>
                 <td data-title="Prospect Group ID">
                   <% if prospect.prospect_group %>
-                    <a href="<%= "/admin/prospect_group/#{prospect.prospect_group.id}" %>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a>
+                    <a href="<%= "/admin/prospect_groups/#{prospect.prospect_group.id}" %>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a>
                   <% else %>
                     Not Assigned
                   <% end %>
