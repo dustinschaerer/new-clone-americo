@@ -6,10 +6,13 @@ class ProspectsController < ApplicationController
     @unsubscribe = params[:unsubscribe_from_emails]
     if @unsubscribe == "1"
       @prospect.subscribed = false
-      if @prospect.save!
-        format.html { redirect_to root_url, notice: 'You have been unsubscribed from our mailing list.' }
-      else
-        format.html { redirect_to root_url }
+      respond_to do |format|
+        if @prospect.save!
+          raise @prospect.inspect
+          format.html { redirect_to root_url, notice: 'You have been unsubscribed from our mailing list.' }
+        else
+          format.html { redirect_to root_url }
+        end
       end
     else
       redirect_to root_url
