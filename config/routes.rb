@@ -2,8 +2,6 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
-  # resources :prospect_groups
-
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
   end
@@ -82,6 +80,9 @@ Americo::Application.routes.draw do
   match '/terms_and_conditions',   to: 'static_pages#terms_and_conditions', via: 'get'
   match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
 
+  match '/prospects_unsubscribe',     to: 'static_pages#about',   via: 'get'
+
+  resources :prospects, :only => [:show]
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
