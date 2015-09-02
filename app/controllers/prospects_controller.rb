@@ -8,7 +8,6 @@ class ProspectsController < ApplicationController
       @prospect.subscribed = false
       respond_to do |format|
         if @prospect.save!
-          raise @prospect.inspect
           format.html { redirect_to root_url, notice: 'You have been unsubscribed from our mailing list.' }
         else
           format.html { redirect_to root_url }
