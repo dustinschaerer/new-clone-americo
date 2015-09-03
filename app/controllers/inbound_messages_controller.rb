@@ -1,5 +1,5 @@
 class InboundMessagesController < ApplicationController
-  include Mandrill::Rails::WebHookProcessor, MessageInfo
+  include Mandrill::Rails::WebHookProcessor
 
   # def handle_inbound(event_payload)
   #   Item.save_inbound_mail(event_payload)
@@ -7,9 +7,7 @@ class InboundMessagesController < ApplicationController
 
   def handle_send(event_payload)
     # Item.save_send_mail(event_payload)
-    if event_payload['sent']
-      # Do I need to increment
-    end
+
   end
 
   def handle_opens(event_payload)
