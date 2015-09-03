@@ -1,4 +1,5 @@
 class EmailMessage < ActiveRecord::Base
+  require 'mandrill'
 
   validates_presence_of :subject, :content, :text_content
   has_many :prospect_groups, as: :sendable
@@ -8,8 +9,10 @@ class EmailMessage < ActiveRecord::Base
 #  has_many :sent_emails, as: :sendable
   has_many :sent_emails
 
+  serialize :mandril_tags
+
   def mandril_tag=(tag)
-    if mandril_tag.blank?
+    if tag.blank?
       write_attribute(:mandril_tag, subject.parameterize.dasherize)
     else
       write_attribute(:mandril_tag, tag.parameterize.dasherize)
@@ -22,5 +25,6 @@ class EmailMessage < ActiveRecord::Base
     rescue Mandrill::InvalidTagNameError
       false
   end
+
 
 end

@@ -19,7 +19,7 @@ class EmailMessagesController < AdminController
 
   # GET /email_messages/1/edit
   def edit
-    raise 'hell'
+
   end
 
   # POST /email_messages
