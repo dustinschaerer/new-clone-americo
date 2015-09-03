@@ -1,6 +1,8 @@
 <%- clicks = stats['clicks'].to_i == 0 ? nil : stats['clicks'] -%>
 <%- opens = stats['opens'].to_i == 0 ? nil : stats['opens'] -%>
 <%- sent = stats['sent'].to_i == 0 ? nil : stats['sent'] -%>
+<%- hard_bounces = stats['hard_bounces'].to_i == 0 ? nil : stats['hard_bounces'] -%>
+<%- soft_bounces = stats['soft_bounces'].to_i == 0 ? nil : stats['soft_bounces'] -%>
 
 S:&nbsp;<%="#{number_with_delimiter(sent || 0)}"%>&nbsp;&nbsp;
 
@@ -14,12 +16,12 @@ S:&nbsp;<%="#{number_with_delimiter(sent || 0)}"%>&nbsp;&nbsp;
   C:&nbsp;<%="#{number_with_delimiter(clicks)}"%>&nbsp;(<%="#{click_percent}"%>%)
 <% end %>
 
-<%- unless hard_bounces.blank? || opens.blank? %>
-  <%- hard_bounce_percent = ((hard_bounces.to_f / opens.to_f) * 100).round(0) %>
-  C:&nbsp;<%="#{number_with_delimiter(hard_bounces)}"%>&nbsp;(<%="#{hard_bounce_percent}"%>%)
+<%- unless hard_bounces.blank? || sent.blank? %>
+  <%- hard_bounce_percent = ((hard_bounces.to_f / sent.to_f) * 100).round(0) %>
+  HB:&nbsp;<%="#{number_with_delimiter(hard_bounces)}"%>&nbsp;(<%="#{hard_bounce_percent}"%>%)
 <% end %>
 
-<%- unless soft_bounces.blank? || opens.blank? %>
-  <%- soft_bounce_percent = ((soft_bounces.to_f / opens.to_f) * 100).round(0) %>
-  C:&nbsp;<%="#{number_with_delimiter(soft_bounces)}"%>&nbsp;(<%="#{soft_bounce_percent}"%>%)
+<%- unless soft_bounces.blank? || sent.blank? %>
+  <%- soft_bounce_percent = ((soft_bounces.to_f / sent.to_f) * 100).round(0) %>
+  SB:&nbsp;<%="#{number_with_delimiter(soft_bounces)}"%>&nbsp;(<%="#{soft_bounce_percent}"%>%)
 <% end %>

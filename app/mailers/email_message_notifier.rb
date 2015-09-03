@@ -58,6 +58,11 @@ class EmailMessageNotifier < ActionMailer::Base
       @email = @prospect.email
     end
 
-    mail to: @email, subject: "#{@email_message.subject}"
+
+    headers['X-MC-Tags'] = @email_message.mandril_tags.split(', ')
+    mail({
+     to: @email,
+     subject: "#{@email_message.subject}"
+    })
   end
 end
