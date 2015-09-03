@@ -6,7 +6,10 @@ class InboundMessagesController < ApplicationController
   # end
 
   def handle_send(event_payload)
-    MandrillInfo.save_send_mail(event_payload)
+    # Item.save_send_mail(event_payload)
+    if event_payload['sent']
+      # Do I need to increment
+    end
   end
 
   def handle_opens(event_payload)
