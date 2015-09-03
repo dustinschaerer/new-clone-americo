@@ -161,6 +161,6 @@ class Admin::SentEmailsController < AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sent_email_params
       params.require(:sent_email).permit(:email_message_id, :sendable_id, :sendable_type, :actual_recipients,
-        :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email)
+        :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email, :mandril_tag)
     end
 end

@@ -22,7 +22,7 @@
       <th>Subject</th>
       <th>Headers</th>
       <th>Content</th>
-      <th>Mandril Tags</th>
+      <th>Mandril Tag</th>
       <th>Mailer Method</th>
       <th>Template Name</th>
       <th></th>
@@ -40,7 +40,7 @@
         <td><%= email_message.subject %></td>
         <td><%= email_message.headers %></td>
         <td><%= truncate(email_message.content, length: 50) %></td>
-        <td><%= email_message.mandril_tags %></td>
+        <td><%= email_message.mandril_tag %></td>
         <td><%= email_message.mailer_method %></td>
         <td><%= email_message.template %></td>
         <td><%= link_to 'Show', admin_email_message_path(email_message) %></td>

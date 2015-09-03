@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901141611) do
+ActiveRecord::Schema.define(version: 20150903174456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,12 +86,12 @@ ActiveRecord::Schema.define(version: 20150901141611) do
     t.string   "subject"
     t.string   "headers"
     t.text     "content"
-    t.string   "mandril_tags"
     t.string   "template"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "text_content"
     t.string   "mailer_method"
+    t.string   "mandril_tag"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

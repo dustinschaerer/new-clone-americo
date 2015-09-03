@@ -70,21 +70,12 @@ class Admin::EmailMessagesController < AdminController
   def send_email_to_users
     @admin_email_message = EmailMessage.find(params[:email_message][:id])
     @user_groups = UserGroup.find(params[:user_group][:id])
-    #####################################################################
-    # Take the submitted parameters and build necessary fields
-    # Calculate actual recipients and count recipients
-    #####################################################################
-    ####################################################################
-    # record send action in email manager setting send datetime, actual
-    # recipients hash, recipient_count, and user_group
-    ####################################################################
     actual_recipient_hash = {}
     @user_groups.users.each do |user|
       actual_recipient_hash[ user.class.to_sym => { user.id.to_sym => "user.email"} ]
     end
     raise actual_recipient_hash.inspect
   end
-
 
   private
 
@@ -94,7 +85,7 @@ class Admin::EmailMessagesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_message_params
-      params.require(:email_message).permit(:id, :subject, :headers, :content, :text_content, :mandril_tags, :template, :mailer_method)
+      params.require(:email_message).permit(:id, :subject, :headers, :content, :text_content, :mandril_tag, :template, :mailer_method)
     end
 
 end

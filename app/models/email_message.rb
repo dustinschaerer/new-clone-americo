@@ -26,5 +26,4 @@ class EmailMessage < ActiveRecord::Base
       false
   end
 
-
 end
