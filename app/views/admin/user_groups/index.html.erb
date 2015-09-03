@@ -23,8 +23,10 @@
           <th>Last sent on</th>
           <th>Date Created</th>
           <th></th>
-          <th></th>
-          <th></th>
+          <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
+            <th></th>
+            <th></th>
+          <% end %>
         </tr>
       </thead>
 
@@ -38,8 +40,10 @@
             <td data-title="last_sent_on"><%= user_group.last_sent_on %></td>
             <td data-title="created_at"><%= user_group.created_at %></td>
             <td><%= link_to 'Show', [:admin, user_group] %></td>
-            <td><%= link_to 'Edit', edit_admin_user_group_path(user_group) %></td>
-            <td><%= link_to 'Destroy', [:admin, user_group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
+              <td><%= link_to 'Edit', edit_admin_user_group_path(user_group) %></td>
+              <td><%= link_to 'Destroy', [:admin, user_group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
