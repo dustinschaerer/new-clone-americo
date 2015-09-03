@@ -84,6 +84,8 @@ Americo::Application.routes.draw do
 
   resources :prospects, :only => [:show]
 
+  resources :inbound_messages, :controller => 'inbound_messages', :only => [:show, :create]
+
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     get 'charts', to: 'dashboard#charts', as: '/charts'
