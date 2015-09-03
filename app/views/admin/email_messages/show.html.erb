@@ -56,6 +56,11 @@
 </p>
 
 <p>
+  <% stats = Rails.cache.fetch([@admin_email_message, 'stats'], expires_in: 10.minutes) { @admin_email_message.get_mandrill_stats } %>
+  <%= stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats}) %>
+</p>
+
+<p>
   <strong>Template:</strong>
   <%= @admin_email_message.template %>
 </p>
