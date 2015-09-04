@@ -56,8 +56,18 @@
 </p>
 
 <p>
-  <% stats = Rails.cache.fetch([@admin_email_message, 'stats'], expires_in: 10.minutes) { @admin_email_message.get_mandrill_stats } %>
-  <%= stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats}) %>
+  <%
+  # stats = Rails.cache.fetch([sent_email.email_message, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats }
+  stats = @admin_email_message.get_mandrill_stats
+  %>
+  <%= stats.blank? ? "No stats" : render(partial: "admin/sent_emails/stats", locals: {stats: stats}) %>
+
+  <%
+  #stats = Rails.cache.fetch([@admin_email_message, 'stats'], expires_in: 10.minutes) { @admin_email_message.get_mandrill_stats }
+  %>
+  <%=
+  # stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats})
+  %>
 </p>
 
 <p>

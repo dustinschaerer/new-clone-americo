@@ -37,7 +37,7 @@ module Americo
 
     config.filter_parameters += [:password, :password_confirmation]
 
-    config. generators do |g|
+    config.generators do |g|
         g.test_framework :test_unit
     end
 

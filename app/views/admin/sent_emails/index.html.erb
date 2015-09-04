@@ -27,7 +27,10 @@
         <td><%= sent_email.sendable_type.humanize %> <%= sent_email.sendable_id %></td>
 
         <td>
-          <% stats = Rails.cache.fetch([sent_email, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats } %>
+          <%
+          # stats = Rails.cache.fetch([sent_email.email_message, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats }
+          stats = sent_email.email_message.get_mandrill_stats
+          %>
           <%= stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats}) %>
         </td>
 
