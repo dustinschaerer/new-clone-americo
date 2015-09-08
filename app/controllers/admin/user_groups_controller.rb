@@ -69,6 +69,102 @@ class Admin::UserGroupsController < AdminController
     redirect_to admin_user_groups_path(params)
   end
 
+  def sort_users_into_groups
+    all_users = User.all.sort
+    # raise all_users.inspect
+    # successfully prints out all Users
+
+    all_users.each do |user|
+      # if this user has any purchases
+      if user.purchases.present?
+        user.purchases.each do |purchase|
+          purchase.lines.each do |line|
+            # if this line is for a table cover
+            if (line.quote_product_id == 1) || (line.quote_product_id == 2) || (line.quote_product_id == 13)
+              purchase_contains_table_cover = true
+            # elsif this line is for a roll good
+            elsif (line.quote_product_id == 10) || (line.quote_product_id == 11) || (line.quote_product_id == 12) || (line.quote_product_id == 17)
+              purchase_contains_roll_good = true
+            # else this a different type of purchase
+            else
+              purchase_contains_other = true
+            end
+          end
+        end
+        #########################################
+        # DECIDE WHICH USER GROUP TO PUT USER IN
+        #########################################
+        # if user has purchased both table covers(TC) and roll goods/upholstery rolls(RGUP)
+        # then set the user into group: "Purchased both VTC and RGUP"
+        user.user_group_id = 4
+        user.save!
+
+      # Since this user does not have any purchases, if this user has any quotes
+      elsif user.quotes.present?
+        # if user has requested quotes both table covers(TC) and roll goods/upholstery rolls(RGUP)
+        # then set the user into group: "Purchased both VTC and RGUP"
+        user.quotes.each do |quote|
+          quote.lines.each do |line|
+            if (line.quote_product_id == 1) || (line.quote_product_id == 2) || (line.quote_product_id == 13)
+              quote_contains_table_cover = true
+            # elsif this line is for a roll good
+            elsif (line.quote_product_id == 10) || (line.quote_product_id == 11) || (line.quote_product_id == 12) || (line.quote_product_id == 17)
+              quote_contains_roll_good = true
+            # else this a different type of quote
+            else
+              quote_contains_other = true
+            end
+          end
+        end
+        #########################################
+        # DECIDE WHICH USER GROUP TO PUT USER IN
+        #########################################
+        user.user_group_id = 5
+        user.save!
+        # if user has requested quotes for both table covers(TC) and roll goods/upholstery rolls(RGUP)
+        # then set the user into group: "Quotes for both VTC and RGUP"
+
+        # if user has requested quotes only table covers(TC)
+        # then set the user into group: "Quotes for VTC
+
+        # if user has requested quotes only roll goods/upholstery rolls(RGUP)
+        # then set the user into group: "Quotes for RGUP"
+
+      # Since this user does not have purchases or quotes, if this user has ordered a catalog
+      elsif user.orders.present?
+        # Put this user in the "Only ordered a Catalog" User Group
+        user.user_group_id = 6
+        user.save!
+      else
+        user.user_group_id = 7
+        user.save!
+      end
+
+    end
+    redirect_to admin_user_groups_path
+  end
+
+  # # find users with catalog orders only
+  # def users_with_orders_only
+  #   users = User.joins(:orders, :quotes, :purchases).where()
+  # end
+
+  # if current_user.id == @user.id
+  #   # lookup the orders belonging to this user
+  #   #@orders = Order.find_all_by_user_id(current_user[:id], :order => "id DESC")
+  #   @orders = Order.joins(:user).where(users: {id: current_user[:id]}).order("id DESC")
+  #   # lookup the quotes belonging to this user
+  #   #@quotes = Quote.find_all_by_user_id(current_user[:id], :order => "id DESC")
+  #   @quotes = Quote.joins(:user).where(users: {id: current_user[:id]}).order("id DESC")
+  #   # lookup the purchases belonging to this user
+  #   #@purchases = Purchase.find_all_by_user_id( current_user[:id], :order => "id DESC")
+  #   @purchases = Purchase.joins(:user).where(users: {id: current_user[:id]}).order("id DESC")
+  # else
+  #   render 'new', notice: 'You tried to access an account that does not belong to you.'
+  # end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_group
