@@ -2,6 +2,10 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
+  namespace :admin do
+    resources :mandril_tags
+  end
+
   authenticated :user do
     root :to => 'static_pages#home', :as => "authenticated_root"
   end

@@ -1,0 +1,27 @@
+<h1>Listing mandril_tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mandril_tags.each do |mandril_tag| %>
+      <tr>
+        <td><%= mandril_tag.title %></td>
+        <td><%= link_to 'Show', [:admin, mandril_tag] %></td>
+        <td><%= link_to 'Edit', edit_admin_mandril_tag_path(mandril_tag) %></td>
+        <td><%= link_to 'Destroy', [:admin, mandril_tag], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mandril tag', new_admin_mandril_tag_path %>
