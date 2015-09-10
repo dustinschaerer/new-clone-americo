@@ -12,11 +12,13 @@
         </ol>
 
         <h1 class="page-header">
-            Users
+            Users <i>(<%= @all_users_count %> current Users)</i>
         </h1>
     </div>
 </div>
 <!-- /.row -->
+
+
 
 <%= paginate @users %>
 

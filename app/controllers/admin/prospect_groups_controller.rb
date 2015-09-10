@@ -67,6 +67,10 @@ class Admin::ProspectGroupsController < AdminController
     redirect_to admin_prospect_groups_path(params)
   end
 
+  def sort_prospects_into_default_groups
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_prospect_group

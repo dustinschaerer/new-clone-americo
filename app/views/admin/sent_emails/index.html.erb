@@ -7,6 +7,7 @@
       <th>Email Subject</th>
       <th>Email Message ID#</th>
       <th>Send To</th>
+      <th>Mandrill Tag</th>
       <th>Stats</th>
       <th>Actual Recipients</th>
       <th>Recipient count</th>
@@ -25,7 +26,7 @@
         <td><%= sent_email.email_message.subject %></td>
         <td><%= link_to sent_email.email_message.id, [:admin, sent_email.email_message] %></td>
         <td><%= sent_email.sendable_type.humanize %> <%= sent_email.sendable_id %></td>
-
+        <td><%= sent_email.email_message.mandril_tag %></td>
         <td>
           <%
           # stats = Rails.cache.fetch([sent_email.email_message, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats }

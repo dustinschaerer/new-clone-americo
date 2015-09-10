@@ -5,6 +5,7 @@ class Admin::UsersController < AdminController
 
   def index
     @users = User.all.order("id DESC").page(params[:page]).per(50)
+    @all_users_count = User.all.count
   end
 
   def show

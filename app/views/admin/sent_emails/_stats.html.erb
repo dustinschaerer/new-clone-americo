@@ -8,20 +8,20 @@ S:&nbsp;<%="#{number_with_delimiter(sent || 0)}"%>&nbsp;&nbsp;
 
 <%- unless opens.blank? || sent.blank? %>
   <%- open_percent = ((opens.to_f / sent.to_f) * 100).round(0) %>
-  O:&nbsp;<%="#{number_with_delimiter(opens)}"%>&nbsp;(<%="#{open_percent}"%>%)&nbsp;&nbsp;
+  Opens:&nbsp;<%="#{number_with_delimiter(opens)}"%>&nbsp;(<%="#{open_percent}"%>%)&nbsp;&nbsp;
 <% end %>
 
 <%- unless clicks.blank? || opens.blank? %>
   <%- click_percent = ((clicks.to_f / opens.to_f) * 100).round(0) %>
-  C:&nbsp;<%="#{number_with_delimiter(clicks)}"%>&nbsp;(<%="#{click_percent}"%>%)
+  Clicks:&nbsp;<%="#{number_with_delimiter(clicks)}"%>&nbsp;(<%="#{click_percent}"%>%)
 <% end %>
 
 <%- unless hard_bounces.blank? || sent.blank? %>
   <%- hard_bounce_percent = ((hard_bounces.to_f / sent.to_f) * 100).round(0) %>
-  HB:&nbsp;<%="#{number_with_delimiter(hard_bounces)}"%>&nbsp;(<%="#{hard_bounce_percent}"%>%)
+  Hard Bounce:&nbsp;<%="#{number_with_delimiter(hard_bounces)}"%>&nbsp;(<%="#{hard_bounce_percent}"%>%)
 <% end %>
 
 <%- unless soft_bounces.blank? || sent.blank? %>
   <%- soft_bounce_percent = ((soft_bounces.to_f / sent.to_f) * 100).round(0) %>
-  SB:&nbsp;<%="#{number_with_delimiter(soft_bounces)}"%>&nbsp;(<%="#{soft_bounce_percent}"%>%)
+  Soft Bounce:&nbsp;<%="#{number_with_delimiter(soft_bounces)}"%>&nbsp;(<%="#{soft_bounce_percent}"%>%)
 <% end %>

@@ -19,7 +19,7 @@
 <h1>Sent / Scheduled Email <%= @sent_email.id %></h1>
 
 <p id="notice"><%= notice %></p>
-
+<div class="well">
 <p>
   <strong>Email Message:</strong>
   <%= @sent_email.email_message.subject %>
@@ -39,6 +39,21 @@
   <strong>Number of Recipients:</strong>
   <%= @sent_email.recipient_count %>
 </p>
+
+<p>
+  <strong>Mandrill Tag:</strong>
+  <%= @sent_email.email_message.mandril_tag %>
+</p>
+
+ <p>
+  <strong>Shared Stats for this Email Message:</strong>
+  <%
+  # stats = Rails.cache.fetch([sent_email.email_message, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats }
+  stats = @sent_email.email_message.get_mandrill_stats
+  %>
+  <%= stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats}) %>
+</p>
+
 <hr>
 <p>
   <strong>Actual recipients:</strong>
@@ -75,5 +90,6 @@
   </table>
 
 </p>
+</div>
 <hr>
 <%= link_to 'Back', admin_sent_emails_path %>
