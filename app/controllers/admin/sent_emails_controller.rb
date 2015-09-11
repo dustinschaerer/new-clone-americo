@@ -47,14 +47,12 @@ class Admin::SentEmailsController < AdminController
 
     if @sent_email.sendable_type == "user_group"
       @list_entity.users.each do |user|
-
         if user.subscribed == true
           recipient_count += 1
           actual_recipients_hash["#{user.email}"] = { user.id => "user"}
           email_to_send = EmailMessage.find(@sent_email.email_message_id)
           if email_to_send.mailer_method == "dynamic_message"
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, user, email_to_send)
-
             # set last email sent on user_group to this email id
             @list_entity.email_message_id = @sent_email.email_message_id
             @list_entity.save
@@ -64,12 +62,9 @@ class Admin::SentEmailsController < AdminController
             @list_entity.save
           end
         end
-
       end
     elsif @sent_email.sendable_type == "prospect_group"
-      # extract users class method
       @list_entity.prospects.each do |prospect|
-
         if prospect.active == true && prospect.subscribed == true
           recipient_count += 1
           actual_recipients_hash["#{prospect.email}"] = { prospect.id => "prospect"}
@@ -84,10 +79,8 @@ class Admin::SentEmailsController < AdminController
             @list_entity.save
           end
         end
-
       end
     elsif @sent_email.sendable_type == "user"
-
       if @list_entity.subscribed == true
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "user"}
@@ -100,22 +93,18 @@ class Admin::SentEmailsController < AdminController
           EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
       end
-
     elsif @sent_email.sendable_type == "prospect"
-
       if @list_entity.active == true && @list_entity.subscribed == true
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "prospect"}
         email_to_send = EmailMessage.find(@sent_email.email_message_id)
         if email_to_send.mailer_method == "dynamic_message"
-          EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
+          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         else
-          EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
+          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
       end
-
     end
-
     @sent_email.actual_recipients = actual_recipients_hash
     @sent_email.recipient_count = recipient_count
 
