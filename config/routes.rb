@@ -160,7 +160,11 @@ Americo::Application.routes.draw do
       end
     end
     resources :admin_users
-    resources :prospect_groups
+    resources :prospect_groups do
+      collection  do
+        get :add_unsorted_propsects_into_new_groups
+      end
+    end
     resources :user_groups do
       collection do
         get :sort_users_into_groups

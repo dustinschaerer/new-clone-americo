@@ -67,7 +67,25 @@ class Admin::ProspectGroupsController < AdminController
     redirect_to admin_prospect_groups_path(params)
   end
 
-  def sort_prospects_into_default_groups
+  def add_unsorted_propsects_into_new_groups
+    # setup variables
+    group_cutoff_number = 250
+    unsorted_prospects = Prospect.where(prospect_group_id: nil).order(:id)
+    last_autosorted_prospect_group = ProspectGroup.where("name like ?", "%Autosorted%").order(:name).last
+    current_prospect_count = last_autosorted_prospect_group.prospects.count
+    raise current_prospect_count
+    # DEBUG
+    raise unsorted_prospects.inspect
+    # loop over unsorted prospects
+    unsorted_prospects.each do |prospect|
+      if prospect_count < group_cutoff_number
+        prospect.prospect_group_id = last_autosorted_prospect_group.id
+        prospect.save!
+        # else if purchase user count is 251
+      else
+        # find or create by incremented new Autosorted Group #
+      end
+    end
 
   end
 
