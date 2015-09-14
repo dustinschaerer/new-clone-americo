@@ -48,6 +48,8 @@
               <% end %>
               <th><%= sortable :email, "Email" %></th>
               <th><%= sortable :name, "Name" %></th>
+              <th>Last Email Message</th>
+              <th>Last Sent On</th>
               <th><%= sortable :subscribed, "Subscribed?" -%></th>
               <th><%= sortable :validated, "Validated?" %></th>
               <th><%= sortable :date_joined_on, "Date Joined On" %></th>
@@ -73,6 +75,8 @@
                 </td>
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
+                <td data-title="Last Message"><%= prospect.try(:email_message).try(:subject) %></td>
+                <td data-title="Last Sent On"><%= prospect.last_sent_on %></td>
                 <td data-title="Unsubscribed"><%= prospect.subscribed %></td>
                 <td data-title="Validated"><%= prospect.validated %></td>
                 <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>

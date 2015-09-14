@@ -57,6 +57,7 @@ group :development, :test do
   #gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
   gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do

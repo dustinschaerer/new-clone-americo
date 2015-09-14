@@ -53,16 +53,20 @@ class Admin::SentEmailsController < AdminController
           email_to_send = EmailMessage.find(@sent_email.email_message_id)
           if email_to_send.mailer_method == "dynamic_message"
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, user, email_to_send)
-            # set last email sent on user_group to this email id
-            @list_entity.email_message_id = @sent_email.email_message_id
-            @list_entity.save
+            # set last email sent on each user in user_group to this email id
+            user.email_message_id = @sent_email.email_message_id
+            user.save
           else
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, user, email_to_send)
-            @list_entity.email_message_id = @sent_email.email_message_id
-            @list_entity.save
+            user.email_message_id = @sent_email.email_message_id
+            user.save
           end
         end
       end
+      @list_entity.last_sent_on = Time.now
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.save
+
     elsif @sent_email.sendable_type == "prospect_group"
       @list_entity.prospects.each do |prospect|
         if prospect.active == true && prospect.subscribed == true
@@ -71,15 +75,18 @@ class Admin::SentEmailsController < AdminController
           email_to_send = EmailMessage.find(@sent_email.email_message_id)
           if email_to_send.mailer_method == "dynamic_message"
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, prospect, email_to_send)
-            @list_entity.email_message_id = @sent_email.email_message_id
-            @list_entity.save
+            prospect.email_message_id = @sent_email.email_message_id
+            prospect.save
           else
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, prospect, email_to_send)
-            @list_entity.email_message_id = @sent_email.email_message_id
-            @list_entity.save
+            prospect.email_message_id = @sent_email.email_message_id
+            prospect.save
           end
         end
       end
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.last_sent_on = Time.now
+      @list_entity.save
     elsif @sent_email.sendable_type == "user"
       if @list_entity.subscribed == true
         recipient_count += 1
@@ -93,6 +100,10 @@ class Admin::SentEmailsController < AdminController
           EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
       end
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.last_sent_on = Time.now
+      @list_entity.save
+
     elsif @sent_email.sendable_type == "prospect"
       if @list_entity.active == true && @list_entity.subscribed == true
         recipient_count += 1
@@ -104,6 +115,9 @@ class Admin::SentEmailsController < AdminController
           EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
       end
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.last_sent_on = Time.now
+      @list_entity.save
     end
     @sent_email.actual_recipients = actual_recipients_hash
     @sent_email.recipient_count = recipient_count
@@ -152,6 +166,7 @@ class Admin::SentEmailsController < AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sent_email_params
       params.require(:sent_email).permit(:email_message_id, :sendable_id, :sendable_type, :actual_recipients,
-        :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email, :mandril_tag)
+        :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email, :mandril_tag,
+        :last_sent_on)
     end
 end

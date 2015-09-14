@@ -34,6 +34,8 @@
                 <th>User ID</th>
                 <th>Email</th>
                 <th>User Group ID</th>
+                <th>Last Email Message</th>
+                <th>Last Sent On</th>
                 <th>Subscribed?</th>
                 <th>Created at</th>
                 <th>Last Sign in IP</th>
@@ -50,6 +52,8 @@
                 <td data-title="User Id"><%= link_to "#{user.id}", [:admin, user], class: "user-link" %></td>
                 <td data-title="Email"><%= user.email %></td>
                 <td data-title="User Group Id"><%= link_to "#{user.user_group_id}", [:admin, user.user_group] %></td>
+                <td data-title="Last Message"><%= user.try(:email_message).try(:subject) %></td>
+                <td data-title="Last Sent On"><%= user.last_sent_on %></td>
                 <td data-title="Subscribed" class="subscribed"><%= user.subscribed %></td>
                 <td data-title="Created At"><%= user.created_at.strftime("%-m-%d-%Y") %></td>
                 <td data-title="Last IP"><%= user.last_sign_in_ip %></td>

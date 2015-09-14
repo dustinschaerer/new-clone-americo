@@ -50,7 +50,7 @@ class Admin::UsersController < AdminController
     end
 
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :email_message_id, :last_sent_on)
     end
 
 end

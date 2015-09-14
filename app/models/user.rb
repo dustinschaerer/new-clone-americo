@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :subscribers
   belongs_to :user_group
   has_many :sent_emails, as: :sendable
+  belongs_to :email_message
 
   after_create :process_if_prospect
 
