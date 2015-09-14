@@ -46,7 +46,7 @@
             <td data-title="user_group_id"><%= link_to "#{user_group.id}", [:admin, user_group], class: "user-link" %></td>
             <td data-title="name"><%= user_group.name %></td>
             <td data-title="count"><%= user_group.users.count %></td>
-            <td data-title="kind"><%= user_group.kind %></td>
+            <td data-title="kind"><%= user_group.try(:kind) %></td>
             <td data-title="last_message_sent">
               <%= user_group.try(:email_message).try(:subject) %></td>
             <td data-title="last_sent_on"><%= user_group.last_sent_on %></td>

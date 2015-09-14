@@ -76,7 +76,7 @@
                 <td data-title="Email"><%= prospect.email %></td>
                 <td data-title="Name"><%= prospect.name %></td>
                 <td data-title="Last Message"><%= prospect.try(:email_message).try(:subject) %></td>
-                <td data-title="Last Sent On"><%= prospect.last_sent_on %></td>
+                <td data-title="Last Sent On"><%= prospect.try(:last_sent_on) %></td>
                 <td data-title="Unsubscribed"><%= prospect.subscribed %></td>
                 <td data-title="Validated"><%= prospect.validated %></td>
                 <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
