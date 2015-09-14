@@ -30,6 +30,8 @@
 <% end -%>
 
 <%= paginate @prospects %>
+<br>
+<%= params.inspect %>
 
 <div class="row">
   <div class="no-more-tables">
@@ -38,14 +40,18 @@
         <thead>
             <tr>
               <th></th>
-              <th>Prospect ID</th>
-              <th>Prospect Group</th>
-              <th>Email</th>
-              <th>Name</th>
-              <th>Subscribed?</th>
-              <th>Validated</th>
-              <th>Date Joined On</th>
-              <th>Active?</th>
+              <th><%= sortable :id, "id" %></th>
+              <% if params[:sort] == "prospect_group_name" %>
+                <th><%= link_to "Prospect Group", sort: "prospect_group_name_desc" %></th>
+              <% else %>
+                <th><%= link_to "Prospect Group", sort: "prospect_group_name" %></th>
+              <% end %>
+              <th><%= sortable :email, "Email" %></th>
+              <th><%= sortable :name, "Name" %></th>
+              <th><%= sortable :subscribed, "Subscribed?" -%></th>
+              <th><%= sortable :validated, "Validated?" %></th>
+              <th><%= sortable :date_joined_on, "Date Joined On" %></th>
+              <th><%= sortable :active, "Active?" %></th>
             </tr>
         </thead>
 
@@ -101,8 +107,26 @@
 <%= paginate @prospects %>
 <hr>
 <div class="row">
-  <div class="col-lg-12">
-    <h3>Actions to Perform on All Prospects <i>(Warning: This cannot be undone!)</i></h3>
-    <%= button_to 'Add Unsorted Prospects Into Prosepct Groups', add_unsorted_propsects_into_new_groups_admin_prospect_groups_path, class: "btn btn-warning", method: :get %>
+
+  <h3>Show Prospect Actions</h3>
+  <div class="col-md-6 col-lg-4">
+    <%= button_to 'Show All Prospects', admin_prospects_path, class: "btn btn-default", method: :get, style: "color: white" %>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <%= button_to 'Only Show Assigned Prospects', show_assigned_admin_prospects_path, class: "btn btn-success", method: :get %>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <%= button_to 'Only Show Unassigned Prospects', show_unassigned_admin_prospects_path, class: "btn btn-info", method: :get %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <h3>Actions to Perform on All Prospects</h3>
+
+  <div class="col-md-6">
+    <%= button_to 'Unassign all Prospects from Prospect Groups', unassign_all_admin_prospects_path, class: "btn btn-danger", method: :get %>  <i>(Warning: This cannot be undone!)</i>
+  </div>
+  <div class="col-md-6">
+    <%= button_to 'Automatically Add Unsorted Prospects Into Prospect Groups', add_unsorted_prospects_into_new_groups_admin_prospect_groups_path, class: "btn btn-warning", method: :get %>  <i>(Warning: This cannot be undone!)</i>
   </div>
 </div>

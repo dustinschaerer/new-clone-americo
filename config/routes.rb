@@ -150,6 +150,9 @@ Americo::Application.routes.draw do
         patch :assign_groups_for
         patch :remove_from_group_for
         get :retrieve_for_autocomplete
+        get :show_unassigned
+        get :show_assigned
+        get :unassign_all
       end
     end
     resources :users do
@@ -162,7 +165,7 @@ Americo::Application.routes.draw do
     resources :admin_users
     resources :prospect_groups do
       collection  do
-        get :add_unsorted_propsects_into_new_groups
+        get :add_unsorted_prospects_into_new_groups
       end
     end
     resources :user_groups do

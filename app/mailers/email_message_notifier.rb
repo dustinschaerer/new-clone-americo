@@ -30,6 +30,10 @@ class EmailMessageNotifier < ActionMailer::Base
     if recipient.class.name == "User"
       @user = recipient
       @email = @user.email
+
+      #######################################
+      # Refactor in accordance with UserGroup.kind and ProspectGroup.kind
+      #######################################
       if @email_message.headers == 'purchase'
         if @user.purchases.last
           # if this user has at least 1 purchase
