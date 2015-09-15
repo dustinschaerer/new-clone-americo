@@ -18,14 +18,12 @@
 </div>
 <!-- /.row -->
 
-
-
 <%= paginate @users %>
 
 <div class="row">
   <div class="no-more-tables">
     <div class="table-responsive">
-      <%= bootstrap_form_tag url: assign_groups_for_admin_users_url, method: :patch do |f| %>
+      <%= bootstrap_form_tag url: update_groups_for_admin_users_url, method: :patch do |f| %>
         <table class="table table-hover table-striped">
 
           <thead>
@@ -71,6 +69,12 @@
           <p>&nbsp;</p>
           <%= submit_tag "Assign Checked to selected User Group", class: "btn btn-primary" %>
         </div>
+
+        <div class="col-md-4">
+          <p>&nbsp;</p>
+          <%= submit_tag "Remove Checked from User Group", class: "btn btn-danger" %>
+
+        </div>
         <br><br>
       <% end %>
     </div>
@@ -79,5 +83,3 @@
 <!-- /.row -->
 
 <%= paginate @users %>
-
-

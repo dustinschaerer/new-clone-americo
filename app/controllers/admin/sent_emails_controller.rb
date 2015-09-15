@@ -55,10 +55,12 @@ class Admin::SentEmailsController < AdminController
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, user, email_to_send)
             # set last email sent on each user in user_group to this email id
             user.email_message_id = @sent_email.email_message_id
+            user.last_sent_on = @sent_email.sent_at
             user.save
           else
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, user, email_to_send)
             user.email_message_id = @sent_email.email_message_id
+            user.last_sent_on = @sent_email.sent_at
             user.save
           end
         end
@@ -76,10 +78,12 @@ class Admin::SentEmailsController < AdminController
           if email_to_send.mailer_method == "dynamic_message"
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, prospect, email_to_send)
             prospect.email_message_id = @sent_email.email_message_id
+            prospect.last_sent_on = @sent_email.sent_at
             prospect.save
           else
             EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, prospect, email_to_send)
             prospect.email_message_id = @sent_email.email_message_id
+            prospect.last_sent_on = @sent_email.sent_at
             prospect.save
           end
         end

@@ -12,8 +12,6 @@ class Admin::UsersController < AdminController
     @users_orders = Order.where(user_id: params[:id])
     @users_quotes = Quote.where(user_id: params[:id])
     @users_purchases = Purchase.where(user_id: params[:id])
-    # @users =
-
   end
 
   def edit
@@ -28,14 +26,18 @@ class Admin::UsersController < AdminController
 
   end
 
-  def assign_groups_for
-    users = User.update_all({user_group_id: params[:user_group][:id]}, {id: params[:user_ids]})
-    redirect_to admin_users_path(params)
-  end
+  def update_groups_for
+    if params[:commit] == "Assign Checked to selected User Group"
+      users = User.update_all({user_group_id: params[:user_group][:id]}, {id: params[:user_ids]})
+      redirect_to admin_users_path(params)
 
-  def remove_from_group_for
-     users = User.update_all({user_group_id: nil}, {id: params[:user_ids]})
-    redirect_to admin_user_groups_path(params)
+    elsif params[:commit] == "Remove Checked from User Group"
+      users = User.update_all({user_group_id: nil}, {id: params[:user_ids]})
+      redirect_to admin_users_path(params)
+
+    else
+      redirect_to admin_users_path(params)
+    end
   end
 
   def retrieve_for_autocomplete

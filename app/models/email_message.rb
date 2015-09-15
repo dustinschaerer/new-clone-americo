@@ -1,7 +1,8 @@
 class EmailMessage < ActiveRecord::Base
   require 'mandrill'
 
-  validates_presence_of :subject, :content, :text_content
+  validates_presence_of :subject, :content, :text_content, :mailer_method, :mandril_tag
+
   has_many :prospect_groups, as: :sendable
   has_many :user_groups, as: :sendable
   has_many :prospects, as: :sendable

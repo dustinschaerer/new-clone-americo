@@ -7,9 +7,10 @@ class Admin::UserGroupsController < AdminController
   def index
     @user_groups = UserGroup.all
     @user_group = UserGroup.new
-    @purchase_groups = UserGroup.where("kind = ?", "Purchases").order(:name)
-    @quote_groups = UserGroup.where("kind = ?", "Quotes").order(:name)
-    @sample_groups = UserGroup.where("kind = ?", "Samples").order(:name)
+    # @purchase_groups = UserGroup.where("kind = ?", "Purchases").order(:name)
+    # @quote_groups = UserGroup.where("kind = ?", "Quotes").order(:name)
+    # @sample_groups = UserGroup.where("kind = ?", "Samples or Catalogs").order(:name)
+    # @new_user_groups = UserGroup.where("kind = ?", "New Users").order(:name)
 
   end
 
@@ -74,9 +75,8 @@ class Admin::UserGroupsController < AdminController
   end
 
   def sort_users_into_groups
-    group_cutoff_number = 251
-
-    all_users = User.all.sort
+    group_cutoff_number = 51
+    all_users = User.all.order(:id)
 
     #################################################
     # Setup Different User Groups for sorting into  #
@@ -84,12 +84,15 @@ class Admin::UserGroupsController < AdminController
     @purchase_groups = UserGroup.where("kind = ?", "Purchases").order(:name)
     purchase_user_count = 0
     current_purchase_group = @purchase_groups.first
+
     @quote_groups = UserGroup.where("kind = ?", "Quotes").order(:name)
     quote_user_count = 0
     current_quote_group = @quote_groups.first
+
     @order_groups = UserGroup.where("kind = ?", "Samples or Catalogs").order(:name)
     order_user_count = 0
     current_order_group = @order_groups.first
+
     @new_users_groups = UserGroup.where("kind = ?", "New Users").order(:name)
     new_users_user_count = 0
     current_new_users_group = @new_users_groups.first
@@ -195,7 +198,6 @@ class Admin::UserGroupsController < AdminController
     end
     redirect_to admin_user_groups_path
   end
-
 
   ############
   # TODO begin

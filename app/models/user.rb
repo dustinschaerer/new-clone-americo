@@ -14,18 +14,6 @@ class User < ActiveRecord::Base
 
   after_create :process_if_prospect
 
-  # scope :has_only_orders, -> { joins(:orders).where("orders.user_id =?", 'IS NOT NULL')}
-
-
- # scope :has_quotes
- # scope :has_purcahses
-
-  # scope use: User.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
-  #scope :created_between, ->(start_date, end_date) { where("created_at >= ? AND created_at <= ?", start_date, end_date) }
-
-  # User.created_between(Time.zone.now.beginning_of_month.beginning_of_day, Time.zone.now.end_of_month.end_of_day)
-  # start_date = Time.zone.now.beginning_of_month.beginning_of_day
-  # end_date = Time.zone.now.end_of_month.end_of_day
   def self.created_between(start_date, end_date)
     where("created_at >= ? AND created_at <= ?", start_date, end_date)
   end
@@ -39,7 +27,5 @@ class User < ActiveRecord::Base
       prospect.save!
     end
   end
-
-
 
 end

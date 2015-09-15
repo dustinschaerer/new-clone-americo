@@ -6,6 +6,7 @@ class SentEmail < ActiveRecord::Base
 
   serialize :actual_recipients
 
+
   def user_email
     if sendable_id.nil?
       @user_email
