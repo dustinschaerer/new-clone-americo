@@ -153,6 +153,7 @@ Americo::Application.routes.draw do
         get :show_unassigned
         get :show_assigned
         get :unassign_all
+        get :add_unsorted_prospects_into_new_groups
       end
     end
     resources :users do

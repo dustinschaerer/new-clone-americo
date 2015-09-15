@@ -57,7 +57,7 @@ class Admin::ProspectGroupsController < AdminController
   def destroy
     @prospect_group.destroy
     respond_to do |format|
-      format.html { redirect_to prospect_groups_url }
+      format.html { redirect_to admin_prospect_groups_path }
       format.json { head :no_content }
     end
   end
@@ -71,8 +71,22 @@ class Admin::ProspectGroupsController < AdminController
     # setup variables
     group_cutoff_number = 250
     unsorted_prospects = Prospect.where(prospect_group_id: nil).order(:id)
-    last_autosorted_prospect_group = ProspectGroup.where("name like ?", "%Autosorted%").order(:name).last
+    autosorted_prospect_groups = ProspectGroup.where("name like ?", "%Autosorted%").order(:name)
+
+    autosorted_prospect_groups.each do |group|
+      if group.prospects.count < group_cutoff_number
+        # choose this group to add to
+        last_autosorted_prospect_group = group
+        break
+      end
+    end
+
+    #last_autosorted_prospect_group = ProspectGroup.where("name like ?", "%Autosorted%").order(:name).last
+
+
     current_prospect_count = last_autosorted_prospect_group.prospects.count
+    raise current_prospect_count.inspect
+
     # DEBUG ######################################
     # raise last_autosorted_prospect_group.inspect
     # raise current_prospect_count.inspect
@@ -89,13 +103,11 @@ class Admin::ProspectGroupsController < AdminController
       unless prospect.active == false
 
         if current_prospect_count <= group_cutoff_number
-          raise last_autosorted_prospect_group.inspect
           prospect.prospect_group_id = last_autosorted_prospect_group.id
           prospect.save!
 
         # else if purchase user count is 251
         else
-          raise last_autosorted_prospect_group.inspect
           # find or create by incremented new Autosorted Group #
           prospect_array = last_autosorted_prospect_group.name.reverse.split(" ", 2).map(&:reverse).reverse
           # increment the integer in the group name within the array, and join it back together
@@ -111,7 +123,7 @@ class Admin::ProspectGroupsController < AdminController
         end
       end
     end
-    redirect_to admin_prospect_groups_path
+    redirect_to admin_prospects_path
   end
 
   def show_unassigned
