@@ -84,7 +84,7 @@ Americo::Application.routes.draw do
   match '/terms_and_conditions',   to: 'static_pages#terms_and_conditions', via: 'get'
   match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
 
-  match '/prospects_unsubscribe',     to: 'static_pages#about',   via: 'get'
+  match '/prospects_unsubscribe',     to: 'prospects#show',   via: 'get'
 
   resources :prospects, :only => [:show]
 

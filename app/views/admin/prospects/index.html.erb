@@ -31,7 +31,6 @@
 
 <%= paginate @prospects %>
 <br>
-<%= params.inspect %>
 
 <div class="row">
   <div class="no-more-tables">
@@ -128,9 +127,9 @@
   <h3>Actions to Perform on All Prospects</h3>
 
   <div class="col-md-6">
-    <%= button_to 'Unassign all Prospects from Prospect Groups', unassign_all_admin_prospects_path, class: "btn btn-danger", method: :get %>  <i>(Warning: This cannot be undone!)</i>
+    <%= button_to 'Unassign all Prospects from Prospect Groups', unassign_all_admin_prospects_path, class: "btn btn-danger", method: :get, data: { confirm: 'Are you sure you want to unassign all prospects from prospect groups?' } %>  <i>(Warning: This cannot be undone!)</i>
   </div>
   <div class="col-md-6">
-    <%= button_to 'Automatically Add Unsorted Prospects Into Prospect Groups', add_unsorted_prospects_into_new_groups_admin_prospects_path, class: "btn btn-warning", method: :get %>  <i>(Warning: This cannot be undone!)</i>
+    <%= button_to 'Automatically Add Unsorted Prospects Into Prospect Groups', add_unsorted_prospects_into_new_groups_admin_prospects_path, class: "btn btn-warning", method: :get, data: { confirm: 'Are you sure you want to add unsorted prospects into prospect groups?' } %>  <i>(Warning: This cannot be undone!)</i>
   </div>
 </div>
