@@ -33,30 +33,30 @@ class EmailMessageNotifier < ActionMailer::Base
 
       #######################################
       # Refactor in accordance with UserGroup.kind and ProspectGroup.kind
-      #######################################
-      if @email_message.headers == 'purchase'
-        if @user.purchases.last
-          # if this user has at least 1 purchase
-          # find their last purchase and determine if it was for
-          # table covers or for roll goods/upholstery
-          @user.purchases.last.created_at.strftime("%B %d, %Y")
-        end
-      elsif @email_message.headers == 'quote'
-        if @user.quotes.last
-          # if this user has at least 1 quote
+      # #######################################
+      # if @email_message.headers == 'purchase'
+      #   if @user.purchases.last
+      #     # if this user has at least 1 purchase
+      #     # find their last purchase and determine if it was for
+      #     # table covers or for roll goods/upholstery
+      #     @user.purchases.last.created_at.strftime("%B %d, %Y")
+      #   end
+      # elsif @email_message.headers == 'quote'
+      #   if @user.quotes.last
+      #     # if this user has at least 1 quote
 
-          # find their last quote details and determine if it was for
-          # table covers OR roll goods/upholstery
-          @user.quotes.last.created_at.strftime("%B %d, %Y")
-        end
-      elsif @email_message.headers == 'order'
-        if @user.orders.last
-          # if this user has at least 1 order (catalog)
-          @user.orders.last.created_at.strftime("%B %d, %Y")
-        end
-      else
+      #     # find their last quote details and determine if it was for
+      #     # table covers OR roll goods/upholstery
+      #     @user.quotes.last.created_at.strftime("%B %d, %Y")
+      #   end
+      # elsif @email_message.headers == 'order'
+      #   if @user.orders.last
+      #     # if this user has at least 1 order (catalog)
+      #     @user.orders.last.created_at.strftime("%B %d, %Y")
+      #   end
+      # else
 
-      end
+      # end
     elsif recipient.class.name =="Prospect"
       @prospect = recipient
       @email = @prospect.email
