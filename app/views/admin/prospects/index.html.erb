@@ -30,7 +30,7 @@
 
 <%= paginate @prospects %>
 <br>
-
+<%= params.inspect %>
 <div class="row">
   <div class="no-more-tables">
     <%= bootstrap_form_tag url: assign_groups_for_admin_prospects_url, method: :patch do |f| %>
@@ -38,12 +38,8 @@
         <thead>
             <tr>
               <th></th>
-              <th><%= sortable :id, "id" %></th>
-              <% if params[:sort] == "prospect_group_name" %>
-                <th><%= link_to "Prospect Group", sort: "prospect_group_name_desc" %></th>
-              <% else %>
-                <th><%= link_to "Prospect Group", sort: "prospect_group_name" %></th>
-              <% end %>
+              <th><%= sortable :id, "ID" %></th>
+              <th>Prospect Group</th>
               <th><%= sortable :email, "Email" %></th>
               <th><%= sortable :name, "Name" %></th>
               <th>Last Email Message</th>

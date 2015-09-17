@@ -3,16 +3,9 @@ class Admin::ProspectsController < AdminController
   before_action :set_prospect, only: [:show, :destroy, :update, :edit]
 
   def index
-    # @prospects = Prospect.order("id DESC").page(params[:page]).per(50)
-    if params[:sort] == "prospect_group_name"
-      # SIDE EFFECT this query does not show any prospects with unassigned  prospect groups
-      @prospects = Prospect.joins(:prospect_group).references(:prospect_group).merge(ProspectGroup.order(:name => :asc)).page(params[:page]).per(100)
-    elsif params[:sort] == "prospect_group_name_desc"
-      # SIDE EFFECT this query does not show any prospects with unassigned  prospect groups
-      @prospects = Prospect.joins(:prospect_group).references(:prospect_group).merge(ProspectGroup.order(:name => :desc)).page(params[:page]).per(100)
+    if params[:sort] == nil
+      @prospects = Prospect.order("id DESC").page(params[:page]).per(50)
     else
-      # raise (sort_column + " " + sort_direction)
-      # @prospects = Prospect.order(params[:sort] + " " + params[:direction]).page(params[:page]).per(50)
       @prospects = Prospect.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
     end
     @prospect = Prospect.new
