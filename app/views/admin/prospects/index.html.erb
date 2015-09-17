@@ -58,7 +58,7 @@
                   <%= check_box_tag "prospect_ids[]", prospect.id %>
                 </td>
                 <td data-title="Prospect Id">
-                  <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-link" %>
+                  <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-id" %>
                 </td>
                 <td data-title="Prospect Group ID">
                   <% if prospect.prospect_group %>

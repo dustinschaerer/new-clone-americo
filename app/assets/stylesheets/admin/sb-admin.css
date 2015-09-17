@@ -352,7 +352,7 @@ a.quote-link {
   color: #FFFFFF;
   transition: 0.2s ease-in-out;
 }
-a.purchase-link, a.prospect-link {
+a.purchase-link, a.prospect-id {
   background: #BF2C37;
   padding: 5px;
   color: #FFFFFF;
@@ -389,7 +389,7 @@ a.quote-link:hover {
   padding: 5px 10px 5px 10px;
 }
 
-a.purchase-link:hover, a.prospect-link:hover {
+a.purchase-link:hover {
   color: #FFFFFF;
   padding: 5px 10px 5px 10px;
 }
