@@ -75,7 +75,7 @@ class Admin::UserGroupsController < AdminController
   end
 
   def sort_users_into_groups
-    group_cutoff_number = 51
+    group_cutoff_number = 401
     all_users = User.all.order(:id)
 
     #################################################

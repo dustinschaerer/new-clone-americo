@@ -19,10 +19,9 @@
   <%= f.alert_message "Please fix the following errors:" %>
   <%= f.email_field :email, :placeholder => "Enter Email", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
   <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
+  <%= f.collection_select :prospect_group_id, ProspectGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true %>
 
-  <%=
-   #f.collection_select(:prospect_group_id, @prospect_groups, :id, :name, {:selected => "1", hide_label: true } )
-   %>
+
 
   <%= f.form_group do %>
     <%= f.submit "Add New Prospect", class: "btn btn-primary"  %>

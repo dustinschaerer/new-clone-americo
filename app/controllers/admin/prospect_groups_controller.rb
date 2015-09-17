@@ -11,6 +11,7 @@ class Admin::ProspectGroupsController < AdminController
   # GET /admin/prospect_groups/1
   # GET /admin/prospect_groups/1.json
   def show
+
   end
 
   # GET /admin/prospect_groups/new
@@ -69,7 +70,7 @@ class Admin::ProspectGroupsController < AdminController
 
   def add_unsorted_prospects_into_new_groups
     # setup variables
-    group_cutoff_number = 250
+    group_cutoff_number = 400
     unsorted_prospects = Prospect.where(prospect_group_id: nil).order(:id)
     autosorted_prospect_groups = ProspectGroup.where("name like ?", "%Autosorted%").order(:name)
 
