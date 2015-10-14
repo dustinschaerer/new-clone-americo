@@ -2,6 +2,11 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
+
+  namespace :admin do
+    resources :inhouse_groups
+  end
+
   namespace :admin do
     resources :mandril_tags
   end
@@ -174,6 +179,13 @@ Americo::Application.routes.draw do
         get :sort_users_into_groups
       end
     end
+    resources :inhouse_customers do
+      collection do
+        patch :assign_groups_for
+      end
+    end
+
+    resources :inhouse_groups
   end
 
 end

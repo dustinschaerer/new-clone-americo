@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+              <a href="/admin/inhouse_customers"> <i class="fa fa-bullhorn"></i> Inhouse Customers</a>
+            </li>
+            <li class="active">
+              <%= @inhouse_customer.id %>
+            </li>
+        </ol>
+        <h1 class="page-header">Inhouse Customer #<%= @inhouse_customer.id %></h1>
+    </div>
+</div>
+<!-- /.row -->
+
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Email:</strong></td>
+          <td><%= @inhouse_customer.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Name:</strong></td>
+          <td><%= @inhouse_customer.name %></td>
+        </tr>
+        <tr>
+          <td><strong>Date:</strong></td>
+          <td><%= @inhouse_customer.date %></td>
+        </tr>
+        <tr>
+          <td><strong>Is user:</strong></td>
+          <td><%= @inhouse_customer.is_user %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= link_to 'Edit', edit_admin_inhouse_customer_path(@inhouse_customer), class: 'btn btn-primary' %>
+<%= link_to 'Back', admin_inhouse_customers_path, class: 'btn btn-primary' %>

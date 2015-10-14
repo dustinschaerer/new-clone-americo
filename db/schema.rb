@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914220038) do
+ActiveRecord::Schema.define(version: 20151012233109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,28 @@ ActiveRecord::Schema.define(version: 20150914220038) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "inhouse_customers", force: true do |t|
+    t.string   "email"
+    t.string   "name"
+    t.date     "date"
+    t.boolean  "is_user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "inhouse_group_id"
+  end
+
+  add_index "inhouse_customers", ["inhouse_group_id"], name: "index_inhouse_customers_on_inhouse_group_id", using: :btree
+
+  create_table "inhouse_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "email_message_id"
+    t.date     "last_sent_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inhouse_groups", ["email_message_id"], name: "index_inhouse_groups_on_email_message_id", using: :btree
 
   create_table "line_items", force: true do |t|
     t.integer  "cart_id"

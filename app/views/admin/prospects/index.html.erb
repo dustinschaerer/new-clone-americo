@@ -21,8 +21,6 @@
   <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
   <%= f.collection_select :prospect_group_id, ProspectGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true %>
 
-
-
   <%= f.form_group do %>
     <%= f.submit "Add New Prospect", class: "btn btn-primary"  %>
   <% end %>

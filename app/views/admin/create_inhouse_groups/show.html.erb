@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @create_inhouse_group.name %>
+</p>
+
+<p>
+  <strong>Email message:</strong>
+  <%= @create_inhouse_group.email_message %>
+</p>
+
+<p>
+  <strong>Last sent on:</strong>
+  <%= @create_inhouse_group.last_sent_on %>
+</p>
+
+<%= link_to 'Edit', edit_admin_create_inhouse_group_path(@create_inhouse_group) %> |
+<%= link_to 'Back', admin_create_inhouse_groups_path %>

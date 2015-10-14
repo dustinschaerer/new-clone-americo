@@ -1,0 +1,48 @@
+<%= form_for([:admin, @inhouse_customer], html: { class: 'form-horizontal inhouse_customer' }) do |f| %>
+  <% if @inhouse_customer.errors.any? %>
+    <div id="error_explanation" class="panel panel-danger">
+      <div class="panel-heading">
+        <h2 class="panel-title"><%= pluralize(@inhouse_customer.errors.count, "error") %> prohibited this inhouse_customer from being saved:</h2>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @inhouse_customer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :date, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.date_select :date, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.label :is_user, for: nil do %>
+        <%= f.check_box :is_user %>
+        <%= InhouseCustomer.human_attribute_name(:is_user) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

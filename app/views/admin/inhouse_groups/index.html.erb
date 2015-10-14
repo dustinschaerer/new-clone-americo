@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
+            </li>
+            <li class="active">
+              <i class="fa fa-home"></i> Inhouse Groups
+            </li>
+        </ol>
+        <h1 class="page-header">Inhouse Groups</h1>
+    </div>
+</div>
+
+<div class="row">
+  <div class="no-more-tables">
+      <table class="col-md-12 table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email message</th>
+      <th>Last sent on</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inhouse_groups.each do |inhouse_group| %>
+      <tr>
+        <td data-title="inhouse_group_id"><%= link_to "#{inhouse_group.id}", [:admin, inhouse_group], class: "inhouse-link" %>
+              </td>
+        <td><%= inhouse_group.name %></td>
+        <td><%= inhouse_group.email_message %></td>
+        <td><%= inhouse_group.last_sent_on %></td>
+        <td><%= link_to 'Show', [:admin, inhouse_group], class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_admin_inhouse_group_path(inhouse_group), class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Destroy', [:admin, inhouse_group], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+
+    <%= bootstrap_form_for(@inhouse_group, url: admin_inhouse_groups_path, layout: :inline) do |f| %>
+      <%= f.alert_message "Please fix the following errors:" %>
+      <p>Create a New Inhouse Group</p>
+      <%= f.text_field :name, :placeholder => "Inhouse Group Name", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
+
+      <%= f.form_group do %>
+        <%= f.submit "Add New Inhouse Group", class: "btn btn-primary"  %>
+      <% end %>
+    <% end -%>
+
+  </div>
+</div>
+
+<br>
+
