@@ -2,6 +2,12 @@ require 'sidekiq/web'
 
 Americo::Application.routes.draw do
 
+  constraints(:host => "americo-inc.com") do
+    # Won't match root path without brackets around "*x". (using Rails 3.0.3)
+    get "(*x)" => redirect { |params, request|
+      URI.parse(request.url).tap { |x| x.host = "www.americo-inc.com" }.to_s
+    }
+  end
 
   namespace :admin do
     resources :inhouse_groups

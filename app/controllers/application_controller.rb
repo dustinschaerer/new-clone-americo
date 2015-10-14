@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :add_www_subdomain
+  # before_filter :check_host
 
   private
 
-    def add_www_subdomain
-      unless /^www/.match(request.host)
-        redirect_to("#{request.protocol}www.#{request.host_with_port}",status: 301)
-      end
-    end
+    # def check_host
+    #    if request.host.split('.')[0] != 'www'
+    #       redirect_to "http://www." + request.host + request.request_uri
+    #    end
+    # end
 
     protected
     def configure_permitted_parameters
