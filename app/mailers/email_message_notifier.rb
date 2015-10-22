@@ -60,7 +60,7 @@ class EmailMessageNotifier < ActionMailer::Base
     elsif recipient.class.name =="Prospect"
       @prospect = recipient
       @email = @prospect.email
-    elsif recipient.class.name =="Inhouse Customer"
+    elsif recipient.class.name =="InhouseCustomer"
       @inhouse_customer = recipient
       @email = @inhouse_customer.email
     end
