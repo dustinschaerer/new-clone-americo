@@ -80,6 +80,10 @@
               <%= link_to kind.capitalize + " ##{id}", admin_user_group_path(id) %>
             <% when "prospect_group" %>
               <%= link_to kind.capitalize + " ##{id}", admin_prospect_group_path(id) %>
+            <% when "inhouse_group" %>
+              <%= link_to kind.capitalize + " ##{id}", admin_inhouse_group_path(id) %>
+            <% when "inhouse_customer" %>
+              <%= link_to kind.capitalize + " ##{id}", admin_inhouse_customer_path(id) %>
             <% end %>
           </td>
           <td><%= key %></td>

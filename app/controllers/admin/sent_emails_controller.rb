@@ -43,6 +43,9 @@ class Admin::SentEmailsController < AdminController
     elsif params[:sent_email][:prospect_email]
       this_prospect = Prospect.find_by_email(params[:sent_email][:prospect_email])
       @sent_email.sendable_id = this_prospect.id
+    elsif params[:sent_email][:inhouse_customer_email]
+      this_inhouse_customer = InhouseCustomer.find_by_email(params[:sent_email][:inhouse_customer_email])
+      @sent_email.sendable_id = this_inhouse_customer.id
     end
 
     @list_entity = @sent_email.sendable_type.camelize.constantize.find(@sent_email.sendable_id)
@@ -93,6 +96,30 @@ class Admin::SentEmailsController < AdminController
       @list_entity.email_message_id = @sent_email.email_message_id
       @list_entity.last_sent_on = Time.now
       @list_entity.save
+
+
+    elsif @sent_email.sendable_type == "inhouse_customer_group"
+      @list_entity.inhouse_customers.each do |inhouse_customer|
+        ## no checks for active status on inhouse customers yet
+          recipient_count += 1
+          actual_recipients_hash["#{inhouse_customer.email}"] = { inhouse_customer.id => "inhouse_customer"}
+          email_to_send = EmailMessage.find(@sent_email.email_message_id)
+          if email_to_send.mailer_method == "dynamic_message"
+            EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, inhouse_customer, email_to_send)
+            inhouse_customer.email_message_id = @sent_email.email_message_id
+            inhouse_customer.last_sent_on = @sent_email.sent_at
+            inhouse_customer.save
+          else
+            EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, inhouse_customer, email_to_send)
+            inhouse_customer.email_message_id = @sent_email.email_message_id
+            inhouse_customer.last_sent_on = @sent_email.sent_at
+            inhouse_customer.save
+          end
+      end
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.last_sent_on = Time.now
+      @list_entity.save
+
     elsif @sent_email.sendable_type == "user"
       if @list_entity.subscribed == true
         recipient_count += 1
@@ -124,7 +151,23 @@ class Admin::SentEmailsController < AdminController
       @list_entity.email_message_id = @sent_email.email_message_id
       @list_entity.last_sent_on = Time.now
       @list_entity.save
+
+     elsif @sent_email.sendable_type == "inhouse_customer"
+      ## no check currently for active status on inhouse customer
+        recipient_count += 1
+        actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "inhouse_customer"}
+        email_to_send = EmailMessage.find(@sent_email.email_message_id)
+        if email_to_send.mailer_method == "dynamic_message"
+          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
+        else
+          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
+        end
+
+      @list_entity.email_message_id = @sent_email.email_message_id
+      @list_entity.last_sent_on = Time.now
+      @list_entity.save
     end
+
     @sent_email.actual_recipients = actual_recipients_hash
     @sent_email.recipient_count = recipient_count
 
