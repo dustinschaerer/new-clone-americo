@@ -9,9 +9,6 @@ Americo::Application.routes.draw do
     }
   end
 
-  namespace :admin do
-    resources :inhouse_groups
-  end
 
   namespace :admin do
     resources :mandril_tags

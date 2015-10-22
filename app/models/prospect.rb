@@ -5,4 +5,8 @@ class Prospect < ActiveRecord::Base
   belongs_to :prospect_group
   belongs_to :email_message
 
+  def status
+    self.subscribed ? 'Subscribed' : 'Unsubscribed'
+  end
+
 end

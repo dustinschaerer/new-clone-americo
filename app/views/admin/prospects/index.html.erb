@@ -43,7 +43,7 @@
               <th>Last Email Message</th>
               <th>Last Sent On</th>
               <th><%= sortable :subscribed, "Subscribed?" -%></th>
-              <th><%= sortable :validated, "Validated?" %></th>
+              <!-- <th><%= sortable :validated, "Validated?" %></th> -->
               <th><%= sortable :date_joined_on, "Date Joined On" %></th>
               <th><%= sortable :active, "Active?" %></th>
             </tr>
@@ -69,8 +69,8 @@
                 <td data-title="Name"><%= prospect.name %></td>
                 <td data-title="Last Message"><%= prospect.try(:email_message).try(:subject) %></td>
                 <td data-title="Last Sent On"><%= prospect.try(:last_sent_on) %></td>
-                <td data-title="Unsubscribed"><%= prospect.subscribed %></td>
-                <td data-title="Validated"><%= prospect.validated %></td>
+                <td data-title="Subscribed"><%= prospect.status %></td>
+                <!-- <td data-title="Validated"><%= prospect.validated %></td> -->
                 <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
                 <td data-title="Active">
                   <% if prospect.active? %>
@@ -103,7 +103,6 @@
 <%= paginate @prospects %>
 <hr>
 <div class="row">
-
   <h3>Show Prospect Actions</h3>
   <div class="col-md-6 col-lg-4">
     <%= button_to 'Show All Prospects', admin_prospects_path, class: "btn btn-default", method: :get, style: "color: white" %>
@@ -116,6 +115,7 @@
   </div>
 </div>
 <hr>
+<!--
 <div class="row">
   <h3>Actions to Perform on All Prospects</h3>
 
@@ -126,3 +126,4 @@
     <%= button_to 'Automatically Add Unsorted Prospects Into Prospect Groups', add_unsorted_prospects_into_new_groups_admin_prospects_path, class: "btn btn-warning", method: :get, data: { confirm: 'Are you sure you want to add unsorted prospects into prospect groups?' } %>  <i>(Warning: This cannot be undone!)</i>
   </div>
 </div>
+-->

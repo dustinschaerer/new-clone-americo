@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="form-inputs">
-    <%= f.collection_select :email_message_id, @admin_email_messages, :id, :template, { label: "Select Email to Send"} %>
+    <%= f.collection_select :email_message_id, @admin_email_messages, :id, :id_with_template, { label: "Select Email to Send"} %>
 
     <% if sendable_type == "user_group" %>
       <%= f.collection_select :sendable_id, @user_groups, :id, :name, { label: "User Group"} %>

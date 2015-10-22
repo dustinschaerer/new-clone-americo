@@ -34,52 +34,52 @@
   <div class="no-more-tables">
     <%= bootstrap_form_tag url: assign_groups_for_admin_inhouse_customers_url, method: :patch do |f| %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>ID</th>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Inhouse Group</th>
-      <th>Date</th>
-      <th>Is user</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Inhouse Group</th>
+          <th>Date</th>
+          <th>Is user</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @inhouse_customers.each do |inhouse_customer| %>
-      <tr>
-         <td data-title="">
-                  <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
-        </td>
-        <td><%= link_to "#{inhouse_customer.id}", [:admin, inhouse_customer], class: "inhouse_customer-id" %></td>
-        <td><%= inhouse_customer.email %></td>
-        <td><%= inhouse_customer.name %></td>
-        <td><%= inhouse_customer.inhouse_group_id %></td>
-        <td><%= inhouse_customer.date %></td>
-        <td><%= inhouse_customer.is_user %></td>
-        <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_admin_inhouse_customer_path(inhouse_customer), class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @inhouse_customers.each do |inhouse_customer| %>
+          <tr>
+             <td data-title="">
+                      <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
+            </td>
+            <td><%= link_to "#{inhouse_customer.id}", [:admin, inhouse_customer], class: "inhouse_customer-id" %></td>
+            <td><%= inhouse_customer.email %></td>
+            <td><%= inhouse_customer.name %></td>
+            <td><%= inhouse_customer.inhouse_group_id %></td>
+            <td><%= inhouse_customer.date %></td>
+            <td><%= inhouse_customer.is_user %></td>
+            <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
+            <td><%= link_to 'Edit', edit_admin_inhouse_customer_path(inhouse_customer), class: 'btn btn-primary btn-xs' %></td>
+            <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<div class="form-group col-md-4">
-        <p>Add Inhouse Customers to this Inhouse Group:</p>
-        <%= collection_select :inhouse_group, :id, InhouseGroup.all, :id, :name, { prompt: "Please Choose" }, {class: "form-control"} %>
-      </div>
-      <div class="col-md-4">
-        <p>&nbsp;</p>
-        <%= submit_tag "Assign Checked to selected Inhouse Customer Group", class: "btn btn-primary" %>
-      </div>
+    <div class="form-group col-md-4">
+      <p>Add Inhouse Customers to this Inhouse Group:</p>
+      <%= collection_select :inhouse_group, :id, InhouseGroup.all, :id, :name, { prompt: "Please Choose" }, {class: "form-control"} %>
+    </div>
+    <div class="col-md-4">
+      <p>&nbsp;</p>
+      <%= submit_tag "Assign Checked to selected Inhouse Customer Group", class: "btn btn-primary" %>
+    </div>
 
     <% end %>
   </div>

@@ -26,7 +26,7 @@
           <th>Prospect Email</th>
           <th>Prospect Name</th>
           <th>Subscribed?</th>
-          <th>Validated</th>
+          <!-- <th>Validated</th> -->
           <th>Group</th>
           <th>Date Joined On</th>
           <th>Active?</th>
@@ -39,8 +39,8 @@
         <td><%= @prospect.id %></td>
         <td><%= @prospect.email %></td>
         <td><%= @prospect.name %></td>
-        <td><%= @prospect.subscribed %></td>
-        <td><%= @prospect.validated %></td>
+        <td><%= @prospect.status %></td>
+        <!-- <td><%= @prospect.validated %></td> -->
         <td>
           <% if @prospect.prospect_group %>
             <a href=""><%= link_to @prospect.try(:prospect_group).try(:name), admin_prospect_group_path(@prospect.prospect_group) %>

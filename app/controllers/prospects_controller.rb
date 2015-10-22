@@ -1,11 +1,11 @@
 class ProspectsController < ApplicationController
   before_action :set_prospect, only: [:show]
 
-  # GET /prospects/1?unsubcribe_from_emails=true
+  # GET /prospects/1?unsubcribe_from_emails=1
   def show
     @unsubscribe = params[:unsubscribe_from_emails]
     if @unsubscribe == "1"
-      @prospect.subscribed = true
+      @prospect.subscribed = false
       respond_to do |format|
         if @prospect.save!
           format.html { redirect_to root_url, notice: 'You have been unsubscribed from our mailing list.' }

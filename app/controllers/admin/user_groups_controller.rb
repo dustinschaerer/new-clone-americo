@@ -199,17 +199,6 @@ class Admin::UserGroupsController < AdminController
     redirect_to admin_user_groups_path
   end
 
-  ############
-  # TODO begin
-  ############
-  def remove_all_users_from_all_groups
-
-  end
-  ############
-  # TODO end
-  ############
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_group

@@ -27,4 +27,8 @@ class EmailMessage < ActiveRecord::Base
       false
   end
 
+  def id_with_template
+    "#{id} - #{template}"
+  end
+
 end

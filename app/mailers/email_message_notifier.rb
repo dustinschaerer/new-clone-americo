@@ -44,7 +44,7 @@ class EmailMessageNotifier < ActionMailer::Base
       # elsif @email_message.headers == 'quote'
       #   if @user.quotes.last
       #     # if this user has at least 1 quote
-
+      #
       #     # find their last quote details and determine if it was for
       #     # table covers OR roll goods/upholstery
       #     @user.quotes.last.created_at.strftime("%B %d, %Y")
@@ -55,7 +55,7 @@ class EmailMessageNotifier < ActionMailer::Base
       #     @user.orders.last.created_at.strftime("%B %d, %Y")
       #   end
       # else
-
+      #
       # end
     elsif recipient.class.name =="Prospect"
       @prospect = recipient
