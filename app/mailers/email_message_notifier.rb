@@ -60,8 +60,10 @@ class EmailMessageNotifier < ActionMailer::Base
     elsif recipient.class.name =="Prospect"
       @prospect = recipient
       @email = @prospect.email
+    elsif recipient.class.name =="Inhouse Customer"
+      @inhouse_customer = recipient
+      @email = @inhouse_customer.email
     end
-
 
     headers['X-MC-Tags'] = @email_message.mandril_tag
     mail({
