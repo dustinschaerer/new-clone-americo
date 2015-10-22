@@ -1,3 +1,90 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+              <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+            </li>
+            <li>
+               <a href="/admin/inhouse_groups"> <i class="fa fa-bullhorn"></i><i class="fa fa-bullhorn"></i> Inhouse Group</a>
+            </li>
+            <li class="active">
+              <%= @inhouse_group.id %>
+            </li>
+        </ol>
+
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <p id="notice"><%= notice %></p>
+
+    <h4>
+      <strong>Inhouse Group Name:</strong>
+      <%= @inhouse_group.name %>
+    </h4>
+
+    <h4>
+      <strong>Last Email Sent:</strong>
+      <%= @inhouse_group.try(:email_message).try(:subject) %>
+    </h4>
+
+    <h4>
+      <strong>Last sent on:</strong>
+      <%= @inhouse_group.last_sent_on %>
+    </h4>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+    <%= bootstrap_form_tag url: remove_from_group_for_admin_inhouse_customers_url, method: :patch do %>
+
+      <h4 class="text-center">Inhouse Customers in this Inhouse Group</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Inhouse Customer Id</th>
+            <th>Inhouse Customer Email</th>
+            <th>Inhouse Customer Name</th>
+            <th>Purchase Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @inhouse_group.inhouse_customers.each do |inhouse_customer| %>
+          <tr>
+            <td><%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %></td>
+            <td><%= link_to inhouse_customer.id, admin_inhouse_customer_path(inhouse_customer) %></td>
+            <td><%= inhouse_customer.email %></td>
+            <td><%= inhouse_customer.name %></td>
+            <td><%= inhouse_customer.date %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <%= submit_tag "Remove Checked from Inhouse Group", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= link_to 'Edit', edit_admin_inhouse_group_path(@inhouse_group) %> |
+    <%= link_to 'Back', admin_inhouse_groups_path %>
+  </div>
+</div>
+
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <dl class="dl-horizontal">

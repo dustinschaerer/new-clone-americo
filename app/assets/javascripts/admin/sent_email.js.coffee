@@ -10,3 +10,7 @@ $ ->
   $('#sent_email_prospect_email').autocomplete
     source: $('#sent_email_prospect_email').data('autocomplete-source')
 
+$ ->
+  $('#sent_email_inhouse_customer_email').autocomplete
+    source: $('#sent_email_inhouse_customer_email').data('autocomplete-source')
+

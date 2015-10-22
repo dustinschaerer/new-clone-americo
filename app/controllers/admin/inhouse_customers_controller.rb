@@ -1,16 +1,26 @@
 class Admin::InhouseCustomersController < AdminController
+  helper_method :sort_column, :sort_direction
   before_action :set_inhouse_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/inhouse_customers
   # GET /admin/inhouse_customers.json
   def index
-    @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+    if params[:inhouse_customer] && params[:inhouse_customer][:name]
+      @inhouse_customers = InhouseCustomer.find_by_name(params[:inhouse_customer][:name])
+    elsif params[:inhouse_customer] && params[:inhouse_customer][:email]
+      @inhouse_customers = InhouseCustomer.find_by_email(params[:inhouse_customer][:email])
+    elsif params[:sort] == nil
+      @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+    else
+      @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
+    end
     @inhouse_customer = InhouseCustomer.new
   end
 
   # GET /admin/inhouse_customers/1
   # GET /admin/inhouse_customers/1.json
   def show
+    @inhouse_customer = InhouseCustomer.friendly.find(params[:id])
   end
 
   # GET /admin/inhouse_customers/new
@@ -69,14 +79,35 @@ class Admin::InhouseCustomersController < AdminController
     redirect_to admin_inhouse_customers_path(params)
   end
 
+  def remove_from_group_for
+    inhouse_customers = InhouseCustomer.update_all({inhouse_group_id: nil}, {id: params[:inhouse_customer_ids]})
+    redirect_to admin_inhouse_groups_path(params)
+  end
+
+  def retrieve_for_autocomplete
+    @inhouse_customers = InhouseCustomer.order(:email).where("email like ?", "%#{params[:term]}%")
+    render json: @inhouse_customers.map(&:email)
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inhouse_customer
-      @inhouse_customer = InhouseCustomer.find(params[:id])
+      @inhouse_customer = InhouseCustomer.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inhouse_customer_params
       params.require(:inhouse_customer).permit(:email, :name, :date, :is_user)
     end
+
+    def sort_column
+      params[:sort] || "id"
+    end
+
+    def sort_direction
+      params[:direction] || "asc"
+    end
+
 end

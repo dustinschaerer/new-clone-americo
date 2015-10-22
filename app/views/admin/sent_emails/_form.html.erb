@@ -26,6 +26,12 @@
     <% elsif sendable_type == "prospect" %>
       <%= f.text_field :prospect_email, data: {autocomplete_source: retrieve_for_autocomplete_admin_prospects_path} %>
       <%= f.hidden_field :sendable_type, value: "prospect" %>
+    <% elsif sendable_type == "inhouse_group" %>
+      <%= f.collection_select  :sendable_id, @inhouse_groups, :id, :name, { label: "Inhouse Group"} %>
+      <%= f.hidden_field :sendable_type, value: "inhouse_group" %>
+    <% elsif sendable_type == "inhouse_customer" %>
+      <%= f.text_field :inhouse_customer_email, data: {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path} %>
+      <%= f.hidden_field :sendable_type, value: "inhouse_customer" %>
     <% end %>
   </div>
 

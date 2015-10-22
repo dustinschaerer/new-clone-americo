@@ -14,8 +14,8 @@
 </div>
 <!-- /.row -->
 <br>
-
-<%= bootstrap_form_for(@inhouse_customer, url: admin_inhouse_customers_path, layout: :inline) do |f| %>
+Add New Customer:
+<%= bootstrap_form_for(@inhouse_customer, url: admin_inhouse_customers_path, layout: :inline, class: "pull-left") do |f| %>
   <%= f.alert_message "Please fix the following errors:" %>
   <%= f.email_field :email, :placeholder => "Enter Email", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
   <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
@@ -24,12 +24,22 @@
   #f.collection_select :inhouse_customer_group_id, InhouseCustomerGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true
   %>
   <%= f.form_group do %>
-    <%= f.submit "Add New Inhouse Customer", class: "btn btn-primary"  %>
+    <%= f.submit "Add New Inhouse Customer", class: "btn btn-success"  %>
   <% end %>
 <% end -%>
-<br><br>
-<%= paginate @inhouse_customers %>
+<hr>
+Search for Inhouse Customer:
+<%= bootstrap_form_for(@inhouse_customer, url: admin_inhouse_customers_path, method: :get, layout: :inline, class: "pull-right") do |f| %>
+  <%= f.text_field :name, :placeholder => "Search by Name", hide_label: true %>
+  <%= f.text_field :email, :placeholder => "Search by Email", hide_label: true %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<hr>
 
+<% end %>
+<br><br>
+<% if params[:page]  %>
+  <%= paginate @inhouse_customers %>
+<% end %>
 <div class="row">
   <div class="no-more-tables">
     <%= bootstrap_form_tag url: assign_groups_for_admin_inhouse_customers_url, method: :patch do |f| %>
@@ -39,11 +49,11 @@
         <tr>
           <th></th>
           <th>ID</th>
-          <th>Email</th>
+          <th><%= sortable :email, "Email" %></th>
           <th>Name</th>
           <th>Inhouse Group</th>
-          <th>Date</th>
-          <th>Is user</th>
+          <th><%= sortable :date, "Purchase Date" %></th>
+          <th><%= sortable :is_user, "Is User?" %></th>
           <th></th>
           <th></th>
           <th></th>
@@ -51,15 +61,45 @@
       </thead>
 
       <tbody>
-        <% @inhouse_customers.each do |inhouse_customer| %>
+        <% if (@inhouse_customers.respond_to? :each)
+             @inhouse_customers.each do |inhouse_customer| %>
           <tr>
-             <td data-title="">
+            <td data-title="">
                       <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
             </td>
             <td><%= link_to "#{inhouse_customer.id}", [:admin, inhouse_customer], class: "inhouse_customer-id" %></td>
             <td><%= inhouse_customer.email %></td>
             <td><%= inhouse_customer.name %></td>
-            <td><%= inhouse_customer.inhouse_group_id %></td>
+            <td>
+              <% if inhouse_customer.inhouse_group %>
+                <a href="<%= "/admin/inhouse_groups/#{inhouse_customer.inhouse_group.id}" %>"><%= inhouse_customer.inhouse_group_id %> - <%= inhouse_customer.inhouse_group.name %></a>
+              <% else %>
+                Not Assigned
+              <% end %>
+            </td>
+            <td><%= inhouse_customer.date %></td>
+            <td><%= inhouse_customer.is_user %></td>
+            <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
+            <td><%= link_to 'Edit', edit_admin_inhouse_customer_path(inhouse_customer), class: 'btn btn-primary btn-xs' %></td>
+            <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+          </tr>
+          <% end %>
+        <% else %>
+          <% inhouse_customer = @inhouse_customers %>
+          <tr>
+            <td data-title="">
+                      <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
+            </td>
+            <td><%= link_to "#{inhouse_customer.id}", [:admin, inhouse_customer], class: "inhouse_customer-id" %></td>
+            <td><%= inhouse_customer.email %></td>
+            <td><%= inhouse_customer.name %></td>
+            <td>
+              <% if inhouse_customer.inhouse_group %>
+                <a href="<%= "/admin/inhouse_groups/#{inhouse_customer.inhouse_group.id}" %>"><%= inhouse_customer.inhouse_group_id %> - <%= inhouse_customer.inhouse_group.name %></a>
+              <% else %>
+                Not Assigned
+              <% end %>
+            </td>
             <td><%= inhouse_customer.date %></td>
             <td><%= inhouse_customer.is_user %></td>
             <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
@@ -67,6 +107,7 @@
             <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
           </tr>
         <% end %>
+
       </tbody>
     </table>
 

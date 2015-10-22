@@ -17,8 +17,9 @@
       <table class="col-md-12 table table-hover table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Group ID</th>
       <th>Name</th>
+      <th>Count</th>
       <th>Email message</th>
       <th>Last sent on</th>
       <th></th>
@@ -33,6 +34,7 @@
         <td data-title="inhouse_group_id"><%= link_to "#{inhouse_group.id}", [:admin, inhouse_group], class: "inhouse-link" %>
               </td>
         <td><%= inhouse_group.name %></td>
+        <td><%= inhouse_group.inhouse_customers.count %></td>
         <td><%= inhouse_group.email_message %></td>
         <td><%= inhouse_group.last_sent_on %></td>
         <td><%= link_to 'Show', [:admin, inhouse_group], class: 'btn btn-primary btn-xs' %></td>

@@ -19,8 +19,10 @@ class Admin::SentEmailsController < AdminController
     @admin_email_messages = EmailMessage.all
     @prospect_groups = ProspectGroup.all
     @user_groups = UserGroup.all
+    @inhouse_groups = InhouseGroup.all
     @users = User.all
     @prospects = Prospect.all
+    @inhouse_customers = InhouseCustomer.all
   end
 
   # GET /admin/sent_emails/1/edit

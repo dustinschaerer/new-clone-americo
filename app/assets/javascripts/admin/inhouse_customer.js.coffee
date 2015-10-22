@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('#inhouse_customer_name').autocomplete
+    source: '/admin/inhouse_customers'
+    #source: $('#inhouse_customer_email').data('autocomplete_source')
+
+$ ->
+  $('#inhouse_customer_email').autocomplete
+    source: '/admin/inhouse_customers'

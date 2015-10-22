@@ -185,9 +185,10 @@ Americo::Application.routes.draw do
     resources :inhouse_customers do
       collection do
         patch :assign_groups_for
+        patch :remove_from_group_for
+        get :retrieve_for_autocomplete
       end
     end
-
     resources :inhouse_groups
   end
 

@@ -27,6 +27,17 @@ class SentEmail < ActiveRecord::Base
     @prospect_email = val
   end
 
+
+  def inhouse_customer_email
+    if sendable_id.nil?
+      @inhouse_customer_email
+     end
+  end
+
+  def inhouse_customer_email=(val)
+    @inhouse_customer_email = val
+  end
+
   # def sendable_name
   #   sendable.try(:name) if sendable
   # end

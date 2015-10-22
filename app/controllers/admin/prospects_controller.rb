@@ -145,6 +145,7 @@ class Admin::ProspectsController < AdminController
     end
     redirect_to admin_prospects_path
   end
+
   private
     def set_prospect
       @prospect = Prospect.find(params[:id])
