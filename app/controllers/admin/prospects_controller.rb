@@ -153,7 +153,7 @@ class Admin::ProspectsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prospect_params
-      params.require(:prospect).permit(:id, :email, :unsubscribed, :validated,
+      params.require(:prospect).permit(:id, :email, :subscribed, :validated,
         :date_joined_on, :name, :prospect_group_id, :active, :sort_direction, :sort_column,
         :email_message_id, :last_sent_on)
     end

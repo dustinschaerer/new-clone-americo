@@ -33,7 +33,7 @@ class EmailMessageNotifier < ActionMailer::Base
 
       #######################################
       # Refactor in accordance with UserGroup.kind and ProspectGroup.kind
-      # #######################################
+      #########################################
       # if @email_message.headers == 'purchase'
       #   if @user.purchases.last
       #     # if this user has at least 1 purchase
