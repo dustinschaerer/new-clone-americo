@@ -9,13 +9,20 @@
                 <i class="fa fa-user"></i> Inhouse Customers
             </li>
         </ol>
-        <h1 class="page-header">Inhouse Customers</h1>
+        <h1 class="pull-left">Inhouse Customers</h1>
+        <div class="pull-right top20">
+          <%= bootstrap_form_tag url: "/admin/inhouse_customers", method: :get do %>
+            <%= text_field_tag :email, params[:email], :data => {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path } %>
+            <%= submit_tag "Search", name: 'search', class: "btn btn-info btn-sm" %>
+          <% end %>
+
+        </div>
     </div>
 </div>
 <!-- /.row -->
-<br>
+<hr>
 Add New Customer:
-<%= bootstrap_form_for(@inhouse_customer, url: admin_inhouse_customers_path, layout: :inline, class: "pull-left") do |f| %>
+<%= bootstrap_form_for(@new_inhouse_customer, url: admin_inhouse_customers_path, layout: :inline) do |f| %>
   <%= f.alert_message "Please fix the following errors:" %>
   <%= f.email_field :email, :placeholder => "Enter Email", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
   <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
@@ -24,18 +31,15 @@ Add New Customer:
   #f.collection_select :inhouse_customer_group_id, InhouseCustomerGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true
   %>
   <%= f.form_group do %>
-    <%= f.submit "Add New Inhouse Customer", class: "btn btn-success"  %>
+    <%= f.submit "Add New Inhouse Customer", class: "btn btn-success", name: 'create_new'  %>
   <% end %>
 <% end -%>
 <hr>
 Search for Inhouse Customer:
-<%= bootstrap_form_for(@inhouse_customer, url: admin_inhouse_customers_path, method: :get, layout: :inline, class: "pull-right") do |f| %>
-  <%= f.text_field :name, :placeholder => "Search by Name", hide_label: true %>
-  <%= f.text_field :email, :placeholder => "Search by Email", hide_label: true %>
-  <%= f.submit "Search", class: "btn btn-primary" %>
-<hr>
 
-<% end %>
+
+
+
 <br><br>
 <% if params[:page]  %>
   <%= paginate @inhouse_customers %>
@@ -119,7 +123,7 @@ Search for Inhouse Customer:
     </div>
     <div class="col-md-4">
       <p>&nbsp;</p>
-      <%= submit_tag "Assign Checked to selected Inhouse Customer Group", class: "btn btn-primary" %>
+      <%= submit_tag "Assign Checked to selected Inhouse Customer Group", class: "btn btn-info" %>
     </div>
 
     <% end %>

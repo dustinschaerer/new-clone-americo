@@ -187,6 +187,7 @@ Americo::Application.routes.draw do
         patch :assign_groups_for
         patch :remove_from_group_for
         get :retrieve_for_autocomplete
+        get :search
       end
     end
     resources :inhouse_groups

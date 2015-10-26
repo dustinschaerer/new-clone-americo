@@ -166,6 +166,7 @@ class Admin::SentEmailsController < AdminController
       @list_entity.email_message_id = @sent_email.email_message_id
       @list_entity.last_sent_on = Time.now
       @list_entity.save
+
     end
 
     @sent_email.actual_recipients = actual_recipients_hash

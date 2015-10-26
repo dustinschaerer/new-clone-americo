@@ -5,16 +5,45 @@ class Admin::InhouseCustomersController < AdminController
   # GET /admin/inhouse_customers
   # GET /admin/inhouse_customers.json
   def index
-    if params[:inhouse_customer] && params[:inhouse_customer][:name]
-      @inhouse_customers = InhouseCustomer.find_by_name(params[:inhouse_customer][:name])
-    elsif params[:inhouse_customer] && params[:inhouse_customer][:email]
-      @inhouse_customers = InhouseCustomer.find_by_email(params[:inhouse_customer][:email])
-    elsif params[:sort] == nil
-      @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-    else
-      @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
-    end
-    @inhouse_customer = InhouseCustomer.new
+      if params[:email] && params[:email] != ""
+        @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
+        @inhouse_customers = InhouseCustomer.find_by_email(params[:email])
+        @new_inhouse_customer = InhouseCustomer.new
+        # raise 'inside params email is not nil'
+        return
+      elsif params[:email] && params[:email] == nil
+        raise 'inside nil email params'
+        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+        @new_inhouse_customer = InhouseCustomer.new
+        return
+      elsif params[:email] && params[:email] == ""
+        # raise 'inside empty email string'
+        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+        @new_inhouse_customer = InhouseCustomer.new
+        return
+      # elsif params[:sort] == nil
+      #   @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+      #   @new_inhouse_customer = InhouseCustomer.new
+      else
+        # raise 'inside else'
+        @new_inhouse_customer = InhouseCustomer.new
+        # @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
+        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+
+      end
+    # elsif params[:inhouse_customer] && params[:inhouse_customer][:email]
+    #   @inhouse_customers = InhouseCustomer.find_by_email(params[:inhouse_customer][:email])
+    # elsif params[:sort] == nil
+    #   @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+    # elsif params[:email]
+    #   @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
+    # else
+    #   @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
+    # end
+    # #@custies = InhouseCustomer.order(email: :asc)
+    # @inhouse_customer = InhouseCustomer.new
+    # #@search_inhouse_customer = InhouseCustomer.find_by_email(params[:email])
+
   end
 
   # GET /admin/inhouse_customers/1
@@ -85,8 +114,8 @@ class Admin::InhouseCustomersController < AdminController
   end
 
   def retrieve_for_autocomplete
-    @inhouse_customers = InhouseCustomer.order(:email).where("email like ?", "%#{params[:term]}%")
-    render json: @inhouse_customers.map(&:email)
+    @search_inhouse_customers = InhouseCustomer.order(:email).where("email like ?", "%#{params[:term]}%")
+    render json: @search_inhouse_customers.map(&:email)
   end
 
 

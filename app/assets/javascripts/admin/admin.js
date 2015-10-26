@@ -23,6 +23,7 @@
 //= require underscore
 //= require raphael
 //= require morris
+//= require ./inhouse_customer
 
 $(document).ready(function() {
   /* Activating Best In Place */
