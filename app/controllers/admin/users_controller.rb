@@ -1,10 +1,16 @@
 class Admin::UsersController < AdminController
-
+  helper_method :sort_column, :sort_direction
   before_action :authenticate_admin_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order("id DESC").page(params[:page]).per(50)
+    if params[:sort] == nil && params[:email] == nil
+      @users = User.order("id DESC").page(params[:page]).per(50)
+    elsif params[:email]
+      @users = User.where("email ILIKE ?", "%#{params[:email]}").order(id: :desc).page(params[:page]).per(50)
+    elsif params[:sort] != nil
+      @users = User.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
+    end
     @all_users_count = User.all.count
   end
 
@@ -52,7 +58,16 @@ class Admin::UsersController < AdminController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email_message_id, :last_sent_on)
+      params.require(:user).permit(:name, :email_message_id, :last_sent_on, :sort_direction, :sort_column)
     end
+
+    def sort_column
+      params[:sort] || "id"
+    end
+
+    def sort_direction
+      params[:direction] || "desc"
+    end
+
 
 end

@@ -10,12 +10,13 @@
             </li>
         </ol>
         <h1 class="pull-left">Inhouse Customers</h1>
-        <div class="pull-right top20">
-          <%= bootstrap_form_tag url: "/admin/inhouse_customers", method: :get do %>
-            <%= text_field_tag :email, params[:email], :data => {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path } %>
-            <%= submit_tag "Search", name: 'search', class: "btn btn-info btn-sm" %>
-          <% end %>
+        <div class="pull-right top5">
+          Search for Inhouse Customer:<br>
+          <%= bootstrap_form_tag url: "/admin/inhouse_customers", method: :get, layout: :inline do %>
 
+            <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Search by Email", :data => {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path } %>
+            <%= submit_tag "Search", name: 'search', class: "btn btn-info" %>
+          <% end %>
         </div>
     </div>
 </div>
@@ -35,12 +36,7 @@ Add New Customer:
   <% end %>
 <% end -%>
 <hr>
-Search for Inhouse Customer:
 
-
-
-
-<br><br>
 <% if params[:page]  %>
   <%= paginate @inhouse_customers %>
 <% end %>

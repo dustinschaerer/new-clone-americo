@@ -11,14 +11,23 @@
             </li>
         </ol>
 
-        <h1 class="page-header">
+        <h1 class="pull-left">
             Users <i>(<%= @all_users_count %> current Users)</i>
         </h1>
+        <div class="pull-right top5">
+          Search for User:<br>
+          <%= bootstrap_form_tag url: "/admin/users", method: :get, layout: :inline do %>
+            <%= text_field_tag :email, params[:email], class: "form-control", id: "users_email", placeholder: "Search by Email", :data => {autocomplete_source: retrieve_for_autocomplete_admin_users_path } %>
+            <%= submit_tag "Search", name: 'search', class: "btn btn-info" %>
+          <% end %>
+        </div>
     </div>
 </div>
-<!-- /.row -->
 
+<!-- /.row -->
+<% if params[:email] == nil || params[:email] == "" %>
 <%= paginate @users %>
+<% end %>
 
 <div class="row">
   <div class="no-more-tables">
@@ -30,7 +39,7 @@
               <tr>
                 <th></th>
                 <th>User ID</th>
-                <th>Email</th>
+                <th><%= sortable :email, "Email" %></th>
                 <th>User Group ID</th>
                 <th>Last Email Message</th>
                 <th>Last Sent On</th>
@@ -82,4 +91,6 @@
 </div>
 <!-- /.row -->
 
+<% if params[:email] == nil %>
 <%= paginate @users %>
+<% end %>

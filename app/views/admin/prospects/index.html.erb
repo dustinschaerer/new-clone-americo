@@ -9,11 +9,19 @@
                 <i class="fa fa-bullhorn"></i> Prospects
             </li>
         </ol>
-        <h1 class="page-header">Prospects</h1>
+        <h1 class="pull-left">Prospects</h1>
+        <div class="pull-right top5">
+          Search for Prospets:<br>
+          <%= bootstrap_form_tag url: "/admin/prospects", method: :get, layout: :inline do %>
+
+            <%= text_field_tag :email, params[:email], class: "form-control", id: "prospects_email", placeholder: "Search by Email", :data => {autocomplete_source: retrieve_for_autocomplete_admin_prospects_path } %>
+            <%= submit_tag "Search", name: 'search', class: "btn btn-info" %>
+          <% end %>
+        </div>
     </div>
 </div>
 <!-- /.row -->
-
+<hr class="top10">
 
 <%= bootstrap_form_for(@prospect, url: admin_prospects_path, layout: :inline) do |f| %>
   <%= f.alert_message "Please fix the following errors:" %>
