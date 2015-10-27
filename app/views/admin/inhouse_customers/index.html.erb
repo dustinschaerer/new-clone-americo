@@ -54,6 +54,7 @@ Add New Customer:
           <th>Inhouse Group</th>
           <th><%= sortable :date, "Purchase Date" %></th>
           <th><%= sortable :is_user, "Is User?" %></th>
+          <th><%= sortable :subscribed, "Subscribed?" %></th>
           <th></th>
           <th></th>
           <th></th>
@@ -79,6 +80,7 @@ Add New Customer:
             </td>
             <td><%= inhouse_customer.date %></td>
             <td><%= inhouse_customer.is_user %></td>
+            <td><%= inhouse_customer.status %></td>
             <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
             <td><%= link_to 'Edit', edit_admin_inhouse_customer_path(inhouse_customer), class: 'btn btn-primary btn-xs' %></td>
             <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
@@ -102,6 +104,7 @@ Add New Customer:
             </td>
             <td><%= inhouse_customer.date %></td>
             <td><%= inhouse_customer.is_user %></td>
+            <td><%= inhouse_customer.status %></td>
             <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
             <td><%= link_to 'Edit', edit_admin_inhouse_customer_path(inhouse_customer), class: 'btn btn-primary btn-xs' %></td>
             <td><%= link_to 'Destroy', [:admin, inhouse_customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>

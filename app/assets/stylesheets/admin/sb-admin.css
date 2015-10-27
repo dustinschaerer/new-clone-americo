@@ -161,6 +161,10 @@ ul.alert-dropdown {
         outline: none;
         background-color: #000 !important;
     }
+    .date-select {
+      width:20%;
+      display:inline-block;
+    }
 }
 
 .side-nav>li>ul {

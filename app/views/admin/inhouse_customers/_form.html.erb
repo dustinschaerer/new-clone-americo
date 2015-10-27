@@ -1,4 +1,4 @@
-<%= form_for([:admin, @inhouse_customer], html: { class: 'form-horizontal inhouse_customer' }) do |f| %>
+<%= bootstrap_form_for([:admin, @inhouse_customer],  layout: :horizontal, label_col: "col-sm-2 col-md-2", control_col: "col-sm-10 col-md-8") do |f| %>
   <% if @inhouse_customer.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
       <div class="panel-heading">
@@ -14,35 +14,21 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :email, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :email, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :name, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :date, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.date_select :date, { start_year: 2005 }, class: 'form-control' %>
-    </div>
-  </div>
+      <%= f.text_field :email %>
+      <%= f.text_field :name %>
+    <%= f.date_select :date, { start_year: 2005 }, { label: "Choose your favorite fruit:", class: 'date-select' } %>
+
+  <%= f.form_group :is_user do %>
+    <%= f.check_box :is_user, label: 'Is User?' %>
+  <% end %>
+
+  <%= f.form_group :subscribed do %>
+    <%= f.check_box :subscribed, label: 'Subscribed?' %>
+  <% end %>
+
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <%= f.label :is_user, for: nil do %>
-        <%= f.check_box :is_user %>
-        <%= InhouseCustomer.human_attribute_name(:is_user) %>
-      <% end %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= f.submit nil, class: 'btn btn-success' %>
     </div>
   </div>
 <% end %>

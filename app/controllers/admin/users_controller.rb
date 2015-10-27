@@ -25,7 +25,13 @@ class Admin::UsersController < AdminController
   end
 
   def update
-
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
   end
 
   def destory
@@ -58,7 +64,7 @@ class Admin::UsersController < AdminController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email_message_id, :last_sent_on, :sort_direction, :sort_column)
+      params.require(:user).permit(:name, :email_message_id, :last_sent_on, :sort_direction, :sort_column, :subscribed, :user_group_id)
     end
 
     def sort_column
@@ -68,6 +74,5 @@ class Admin::UsersController < AdminController
     def sort_direction
       params[:direction] || "desc"
     end
-
 
 end

@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li>
+        <a href="/admin/index"><i class="fa fa-dashboard"></i>  Dashboard</a>
+      </li>
+      <li>
+        <a href="/admin/users"> <i class="fa fa-user"></i> Users</a>
+      </li>
+      <li class="active">
+        <%= @user.id %>
+      </li>
+    </ol>
+    <h1 class="page-header">Editing User <%= @user.id %></h1>
+  </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= bootstrap_form_for([:admin, @user], layout: :horizontal, label_col: "col-sm-3 col-md-3", control_col: "col-sm-9 col-md-9") do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this sent_email from being saved:</h2>
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.static_control :email, label: "User Email" %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.collection_select :user_group_id, UserGroup.all.sort, :id, :name, :include_blank => true, :label => "Assigned to User Group:" %>
+      </div>
+      <%= f.form_group do %>
+        <%= f.check_box :subscribed %>
+      <% end %>
+      <hr>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4 col-md-2">
+    <div class="form-actions">
+      <%= f.submit "Save Changes", :class => "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<br>
+<div>
+  <a href="/admin/users">Cancel / Go back</a>
+</div>
+<br>
+<div>
+  <a href="/admin/users">Show All Prospects</a>
+</div>

@@ -3,9 +3,13 @@ class Admin::ProspectsController < AdminController
   before_action :set_prospect, only: [:show, :destroy, :update, :edit]
 
   def index
-    if params[:sort] == nil
-      @prospects = Prospect.order("id DESC").page(params[:page]).per(50)
+    if params[:email]
+      @prospects = Prospect.where("email ILIKE ?", "%#{params[:email]}").order(id: :desc).page(params[:page]).per(50)
+
+    elsif params[:sort] == nil
+      @prospects = Prospect.all.order("id DESC").page(params[:page]).per(50)
     else
+      raise 'inside else'
       @prospects = Prospect.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
     end
     @prospect = Prospect.new

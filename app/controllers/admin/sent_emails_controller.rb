@@ -101,6 +101,7 @@ class Admin::SentEmailsController < AdminController
     elsif @sent_email.sendable_type == "inhouse_customer_group"
       @list_entity.inhouse_customers.each do |inhouse_customer|
         ## no checks for active status on inhouse customers yet
+        if inhouse_customer.subscribed == true
           recipient_count += 1
           actual_recipients_hash["#{inhouse_customer.email}"] = { inhouse_customer.id => "inhouse_customer"}
           email_to_send = EmailMessage.find(@sent_email.email_message_id)
@@ -115,6 +116,7 @@ class Admin::SentEmailsController < AdminController
             inhouse_customer.last_sent_on = @sent_email.sent_at
             inhouse_customer.save
           end
+        end
       end
       @list_entity.email_message_id = @sent_email.email_message_id
       @list_entity.last_sent_on = Time.now
@@ -153,7 +155,7 @@ class Admin::SentEmailsController < AdminController
       @list_entity.save
 
      elsif @sent_email.sendable_type == "inhouse_customer"
-      ## no check currently for active status on inhouse customer
+      if inhouse_customer.subscribed == true
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "inhouse_customer"}
         email_to_send = EmailMessage.find(@sent_email.email_message_id)
@@ -162,11 +164,10 @@ class Admin::SentEmailsController < AdminController
         else
           EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
-
+      end
       @list_entity.email_message_id = @sent_email.email_message_id
       @list_entity.last_sent_on = Time.now
       @list_entity.save
-
     end
 
     @sent_email.actual_recipients = actual_recipients_hash

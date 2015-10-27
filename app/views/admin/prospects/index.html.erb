@@ -21,6 +21,7 @@
     </div>
 </div>
 <!-- /.row -->
+
 <hr class="top10">
 
 <%= bootstrap_form_for(@prospect, url: admin_prospects_path, layout: :inline) do |f| %>
@@ -34,7 +35,9 @@
   <% end %>
 <% end -%>
 
-<%= paginate @prospects %>
+<% if params[:email] == nil || params[:email] == "" %>
+<%= paginate @prospects  %>
+<% end %>
 <br>
 
 <div class="row">
@@ -58,7 +61,10 @@
         </thead>
 
         <tbody>
-          <% @prospects.each do |prospect| %>
+
+
+          <% if (@prospects.respond_to? :each)
+             @prospects.each do |prospect| %>
             <tr>
                 <td data-title="">
                   <%= check_box_tag "prospect_ids[]", prospect.id %>
@@ -87,12 +93,47 @@
                     <span class="inactive_prospect"><%= prospect.active %></span>
                   <% end %>
                 </td>
-
             </tr>
+
           <% end  %>
-        </tbody>
-      </table>
-      <br>
+        <% else %>
+          <% prospect = @prospects %>
+          <tr>
+                <td data-title="">
+                  <%= check_box_tag "prospect_ids[]", prospect.id %>
+                </td>
+                <td data-title="Prospect Id">
+                  <%= link_to "#{prospect.id}", [:admin, prospect], class: "prospect-id" %>
+                </td>
+                <td data-title="Prospect Group ID">
+                  <% if prospect.prospect_group %>
+                    <a href="<%= "/admin/prospect_groups/#{prospect.prospect_group.id}" %>"><%= prospect.prospect_group_id %> - <%= prospect.prospect_group.name %></a>
+                  <% else %>
+                    Not Assigned
+                  <% end %>
+                </td>
+                <td data-title="Email"><%= prospect.email %></td>
+                <td data-title="Name"><%= prospect.name %></td>
+                <td data-title="Last Message"><%= prospect.try(:email_message).try(:subject) %></td>
+                <td data-title="Last Sent On"><%= prospect.try(:last_sent_on) %></td>
+                <td data-title="Subscribed"><%= prospect.status %></td>
+                <!-- <td data-title="Validated"><%= prospect.validated %></td> -->
+                <td data-title="Date Joined On"><%= prospect.date_joined_on %></td>
+                <td data-title="Active">
+                  <% if prospect.active? %>
+                    <span class="active_prospect"><%= prospect.active %></span>
+                  <% else %>
+                    <span class="inactive_prospect"><%= prospect.active %></span>
+                  <% end %>
+                </td>
+            </tr>
+
+ <% end %>
+  </tbody>
+        </table>
+         <br>
+<% if params[:email] == nil || params[:email] == "" %>
+
       <hr>
       <div class="form-group col-md-4">
         <p>Add Prospects to this Prospect Group:</p>
@@ -102,13 +143,16 @@
         <p>&nbsp;</p>
         <%= submit_tag "Assign Checked to selected Prospect Group", class: "btn btn-primary" %>
       </div>
-
     <% end %>
   </div>
 </div>
+    <% end %>
+
 <!-- /.row -->
 
-<%= paginate @prospects %>
+<% if params[:email] == nil || params[:email] == "" %>
+<%= paginate @prospects  %>
+
 <hr>
 <div class="row">
   <h3>Show Prospect Actions</h3>
@@ -123,6 +167,8 @@
   </div>
 </div>
 <hr>
+<% end %>
+
 <!--
 <div class="row">
   <h3>Actions to Perform on All Prospects</h3>

@@ -12,7 +12,6 @@ class Admin::InhouseCustomersController < AdminController
         # raise 'inside params email is not nil'
         return
       elsif params[:email] && params[:email] == nil
-        raise 'inside nil email params'
         @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
         @new_inhouse_customer = InhouseCustomer.new
         return
@@ -25,7 +24,6 @@ class Admin::InhouseCustomersController < AdminController
       #   @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
       #   @new_inhouse_customer = InhouseCustomer.new
       else
-        # raise 'inside else'
         @new_inhouse_customer = InhouseCustomer.new
         # @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
         @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
@@ -49,7 +47,7 @@ class Admin::InhouseCustomersController < AdminController
   # GET /admin/inhouse_customers/1
   # GET /admin/inhouse_customers/1.json
   def show
-    @inhouse_customer = InhouseCustomer.friendly.find(params[:id])
+    @inhouse_customer = InhouseCustomer.find(params[:id])
   end
 
   # GET /admin/inhouse_customers/new
@@ -118,17 +116,15 @@ class Admin::InhouseCustomersController < AdminController
     render json: @search_inhouse_customers.map(&:email)
   end
 
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inhouse_customer
-      @inhouse_customer = InhouseCustomer.friendly.find(params[:id])
+      @inhouse_customer = InhouseCustomer.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inhouse_customer_params
-      params.require(:inhouse_customer).permit(:email, :name, :date, :is_user)
+      params.require(:inhouse_customer).permit(:email, :name, :date, :is_user, :subscribed)
     end
 
     def sort_column
