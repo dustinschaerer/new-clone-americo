@@ -57,6 +57,7 @@
               <!-- <th><%= sortable :validated, "Validated?" %></th> -->
               <th><%= sortable :date_joined_on, "Date Joined On" %></th>
               <th><%= sortable :active, "Active?" %></th>
+              <th></th>
             </tr>
         </thead>
 
@@ -93,6 +94,7 @@
                     <span class="inactive_prospect"><%= prospect.active %></span>
                   <% end %>
                 </td>
+                 <td data-title=""><%= link_to "Edit", edit_admin_prospect_path(prospect) %></td>
             </tr>
 
           <% end  %>
@@ -126,6 +128,7 @@
                     <span class="inactive_prospect"><%= prospect.active %></span>
                   <% end %>
                 </td>
+                <td data-title=""><%= link_to "Edit", edit_admin_prospect_path(prospect) %></td>
             </tr>
 
  <% end %>
