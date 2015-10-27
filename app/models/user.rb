@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def status
+    self.subscribed ? 'Subscribed' : 'Unsubscribed'
+  end
+
 end
