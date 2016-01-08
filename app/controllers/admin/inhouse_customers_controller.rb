@@ -115,7 +115,7 @@ class Admin::InhouseCustomersController < AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def inhouse_customer_params
       params.require(:inhouse_customer).permit(:email, :name, :date, :is_user, :subscribed,
-        :file, :account_number, :contact)
+        :file, :account_number, :contact, :inhouse_group_id)
     end
 
     def sort_column
