@@ -6,19 +6,24 @@ class Admin::InhouseCustomersController < AdminController
   # GET /admin/inhouse_customers.json
   def index
     @new_inhouse_customer = InhouseCustomer.new
+
     # if params search is here, then this is a search request
     if params[:search] && params[:search].blank?
       @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-      raise 'Inside params[:search] && params[:search].blank?'
       return
+
+    # if params searchnot nil and not blank
     elsif params[:search] && params[:search].present? && params[:email].present?
       @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
-      @inhouse_customers = InhouseCustomer.find_by_email(params[:email])?'
+      @inhouse_customers = InhouseCustomer.find_by_email(params[:email])
       return
+
     elsif params[:sort] == nil
       @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
       return
+
     else
+      # @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
       @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
       return
     end
