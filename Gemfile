@@ -48,6 +48,7 @@ gem 'sinatra', :require => nil
 gem 'rails-admin-scaffold'
 gem 'mandrill-api', '~> 1.0.53'
 gem 'mandrill-rails'
+gem 'roo'
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'

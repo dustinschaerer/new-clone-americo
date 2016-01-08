@@ -1,36 +1,39 @@
 <!-- Page Heading -->
 <div class="row">
-    <div class="col-lg-12">
-      <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-user"></i> Inhouse Customers
-            </li>
-        </ol>
-        <h1 class="pull-left">Inhouse Customers</h1>
-        <div class="pull-right top5">
-          Search for Inhouse Customer:<br>
-          <%= bootstrap_form_tag url: "/admin/inhouse_customers", method: :get, layout: :inline do %>
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li>
+          <i class="fa fa-dashboard"></i>  <a href="/admin">Dashboard</a>
+      </li>
+      <li class="active">
+          <i class="fa fa-user"></i> Inhouse Customers
+      </li>
+    </ol>
+    <h1 class="pull-left">Inhouse Customers</h1>
+    <div class="pull-right top5">
+      Search for Inhouse Customer:<br>
+      <%= bootstrap_form_tag url: "/admin/inhouse_customers", method: :get, layout: :inline do %>
 
-            <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Search by Email", :data => {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path } %>
-            <%= submit_tag "Search", name: 'search', class: "btn btn-info" %>
-          <% end %>
-        </div>
+        <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Search by Email", :data => {autocomplete_source: retrieve_for_autocomplete_admin_inhouse_customers_path } %>
+        <%= submit_tag "Search", name: 'search', class: "btn btn-info" %>
+      <% end %>
     </div>
+  </div>
 </div>
 <!-- /.row -->
+
 <hr>
 Add New Customer:
 <%= bootstrap_form_for(@new_inhouse_customer, url: admin_inhouse_customers_path, layout: :inline) do |f| %>
   <%= f.alert_message "Please fix the following errors:" %>
   <%= f.email_field :email, :placeholder => "Enter Email", :required => true, hide_label: true, input_html: { maxlength: 140 }  %>
   <%= f.text_field :name, :placeholder => "Enter Name", hide_label: true, input_html: { maxlength: 100 }  %>
-  <%= f.date_select :date, hide_label: true %>
   <%=
-  #f.collection_select :inhouse_customer_group_id, InhouseCustomerGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true
+  #f.date_select :date, hide_label: true
   %>
+  <%= f.number_field :account_number, :placeholder => "Account Number", hide_label: true, input_html: { maxlength: 15 }  %>
+  <%= f.text_field :contact, :placeholder => "Contact", hide_label: true, input_html: { maxlength: 40 }  %>
+  <%= f.collection_select :inhouse_group_id, InhouseGroup.all.sort, :id, :name, :prompt => "Please Choose Group", :hide_label => true %>
   <%= f.form_group do %>
     <%= f.submit "Add New Inhouse Customer", class: "btn btn-success", name: 'create_new'  %>
   <% end %>
@@ -40,6 +43,9 @@ Add New Customer:
 <% if params[:page]  %>
   <%= paginate @inhouse_customers %>
 <% end %>
+
+<%= params.inspect %>
+
 <div class="row">
   <div class="no-more-tables">
     <%= bootstrap_form_tag url: assign_groups_for_admin_inhouse_customers_url, method: :patch do |f| %>
@@ -50,9 +56,13 @@ Add New Customer:
           <th></th>
           <th>ID</th>
           <th><%= sortable :email, "Email" %></th>
-          <th>Name</th>
+          <th><%= sortable :name, "Name" %></th>
+          <th><%= sortable :account_number, "Acc #" %></th>
+          <th>Contact</th>
           <th>Inhouse Group</th>
-          <th><%= sortable :date, "Purchase Date" %></th>
+          <!-- <th><%=
+            # sortable :date, "Purchase Date"
+            %></th> -->
           <th><%= sortable :is_user, "Is User?" %></th>
           <th><%= sortable :subscribed, "Subscribed?" %></th>
           <th></th>
@@ -66,11 +76,13 @@ Add New Customer:
              @inhouse_customers.each do |inhouse_customer| %>
           <tr>
             <td data-title="">
-                      <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
+              <%= check_box_tag "inhouse_customer_ids[]", inhouse_customer.id %>
             </td>
             <td><%= link_to "#{inhouse_customer.id}", [:admin, inhouse_customer], class: "inhouse_customer-id" %></td>
             <td><%= inhouse_customer.email %></td>
             <td><%= inhouse_customer.name %></td>
+            <td><%= inhouse_customer.account_number %></td>
+            <td><%= inhouse_customer.contact %></td>
             <td>
               <% if inhouse_customer.inhouse_group %>
                 <a href="<%= "/admin/inhouse_groups/#{inhouse_customer.inhouse_group.id}" %>"><%= inhouse_customer.inhouse_group_id %> - <%= inhouse_customer.inhouse_group.name %></a>
@@ -78,7 +90,9 @@ Add New Customer:
                 Not Assigned
               <% end %>
             </td>
-            <td><%= inhouse_customer.date %></td>
+            <!-- <td><%=
+            # inhouse_customer.date
+            %></td> -->
             <td><%= inhouse_customer.is_user %></td>
             <td><%= inhouse_customer.status %></td>
             <td><%= link_to 'Show', [:admin, inhouse_customer], class: 'btn btn-primary btn-xs' %></td>
@@ -114,6 +128,11 @@ Add New Customer:
       </tbody>
     </table>
 
+
+
+
+
+
     <br>
 
     <div class="form-group col-md-4">
@@ -127,4 +146,13 @@ Add New Customer:
 
     <% end %>
   </div>
+
+
+
 </div>
+  <div class="row">
+    <%= form_tag import_admin_inhouse_customers_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import from CSV" %>
+    <% end %>
+  </div>

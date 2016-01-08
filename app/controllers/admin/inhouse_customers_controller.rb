@@ -5,43 +5,23 @@ class Admin::InhouseCustomersController < AdminController
   # GET /admin/inhouse_customers
   # GET /admin/inhouse_customers.json
   def index
-      if params[:email] && params[:email] != ""
-        @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
-        @inhouse_customers = InhouseCustomer.find_by_email(params[:email])
-        @new_inhouse_customer = InhouseCustomer.new
-        # raise 'inside params email is not nil'
-        return
-      elsif params[:email] && params[:email] == nil
-        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-        @new_inhouse_customer = InhouseCustomer.new
-        return
-      elsif params[:email] && params[:email] == ""
-        # raise 'inside empty email string'
-        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-        @new_inhouse_customer = InhouseCustomer.new
-        return
-      # elsif params[:sort] == nil
-      #   @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-      #   @new_inhouse_customer = InhouseCustomer.new
-      else
-        @new_inhouse_customer = InhouseCustomer.new
-        # @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
-        @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-
-      end
-    # elsif params[:inhouse_customer] && params[:inhouse_customer][:email]
-    #   @inhouse_customers = InhouseCustomer.find_by_email(params[:inhouse_customer][:email])
-    # elsif params[:sort] == nil
-    #   @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
-    # elsif params[:email]
-    #   @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
-    # else
-    #   @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
-    # end
-    # #@custies = InhouseCustomer.order(email: :asc)
-    # @inhouse_customer = InhouseCustomer.new
-    # #@search_inhouse_customer = InhouseCustomer.find_by_email(params[:email])
-
+    @new_inhouse_customer = InhouseCustomer.new
+    # if params search is here, then this is a search request
+    if params[:search] && params[:search].blank?
+      @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+      raise 'Inside params[:search] && params[:search].blank?'
+      return
+    elsif params[:search] && params[:search].present? && params[:email].present?
+      @inhouse_customer = InhouseCustomer.find_by_email(params[:email])
+      @inhouse_customers = InhouseCustomer.find_by_email(params[:email])?'
+      return
+    elsif params[:sort] == nil
+      @inhouse_customers = InhouseCustomer.order("id DESC").page(params[:page]).per(50)
+      return
+    else
+      @inhouse_customers = InhouseCustomer.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
+      return
+    end
   end
 
   # GET /admin/inhouse_customers/1
@@ -63,7 +43,6 @@ class Admin::InhouseCustomersController < AdminController
   # POST /admin/inhouse_customers.json
   def create
     @inhouse_customer = InhouseCustomer.new(inhouse_customer_params)
-
     exists = User.where(email: @inhouse_customer.email.chomp).exists?
     exists == true ? @inhouse_customer.is_user = true : @inhouse_customer.is_user = false
     respond_to do |format|
@@ -116,6 +95,12 @@ class Admin::InhouseCustomersController < AdminController
     render json: @search_inhouse_customers.map(&:email)
   end
 
+  def import
+    InhouseCustomer.import(params[:file])
+    redirect_to admin_inhouse_customers_path, notice: "CSV file imported."
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inhouse_customer
@@ -124,7 +109,8 @@ class Admin::InhouseCustomersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inhouse_customer_params
-      params.require(:inhouse_customer).permit(:email, :name, :date, :is_user, :subscribed)
+      params.require(:inhouse_customer).permit(:email, :name, :date, :is_user, :subscribed,
+        :file, :account_number, :contact)
     end
 
     def sort_column

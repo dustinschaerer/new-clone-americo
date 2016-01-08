@@ -9,7 +9,6 @@ class Admin::ProspectsController < AdminController
     elsif params[:sort] == nil
       @prospects = Prospect.all.order("id DESC").page(params[:page]).per(50)
     else
-      raise 'inside else'
       @prospects = Prospect.order(sort_column.to_sym => sort_direction.to_sym).page(params[:page]).per(50)
     end
     @prospect = Prospect.new

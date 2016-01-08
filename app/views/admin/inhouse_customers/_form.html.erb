@@ -14,9 +14,13 @@
     </div>
   <% end %>
 
-      <%= f.text_field :email %>
-      <%= f.text_field :name %>
-    <%= f.date_select :date, { start_year: 2005 }, { label: "Choose your favorite fruit:", class: 'date-select' } %>
+  <%= f.text_field :email %>
+  <%= f.text_field :name %>
+  <%=
+  # f.date_select :date, { start_year: 2005 }, { label: "Choose your favorite fruit:", class: 'date-select' }
+  %>
+  <%= f.number_field :account_number %>
+  <%= f.text_field :contact %>
 
   <%= f.form_group :is_user do %>
     <%= f.check_box :is_user, label: 'Is User?' %>

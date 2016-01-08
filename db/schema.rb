@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027182757) do
+ActiveRecord::Schema.define(version: 20160106164630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20151027182757) do
     t.integer  "email_message_id"
     t.date     "last_sent_on"
     t.boolean  "subscribed",       default: true
+    t.integer  "account_number"
+    t.string   "contact"
   end
 
   add_index "inhouse_customers", ["email_message_id"], name: "index_inhouse_customers_on_email_message_id", using: :btree
