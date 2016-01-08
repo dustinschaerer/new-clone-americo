@@ -1,6 +1,6 @@
 class InhouseCustomer < ActiveRecord::Base
   require 'csv'
-  validates_presence_of :email, :name
+  validates_presence_of :email
   validates_uniqueness_of :email
   belongs_to :inhouse_group
 

@@ -40,11 +40,7 @@ Add New Customer:
 <% end -%>
 <hr>
 
-<% if params[:page]  %>
   <%= paginate @inhouse_customers %>
-<% end %>
-
-<%= params.inspect %>
 
 <div class="row">
   <div class="no-more-tables">
@@ -127,12 +123,6 @@ Add New Customer:
 
       </tbody>
     </table>
-
-
-
-
-
-
     <br>
 
     <div class="form-group col-md-4">
@@ -147,9 +137,12 @@ Add New Customer:
     <% end %>
   </div>
 
-
-
 </div>
+<div class="row">
+
+  <%= paginate @inhouse_customers %>
+</div>
+
   <div class="row">
     <%= form_tag import_admin_inhouse_customers_path, multipart: true do %>
       <%= file_field_tag :file %>
