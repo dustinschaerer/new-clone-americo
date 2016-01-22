@@ -43,7 +43,9 @@
         <td><%= email_message.mandril_tag %></td>
         <td><%= email_message.mailer_method %></td>
         <td><%= email_message.template %></td>
+        <td><%= link_to 'Preview', preview_admin_email_message_path(email_message) %></td>
         <td><%= link_to 'Show', admin_email_message_path(email_message) %></td>
+
         <% if current_admin_user.email == 'dustinschaerer@gmail.com' %>
           <td><%= link_to 'Edit', edit_admin_email_message_path(email_message) %></td>
           <td><%= link_to 'Destroy', admin_email_message_path(email_message), method: :delete, data: { confirm: 'Are you sure?' } %></td>

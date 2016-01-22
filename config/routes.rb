@@ -117,6 +117,7 @@ Americo::Application.routes.draw do
         get 'send_email_to_prospect_groups'
         get 'send_email_to_users'
         get 'send_email_to_user_groups'
+        get 'preview'
       end
     end
     resources :quoteholders

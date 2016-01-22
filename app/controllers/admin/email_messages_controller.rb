@@ -77,6 +77,11 @@ class Admin::EmailMessagesController < AdminController
     raise actual_recipient_hash.inspect
   end
 
+  def preview
+    @admin_email_message = EmailMessage.find(params[:id])
+    render layout: false
+  end
+
   private
 
     def set_email_message
