@@ -4,7 +4,7 @@ class Admin::SentEmailsController < AdminController
   # GET /admin/sent_emails
   # GET /admin/sent_emails.json
   def index
-    @sent_emails = SentEmail.all
+    @sent_emails = SentEmail.order(id: :desc)
   end
 
   # GET /admin/sent_emails/1
