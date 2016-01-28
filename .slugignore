@@ -3,7 +3,7 @@
 *.zip
 test
 spec
-log/development.log
-
+log
+tmp
 public/assets/swatches/swatches.zip
 /assets/images/swatches/swatches.zip

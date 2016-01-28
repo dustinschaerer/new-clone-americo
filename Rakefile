@@ -5,3 +5,7 @@ require File.expand_path('../config/application', __FILE__)
 
 Americo::Application.load_tasks
 
+require 'FileUtils'
+Rake::Task["assets:clean"].enhance do
+  FileUtils.remove_dir "#{Rails.root}/public/assets", true
+end

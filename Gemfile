@@ -34,13 +34,10 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'tilt', '1.4.1'
 gem "fog", "~>1.20", require: "fog/aws/storage"
 gem 'asset_sync'
-gem 'active_skin'
 #gem "brakeman", :require => false
-gem 'rails_best_practices'
 gem 'kaminari'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
-# gem 'sprockets_better_errors'
 gem 'has_scope'
 gem 'validates_email_format_of'
 gem 'sidekiq'
@@ -48,7 +45,7 @@ gem 'sinatra', :require => nil
 gem 'rails-admin-scaffold'
 gem 'mandrill-api', '~> 1.0.53'
 gem 'mandrill-rails'
-# gem 'roo'
+
 
 group :development, :test do
   #gem 'sqlite3', '1.3.8'
@@ -83,5 +80,4 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  # gem 'heroku_rails_deflate'
 end
