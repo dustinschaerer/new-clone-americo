@@ -171,7 +171,7 @@ fixtures :lines
     assert has_content? @quote_nine.total
     fill_in "Card number", :with => "4111111111111111"
     fill_in "Card Verification Value (CVV)", :with => "111"
-    select '2015', from: 'purchase_card_expires_on_1i'
+    select '2017', from: 'purchase_card_expires_on_1i'
     select '4 - April', from: 'purchase_card_expires_on_2i'
     click_on "Place Order Now"
 

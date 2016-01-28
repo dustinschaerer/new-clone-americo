@@ -1,0 +1,9 @@
+
+
+one:
+  id: 1
+  content: <p>Hello World</p>
+  mandril_tag: hello-world
+  mailer_method: dynamic_message
+  headers: Prospects
+  subject: Welcome to Americo

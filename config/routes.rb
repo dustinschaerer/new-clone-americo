@@ -95,6 +95,7 @@ Americo::Application.routes.draw do
   match '/prospects_unsubscribe',     to: 'prospects#show',   via: 'get'
 
   resources :prospects, :only => [:show]
+  resources :inhouse_customers, :only => [:show]
 
   resources :inbound_messages, :controller => 'inbound_messages', :only => [:show, :create]
 

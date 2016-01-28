@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: Juan Valdez
+  account_number: 123456
+  contact: Julio
+  inhouse_group: one
+  subscribed: true
+
+two:
+  id: 2
+  name: Terry Berry
+  account_number: 222333
+  contact: Julio
+  inhouse_group: two
+  subscribed: false

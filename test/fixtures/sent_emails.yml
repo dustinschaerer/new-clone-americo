@@ -1,0 +1,7 @@
+one:
+  email_message: one
+  sendable_id: 1
+  sendable_type: Prospect
+  actual_recipients: dustinexample@gmail.com
+  recipient_count: 10
+  sent_at: "2014-03-07 00:22:43"

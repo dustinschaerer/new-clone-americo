@@ -1,0 +1,2 @@
+module InhouseCustomersHelper
+end
