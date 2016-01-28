@@ -25,7 +25,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_skin (0.0.8)
     activemerchant (1.46.0)
       activesupport (>= 3.2.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
@@ -54,7 +53,6 @@ GEM
     autoprefixer-rails (5.0.0.3)
       execjs
       json
-    awesome_print (1.6.1)
     bcrypt (3.1.9)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -80,8 +78,6 @@ GEM
       timers (~> 4.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
-    code_analyzer (0.4.5)
-      sexp_processor
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -90,7 +86,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colored (1.2)
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
     daemon_controller (1.2.0)
@@ -276,16 +271,6 @@ GEM
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_best_practices (1.15.4)
-      activesupport
-      awesome_print
-      code_analyzer (>= 0.4.3)
-      colored
-      erubis
-      i18n
-      json
-      require_all
-      ruby-progressbar
     rails_serve_static_assets (0.0.3)
     rails_stdout_logging (0.0.3)
     railties (4.0.13)
@@ -300,10 +285,8 @@ GEM
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    require_all (1.3.2)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
-    ruby-progressbar (1.7.1)
     rubyzip (0.9.9)
     sass (3.4.10)
     sass-rails (5.0.1)
@@ -320,7 +303,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
-    sexp_processor (4.4.5)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -371,7 +353,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_skin
   activemerchant
   asset_sync
   best_in_place!
@@ -408,7 +389,6 @@ DEPENDENCIES
   rails (= 4.0.13)
   rails-admin-scaffold
   rails_12factor (= 0.0.2)
-  rails_best_practices
   raphael-rails
   sass-rails (>= 3.2)
   sdoc (= 0.4.0)
