@@ -3,7 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-require 'FileUtils'
+require 'fileutils'
 Rake::Task["assets:clean"].enhance do
   puts 'my assets:precompile hook has started'
   FileUtils.remove_dir "#{Rails.root}/public/assets", true
