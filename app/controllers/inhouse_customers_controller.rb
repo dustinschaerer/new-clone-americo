@@ -4,7 +4,8 @@ class InhouseCustomersController < ApplicationController
   # GET /inhouse_customers/1?unsubcribe_from_emails=1
   def show
     @unsubscribe = params[:unsubscribe_from_emails]
-    if @unsubscribe == "1"
+    # if @unsubscribe == "1"
+    if @unsubscribe != nil
       @inhouse_customer.subscribed = false
       respond_to do |format|
         if @inhouse_customer.save!
