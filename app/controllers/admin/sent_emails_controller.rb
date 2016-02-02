@@ -145,9 +145,6 @@ class Admin::SentEmailsController < AdminController
       @list_entity.save
 
     elsif @sent_email.sendable_type == "prospect"
-
-
-
       if @list_entity.active == true && @list_entity.subscribed == true
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "prospect"}
@@ -166,13 +163,15 @@ class Admin::SentEmailsController < AdminController
       @list_entity.last_sent_on = Time.now
       @list_entity.save
 
+
      elsif @sent_email.sendable_type == "inhouse_customer"
-      if inhouse_customer.subscribed == true
+      if @list_entity.subscribed == true
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "inhouse_customer"}
         email_to_send = EmailMessage.find(@sent_email.email_message_id)
         if email_to_send.mailer_method == "dynamic_message"
-          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
+           EmailMessageNotifier.send(email_to_send.mailer_method, @list_entity, email_to_send).deliver
+#          EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         else
           EmailMessageNotifier.delay_until(@sent_email.sent_at).send(email_to_send.mailer_method, @list_entity, email_to_send)
         end
@@ -230,6 +229,7 @@ class Admin::SentEmailsController < AdminController
     def sent_email_params
       params.require(:sent_email).permit(:email_message_id, :sendable_id, :sendable_type, :actual_recipients,
         :recipient_count, :sent_at, :user_name, :sendable_name, :user_email, :user_id, :prospect_email, :mandril_tag,
-        :last_sent_on)
+        :last_sent_on, :inhouse_customer_email
+)
     end
 end
