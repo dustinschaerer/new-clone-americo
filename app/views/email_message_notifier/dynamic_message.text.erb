@@ -12,7 +12,7 @@
   <% sub_content = content.gsub("UserUnsubscribeContent", "users/#{user_id.to_s}") %>
 
 <% else %>
-  sub_content = content
+  sub_content = text_content
 <% end %>
 
 <%= sub_content %>
