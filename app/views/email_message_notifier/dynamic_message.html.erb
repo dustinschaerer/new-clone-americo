@@ -6,6 +6,8 @@
 
   <% inhouse_customer_id = @inhouse_customer.id %>
   <% sub_content = content.gsub("InhouseCustomerUnsubscribeContent", "inhouse_customers/#{inhouse_customer_id.to_s}") %>
+<% else %>
+  <% sub_content = content %>
 <% end %>
 
 <%= sub_content.html_safe %>
