@@ -33,6 +33,7 @@ class Admin::SentEmailsController < AdminController
   # POST /admin/sent_emails.json
   def create
 
+# raise params.inspect
 
     actual_recipients_hash = {}
     recipient_count = 0
@@ -100,7 +101,7 @@ class Admin::SentEmailsController < AdminController
       @list_entity.save
 
 
-    elsif @sent_email.sendable_type == "inhouse_customer_group"
+    elsif @sent_email.sendable_type == "inhouse_group"
       @list_entity.inhouse_customers.each do |inhouse_customer|
         ## no checks for active status on inhouse customers yet
         if inhouse_customer.subscribed == true
