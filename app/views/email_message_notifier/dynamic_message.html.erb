@@ -2,12 +2,19 @@
 <% if content.include? "ProspectUnsubscribeContent" %>
   <% prospect_id = @prospect.id %>
   <% sub_content = content.gsub("ProspectUnsubscribeContent", "prospects/#{prospect_id.to_s}") %>
-<% elsif content.include? "InhouseCustomerUnsubscribeContent" %>
 
+<% elsif content.include? "InhouseCustomerUnsubscribeContent" %>
   <% inhouse_customer_id = @inhouse_customer.id %>
   <% sub_content = content.gsub("InhouseCustomerUnsubscribeContent", "inhouse_customers/#{inhouse_customer_id.to_s}") %>
+
+<% elsif content.include? "InhouseCustomerUnsubscribeContent" %>
+  <% user_id = @user.id %>
+  <% sub_content = content.gsub("UserUnsubscribeContent", "users/#{user_id.to_s}") %>
+
 <% else %>
   <% sub_content = content %>
 <% end %>
+
+
 
 <%= sub_content.html_safe %>

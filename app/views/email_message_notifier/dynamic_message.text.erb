@@ -6,6 +6,13 @@
 <% elsif text_content.include? "InhouseCustomerUnsubscribeContent" %>
   <% inhouse_customer_id = @inhouse_customer.id %>
   <% sub_content = text_content.gsub("InhouseCustomerUnsubscribeContent", "inhouse_customers/#{inhouse_customer_id.to_s}") %>
+
+<% elsif content.include? "UserUnsubscribeContent" %>
+  <% user_id = @user.id %>
+  <% sub_content = content.gsub("UserUnsubscribeContent", "users/#{user_id.to_s}") %>
+
+<% else %>
+  sub_content = content
 <% end %>
 
 <%= sub_content %>
