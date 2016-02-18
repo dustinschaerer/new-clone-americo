@@ -65,7 +65,7 @@ class Quote < ActiveRecord::Base
     if self.tax_id.blank?
       tax_rate = 0
       if (self.ship_state == 'Arkansas')
-        tax_rate = 0.0975
+        tax_rate = 0.1075
       elsif (self.ship_state == 'Minnesota')
         tax_rate = 0.06875
       elsif (self.ship_state == 'New Jersey')
