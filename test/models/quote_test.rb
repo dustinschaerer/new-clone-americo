@@ -60,7 +60,7 @@ class QuoteTest < ActiveSupport::TestCase
 
   test "knows how to calculate sales tax in Arkansas" do
     quote_eight = quotes(:eight)
-    assert_equal quote_eight.calculate_sales_tax.to_f, 9.75
+    assert_equal quote_eight.calculate_sales_tax.to_f, 10.75
   end
 
   test "knows how to calculate sales tax in New Jersey" do
