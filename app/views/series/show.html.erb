@@ -5,7 +5,7 @@
    thisback = "background-color: #8C5C37;color:white;padding:7px;"
    thisavailable = "Vinyl Table Covers, Roll Goods, Placemats, Table Runners and  Table Toppers" %>
    <% provide(:title, "Vinyl Table Covers | #{@series.name} Series Classic Vinyls") %>
-   <% provide(:description, "Shop Americo\'s easy-care, #{@series.name} Series vinyl table covers are a great alternative to woven table lines. All Classic vinyl table covers are custom made in 2-3 weeks.") %>
+   <% provide(:description, "Shop Americo for easy-care, #{@series.name} Series vinyl table covers that are a great alternative to woven table lines. All Classic vinyl table covers are custom made in 2-3 weeks.") %>
 
 <% elsif (@series.style.id == 2) %>
 <% thistitle = "6100 SERIES PREMIUM VINYLS"
@@ -14,7 +14,7 @@
    thisback = "background-color: #5E6923;color:white;padding:7px;"
    thisavailable = "Vinyl Table Covers, Roll Goods, Placemats, Table Runners and Table Toppers" %>
    <% provide(:title, "Vinyl Table Covers | #{@series.name} Series Premium Vinyls") %>
-   <% provide(:description, 'Shop Americo\'s #{@series.name} Series Premium vinyl table covers offer decorator style with easy maintenance and lower replacement costs over time. We offer Free Quotes and Free Samples!') %>
+   <% provide(:description, "Shop Americo for #{@series.name} Series Premium vinyl table covers that offer decorator style with easy maintenance and lower replacement costs over time. We offer Free Quotes and Free Samples!") %>
 
 <% elsif (@series.style.id == 3) %>
 <% thistitle = "1200/2000 SERIES DESIGNER LAMINATES"
@@ -23,7 +23,7 @@
    thisback = "background-color: #50334E;color:white;padding:7px;"
    thisavailable = "Vinyl Table Covers, Roll Goods, Table Runners and Table Toppers" %>
    <% provide(:title, "Laminated Vinyl Table Covers | #{@series.name} Series Designer Vinyls") %>
-   <% provide(:description, "Shop Americo\'s Series #{@series.name} laminated fabric table covers and roll goods offer decorator appeal at reasonable prices. Transform any venue with custom-made table covers in 2-3 weeks.") %>
+   <% provide(:description, "Shop Americo for Series #{@series.name} laminated fabric table covers and roll goods offering decorator appeal at reasonable prices. Transform any venue with custom-made table covers in 2-3 weeks.") %>
 
 <% elsif (@series.style.id == 7) %>
 <% thistitle = "DISTINCTIONS COLLECTION UPHOLSTERY VINYLS"
@@ -32,7 +32,7 @@
    thisback = "background-color: #AA4B19;color:white;padding:7px;"
    thisavailable = "Upholstery Vinyls - Roll Goods and Custom Cut Goods" %>
    <% provide(:title, "Vinyl Upholstery Fabric | Series #{@series.name} Distinctions Collection") %>
-   <% provide(:description, "Shop Americo\'s easy-care, #{@series.name} Series Vinyl Upholstery Fabrics offer colors and patterns for every decor.  Transform chairs, booths, stools, and other furnishing with fabric that really lasts.") %>
+   <% provide(:description, "#{@series.name} Series Vinyl Upholstery Fabrics offer colors and patterns for every decor.  Transform chairs, booths, stools, and other furnishing with fabric that really lasts.") %>
 
 <% elsif (@series.style.id == 8) %>
 <% thistitle = "7100 SERIES VALUE VINYLS"
@@ -40,15 +40,13 @@
    thishead = "Value Vinyl Table Covers"
    thisback = "background-color: #8C5C37;color:white;padding:7px;"
    thisavailable = "Ready-made Vinyl Table Covers"  %>
-   <% provide(:title, 'Value Vinyl Table Covers | Americo Inc.') %>
-   <% provide(:description, "Americo\'s easy-care #{@series.name} Series Vinyl table covers are an affordable option to renting or buying tablecloths for your venue or special events. Covers come in many size and colors.") %>
+   <% provide(:title, 'Value Vinyl Table Covers') %>
+   <% provide(:description, "Easy-care #{@series.name} Series Value Vinyl table covers are an affordable option to renting or buying tablecloths for your venue or special events. Covers come in many size and colors.") %>
 <% end %>
 
 <div class="row">
   <div class="col-sm-12">
     <h1 class="onesix" style="<%= thisback %>"><%= thishead %></h1>
-
-
     <div class="<%= thiscolor %> top10"><span class="seriesname">Style <%= @series.name %></span> <span class="twoem">&ndash; <%= @series.colors.count %>  colors available </div>
 
     <div class="seriessub bold">
@@ -100,7 +98,6 @@
         <li><a href="/technical_specs" class="addgray underline">Technical specs.</a></li>
       </ul>
       <p>Style <b><%= @series.name %></b> is also available as placemats, table runners or table toppers. <a href="/categories/vinyl-placemats-toppers-runners" class="addgray underline">Learn More</a>
-
     </div>
 
     <% elsif (@series.style.id == 2) %>
