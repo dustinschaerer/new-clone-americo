@@ -27,9 +27,52 @@ class EmailMessageNotifier < ActionMailer::Base
 
   def dynamic_message(recipient, email_message)
     @email_message = email_message
+    text_content = @email_message.text_content
+    content = @email_message.content
+
     if recipient.class.name == "User"
       @user = recipient
       @email = @user.email
+      if content.include? "UnsubscribeLinkGenerator"
+        user_id = @user.id
+        sub_content = content.gsub("UnsubscribeLinkGenerator", "users/edit")
+      end
+      if text_content.include? "UnsubscribeLinkGenerator"
+        user_id = @user.id
+        sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "users/edit")
+      end
+
+    elsif recipient.class.name =="Prospect"
+      @prospect = recipient
+      @email = @prospect.email
+      if content.include? "UnsubscribeLinkGenerator"
+        prospect_id = @prospect.id
+        sub_content = content.gsub("UnsubscribeLinkGenerator", "prospects/#{prospect_id.to_s}?unsubscribe_from_emails=1")
+      end
+      if text_content.include? "UnsubscribeLinkGenerator"
+        prospect_id = @prospect.id
+        sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "prospects/#{prospect_id.to_s}?unsubscribe_from_emails=1")
+      end
+
+    elsif recipient.class.name =="InhouseCustomer"
+      @inhouse_customer = recipient
+      @email = @inhouse_customer.email
+       if content.include? "UnsubscribeLinkGenerator"
+        inhouse_customer_id = @inhouse_customer.id
+        sub_content = content.gsub("UnsubscribeLinkGenerator", "inhouse_customers/#{inhouse_customer_id.to_s}?unsubscribe_from_emails=1")
+      end
+      if text_content.include? "UnsubscribeLinkGenerator"
+        inhouse_customer_id = @inhouse_customer.id
+        sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "inhouse_customers/#{inhouse_customer_id.to_s}?unsubscribe_from_emails=1")
+      end
+
+    else
+      sub_content = content
+      sub_text_content = text_content
+    end
+
+    @sub_content = sub_content
+    @sub_text_content = sub_text_content
 
       #######################################
       # Refactor in accordance with UserGroup.kind and ProspectGroup.kind
@@ -57,13 +100,6 @@ class EmailMessageNotifier < ActionMailer::Base
       # else
       #
       # end
-    elsif recipient.class.name =="Prospect"
-      @prospect = recipient
-      @email = @prospect.email
-    elsif recipient.class.name =="InhouseCustomer"
-      @inhouse_customer = recipient
-      @email = @inhouse_customer.email
-    end
 
     headers['X-MC-Tags'] = @email_message.mandril_tag
     mail({

@@ -1,18 +1,1 @@
-<% text_content = @email_message.text_content %>
-<% if text_content.include? "ProspectUnsubscribeContent" %>
-  <% prospect_id = @prospect.id %>
-  <% sub_content = text_content.gsub("ProspectUnsubscribeContent", "prospects/#{prospect_id.to_s}") %>
-
-<% elsif text_content.include? "InhouseCustomerUnsubscribeContent" %>
-  <% inhouse_customer_id = @inhouse_customer.id %>
-  <% sub_content = text_content.gsub("InhouseCustomerUnsubscribeContent", "inhouse_customers/#{inhouse_customer_id.to_s}") %>
-
-<% elsif text_content.include? "UserUnsubscribeContent" %>
-  <% user_id = @user.id %>
-  <% sub_content = text_content.gsub("UserUnsubscribeContent", "users/#{user_id.to_s}") %>
-
-<% else %>
-  sub_content = text_content
-<% end %>
-
-<%= sub_content %>
+<%= @sub_text_content %>
