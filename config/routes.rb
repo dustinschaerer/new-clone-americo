@@ -90,10 +90,9 @@ Americo::Application.routes.draw do
   match '/table_cover_gallery', to: 'static_pages#table_cover_gallery', via: 'get'
   match '/technical_specs',   to: 'static_pages#technical_specs', via: 'get'
   match '/terms_and_conditions',   to: 'static_pages#terms_and_conditions', via: 'get'
-  match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
-
-  #match '/prospects_unsubscribe',     to: 'prospects#show',   via: 'get'
-  #match '/inhouse_customers_unsubscribe',     to: 'inhouse_customers#show',   via: 'get'
+  # match '/tradeshows', to: 'static_pages#tradeshows', via: 'get'
+  # match '/prospects_unsubscribe',     to: 'prospects#show',   via: 'get'
+  # match '/inhouse_customers_unsubscribe',     to: 'inhouse_customers#show',   via: 'get'
 
   resources :prospects, :only => [:show]
   resources :inhouse_customers, :only => [:show]
