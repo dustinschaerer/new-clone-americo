@@ -1,0 +1,58 @@
+<% provide(:title, 'Order Submitted') %>
+<% provide(:description, 'We have received your order.') %>
+
+<div class="row border-top">
+
+  <div class="col-sm-12 col-md-2 hidden-xs">
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li class="active"><a href="/free_swatches">Free Swatches</a></li>
+      <li><a href="/how_to_order">How to Order</a></li>
+      <li><a href="/terms_and_conditions">Terms &amp; Conditions</a></li>
+      <li><a href="/technical_specs">Technical Specs</a></li>
+      <li><a href="/cleaning_instructions">Cleaning Instructions</a></li>
+      <li><a href="/frequently_asked_questions">Frequent Questions</a></li>
+      <li><a href="/privacy_policy">Privacy Policy</a></li>
+      <li><a href="/how_to_measure">How to Measure</a></li>
+      <li><a href="/request_quote">Request a Quote</a></li>
+      <li><a href="/request_catalog">Request a Catalog</a></li>
+    </ul>
+    <div>
+      <%= link_to '/free_swatches' do %><%= image_tag("swatch-image.jpg") %><% end %>
+      <%= link_to '/request_catalog' do %><%= image_tag("free-catalog.jpg") %><% end %>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-10 border-left addgray" id="clean">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="addmaroon">Thank you for your order!</h1>
+        <p>We'll process your order immediately and get it sent out for delivery right away.</p>
+        <% if current_user %>
+          <p>To see your order, quote, or purchase histories, visit <%= link_to 'My User Dashboard', user_path(current_user) %> anytime.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Google Code for order samples Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 924694826;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "C2tECIqpyWUQqvL2uAM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/924694826/?label=C2tECIqpyWUQqvL2uAM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

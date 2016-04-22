@@ -108,7 +108,7 @@ class PurchasesController < ApplicationController
         PurchaseNotifier.notify_admin(@purchase).deliver
 
         respond_to do |format|
-          format.html { redirect_to @purchase, notice: 'PURCHASE COMPLETED! We will send a confirmation email about your purchase and another email once your order has shipped. Check your account Dashboard to see your Purchase, Quote, and free Swatch Order Histories.'  }
+          format.html { redirect_to '/purchase_completed', notice: 'PURCHASE COMPLETED! We will send a confirmation email about your purchase and another email once your order has shipped. Check your account Dashboard to see your Purchase, Quote, and free Swatch Order Histories.'  }
           format.json { render action: 'show', status: :created, location: @purchase }
         end
       else

@@ -42,24 +42,33 @@ class StaticPagesController < ApplicationController
   def markets
   end
 
+  def order_submitted
+  end
+
   def photo_gallery
+  end
+
+  def quote_requested
   end
 
   def quote_system
   end
 
+  def purchase_completed
+  end
+
   def request_catalog
-  end  
-  
+  end
+
   def request_quote
   end
 
   def roll_goods
   end
-    
+
   def satisfied_customers
-  end 
-    
+  end
+
   def sitemap
   end
 
@@ -68,10 +77,10 @@ class StaticPagesController < ApplicationController
 
   def technical_specs
   end
-  
+
   def terms_and_conditions
   end
-  
+
   def tradeshows
-  end  
+  end
 end
