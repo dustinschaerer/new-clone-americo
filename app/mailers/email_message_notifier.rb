@@ -36,10 +36,14 @@ class EmailMessageNotifier < ActionMailer::Base
       if content.include? "UnsubscribeLinkGenerator"
         user_id = @user.id
         sub_content = content.gsub("UnsubscribeLinkGenerator", "users/edit")
+      else
+        sub_content = content
       end
       if text_content.include? "UnsubscribeLinkGenerator"
         user_id = @user.id
         sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "users/edit")
+      else
+        sub_text_content = text_content
       end
 
     elsif recipient.class.name =="Prospect"
@@ -48,22 +52,30 @@ class EmailMessageNotifier < ActionMailer::Base
       if content.include? "UnsubscribeLinkGenerator"
         prospect_id = @prospect.id
         sub_content = content.gsub("UnsubscribeLinkGenerator", "prospects/#{prospect_id.to_s}?unsubscribe_from_emails=1")
+      else
+        sub_content = content
       end
       if text_content.include? "UnsubscribeLinkGenerator"
         prospect_id = @prospect.id
         sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "prospects/#{prospect_id.to_s}?unsubscribe_from_emails=1")
+      else
+        sub_text_content = text_content
       end
 
     elsif recipient.class.name =="InhouseCustomer"
       @inhouse_customer = recipient
       @email = @inhouse_customer.email
-       if content.include? "UnsubscribeLinkGenerator"
+      if content.include? "UnsubscribeLinkGenerator"
         inhouse_customer_id = @inhouse_customer.id
         sub_content = content.gsub("UnsubscribeLinkGenerator", "inhouse_customers/#{inhouse_customer_id.to_s}?unsubscribe_from_emails=1")
+      else
+        sub_content = content
       end
       if text_content.include? "UnsubscribeLinkGenerator"
         inhouse_customer_id = @inhouse_customer.id
         sub_text_content = text_content.gsub("UnsubscribeLinkGenerator", "inhouse_customers/#{inhouse_customer_id.to_s}?unsubscribe_from_emails=1")
+      else
+        sub_text_content = text_content
       end
 
     else
