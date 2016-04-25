@@ -35,26 +35,26 @@
   config.action_mailer.delivery_method = :smtp
 
   # Action Mailer config setting
-  config.action_mailer.smtp_settings = {
-    address:    'smtp.mandrillapp.com',
-    port:       '587',
-    domain:     'heroku.com',
-    authentication: 'plain',
-    user_name:  ENV['MANDRILL_USERNAME'],
-    password:   ENV['MANDRILL_APIKEY'],
-    enable_starttls_auto: true
-  }
-
-  # # Action Mailer config setting
   # config.action_mailer.smtp_settings = {
-  #   user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
-  #   password:   ENV['SPARKPOST_SMTP_PASSWORD'],
-  #   address:    ENV['SPARKPOST_SMTP_HOST'],
-  #   port:       ENV['SPARKPOST_SMTP_PORT'],
-  #   enable_starttls_auto: true,
+  #   address:    'smtp.mandrillapp.com',
+  #   port:       '587',
   #   domain:     'heroku.com',
-  #   authentication: 'plain'
+  #   authentication: 'plain',
+  #   user_name:  ENV['MANDRILL_USERNAME'],
+  #   password:   ENV['MANDRILL_APIKEY'],
+  #   enable_starttls_auto: true
   # }
+
+  # Action Mailer config setting
+  config.action_mailer.smtp_settings = {
+    user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
+    password:   ENV['SPARKPOST_SMTP_PASSWORD'],
+    address:    ENV['SPARKPOST_SMTP_HOST'],
+    port:       ENV['SPARKPOST_SMTP_PORT'],
+    enable_starttls_auto: true,
+    domain:     'americo-inc.com',
+    authentication: 'plain'
+  }
 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test

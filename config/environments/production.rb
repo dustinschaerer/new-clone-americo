@@ -70,8 +70,6 @@ Americo::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
 
-
-
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
@@ -79,25 +77,25 @@ Americo::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # Action Mailer config setting
-  # config.action_mailer.smtp_settings = {
-  #   user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
-  #   password:   ENV['SPARKPOST_SMTP_PASSWORD'],
-  #   address:    ENV['SPARKPOST_SMTP_HOST'],
-  #   port:       ENV['SPARKPOST_SMTP_PORT'],
-  #   enable_starttls_auto: true,
-  #   domain:     'heroku.com',
-  #   authentication: 'plain'
-  # }
-
   config.action_mailer.smtp_settings = {
-    address:    'smtp.mandrillapp.com',
-    port:       '587',
-    domain:     'heroku.com',
-    authentication: 'plain',
-    user_name:  ENV['MANDRILL_USERNAME'],
-    password:   ENV['MANDRILL_APIKEY'],
-    enable_starttls_auto: true
+    user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
+    password:   ENV['SPARKPOST_SMTP_PASSWORD'],
+    address:    ENV['SPARKPOST_SMTP_HOST'],
+    port:       ENV['SPARKPOST_SMTP_PORT'],
+    enable_starttls_auto: true,
+    domain:     'americo-inc.com',
+    authentication: 'plain'
   }
+
+  # config.action_mailer.smtp_settings = {
+  #   address:    'smtp.mandrillapp.com',
+  #   port:       '587',
+  #   domain:     'heroku.com',
+  #   authentication: 'plain',
+  #   user_name:  ENV['MANDRILL_USERNAME'],
+  #   password:   ENV['MANDRILL_APIKEY'],
+  #   enable_starttls_auto: true
+  # }
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
