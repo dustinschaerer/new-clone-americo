@@ -254,6 +254,8 @@ GEM
     rack (1.5.5)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
+    rack-mini-profiler (0.9.9.2)
+      rack (>= 1.2.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -388,6 +390,7 @@ DEPENDENCIES
   passenger
   pg
   pry-rails
+  rack-mini-profiler
   rails (= 4.0.13)
   rails-admin-scaffold
   rails_12factor (= 0.0.2)

@@ -40,6 +40,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
