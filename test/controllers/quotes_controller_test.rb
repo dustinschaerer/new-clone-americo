@@ -58,7 +58,8 @@ class QuotesControllerTest < ActionController::TestCase
         sales_tax: @quote_three.sales_tax,
         total: @quote_three.total }
     end
-    assert_redirected_to user_path(users(:user_one))
+    # assert_redirected_to user_path(users(:user_one))
+    assert_redirected_to '/quote_requested'
     assert_equal 10, Quote.all.count
   end
 

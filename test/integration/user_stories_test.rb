@@ -48,6 +48,8 @@ fixtures :lines
     select 'Washington', from: "order_state"
     fill_in('Telephone Number', with: '555-555-5555')
     click_button 'Submit Order Now'
+    assert_equal '/order_submitted', current_path
+    click_link "My Dashboard", match: :first
     assert_equal user_path(@user), current_path
     assert_equal order_count + 1, Order.all.size
     order = Order.last
@@ -112,6 +114,8 @@ fixtures :lines
     select 'United States', from: 'Country'
     select 'Washington', from: 'State/Province'
     click_button "Submit My Quote Now"
+    assert_equal '/quote_requested', current_path
+    click_link "My Dashboard", match: :first
     assert_equal user_path(@user), current_path
     assert_equal quote_count + 1, Quote.all.size
     quote = Quote.last
@@ -164,6 +168,7 @@ fixtures :lines
     assert_equal quote_path(@quote_nine), current_path
     click_link "MY ACCOUNT", match: :first
     assert_equal user_path(@user), current_path
+    purchase_count = Purchase.all.size
     find("a[href='/purchases/new?quote_id=#{@quote_nine.id}']").click
     assert has_content? "Secure Checkout"
     check "make_same_address"
@@ -174,7 +179,11 @@ fixtures :lines
     select '2017', from: 'purchase_card_expires_on_1i'
     select '4 - April', from: 'purchase_card_expires_on_2i'
     click_on "Place Order Now"
-
+    assert_equal '/purchases', current_path
+    assert @quote_nine.valid?, true
+    # assert has_content? "Please fix the folowing errors:"
+    # assert_equal '/purchase_completed', current_path
+    assert_equal purchase_count + 1, Purchase.all.size
   end
 
 end

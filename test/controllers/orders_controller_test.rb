@@ -37,7 +37,7 @@ class OrdersControllerTest < ActionController::TestCase
                              user_id: @order.user_id,
                              company: @order.company}
     end
-    assert_redirected_to 'order_submitted')
+    assert_redirected_to '/order_submitted'
   end
 
   test "show order to signed in user that owns it" do
