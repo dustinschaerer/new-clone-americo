@@ -45,19 +45,6 @@
   <%= @sent_email.email_message.mandril_tag %>
 </p>
 
- <p>
-  <strong>Shared Stats for this Email Message:</strong>
-  <% if Rails.env.production? %>
-    <%
-    # stats = Rails.cache.fetch([sent_email.email_message, 'stats'], expires_in: 10.minutes) { sent_email.email_message.get_mandrill_stats }
-    stats = @sent_email.email_message.get_mandrill_stats
-    %>
-    <%= stats.blank? ? "No stats" : render(partial: "stats", locals: {stats: stats}) %>
-  <% else %>
-    No Stats available in development
-  <% end %>
-</p>
-
 <hr>
 <p>
   <strong>Actual recipients:</strong>
