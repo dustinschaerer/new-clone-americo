@@ -50,7 +50,7 @@
                 </td>
                 <td data-title="Status"><span class="<%= purchase.current_color %> label-status"><%= purchase.status %></span></td>
                 <td data-title="Customer"><%= purchase.firstname %> <%= purchase.lastname %></td>
-                <td data-title="Email"><a href="/admin/users/<%= purchase.user_id %>"><%= purchase.user.email %></a></td>
+                <td data-title="Email"><a href="/admin/users/<%= purchase.user_id %>"><%= purchase.try(:user).try(:email) %></a></td>
                 <td data-title="Shipping Address"><%= purchase.ship_city %></td>
                 <td data-title="Shipping State"><%= purchase.ship_state %></td>
                 <td data-title="Purchased At"><%= purchase.created_at.strftime("%-m-%d-%Y") %></td>
