@@ -32,7 +32,7 @@
   config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
 
   # Set email delivery configuration
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sparkpost
 
   # Action Mailer config setting
   # config.action_mailer.smtp_settings = {

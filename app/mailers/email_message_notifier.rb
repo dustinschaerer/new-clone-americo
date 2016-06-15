@@ -113,10 +113,16 @@ class EmailMessageNotifier < ActionMailer::Base
       #
       # end
 
+    data = {
+      transactional: false,
+      inline_css: true
+    }
+
     headers['X-MC-Tags'] = @email_message.mandril_tag
     mail({
      to: @email,
-     subject: "#{@email_message.subject}"
+     subject: "#{@email_message.subject}",
+     sparkpost_data: data
     })
   end
 end
