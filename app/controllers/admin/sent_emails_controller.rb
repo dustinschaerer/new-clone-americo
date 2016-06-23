@@ -4,7 +4,15 @@ class Admin::SentEmailsController < AdminController
   # GET /admin/sent_emails
   # GET /admin/sent_emails.json
   def index
-    @sent_emails = SentEmail.order(id: :desc)
+    @sent_emails = []
+    @all_sent_emails = SentEmail.order(id: :desc)
+    @all_sent_emails.each do |se|
+      msg = EmailMessage.where(id: se.email_message_id)
+      if msg.blank?
+      else
+        @sent_emails << se
+      end
+    end
   end
 
   # GET /admin/sent_emails/1
@@ -15,7 +23,16 @@ class Admin::SentEmailsController < AdminController
   # GET /admin/sent_emails/new
   def new
     @sent_email = SentEmail.new
-    @sent_emails = SentEmail.all
+    @sent_emails = []
+    @all_sent_emails = SentEmail.all
+    @all_sent_emails.each do |se|
+      msg = EmailMessage.where(id: se.email_message_id)
+      if msg.blank?
+      else
+        @sent_emails << se
+      end
+    end
+
     @admin_email_messages = EmailMessage.all
     @prospect_groups = ProspectGroup.all
     @user_groups = UserGroup.all
