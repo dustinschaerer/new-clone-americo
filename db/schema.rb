@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106164630) do
+ActiveRecord::Schema.define(version: 20160627222546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -368,6 +368,20 @@ ActiveRecord::Schema.define(version: 20160106164630) do
   end
 
   add_index "quotes", ["user_id"], name: "index_quotes_on_user_id", using: :btree
+
+  create_table "reports", force: true do |t|
+    t.integer  "new_users"
+    t.integer  "number_of_orders"
+    t.integer  "number_of_quotes"
+    t.integer  "number_of_purchases"
+    t.decimal  "amount_of_quotes",    precision: 8, scale: 2
+    t.decimal  "amount_of_purchases"
+    t.integer  "catalogs_ordered"
+    t.string   "month"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sent_emails", force: true do |t|
     t.integer  "email_message_id"

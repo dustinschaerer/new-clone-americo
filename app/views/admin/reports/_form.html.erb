@@ -1,0 +1,53 @@
+<%= form_for([:admin, @report]) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <%= f.label :new_users %><br>
+    <%= f.number_field :new_users %>
+    </div>
+  <div class="field">
+      <%= f.label :number_of_orders %><br>
+    <%= f.number_field :number_of_orders %>
+    </div>
+  <div class="field">
+      <%= f.label :number_of_quotes %><br>
+    <%= f.number_field :number_of_quotes %>
+    </div>
+  <div class="field">
+      <%= f.label :number_of_purchases %><br>
+    <%= f.number_field :number_of_purchases %>
+    </div>
+  <div class="field">
+      <%= f.label :amount_of_quotes %><br>
+    <%= f.text_field :amount_of_quotes %>
+    </div>
+  <div class="field">
+      <%= f.label :amount_of_purchases %><br>
+    <%= f.text_field :amount_of_purchases %>
+    </div>
+  <div class="field">
+      <%= f.label :catalogs_ordered %><br>
+    <%= f.number_field :catalogs_ordered %>
+    </div>
+  <div class="field">
+      <%= f.label :month %><br>
+    <%= f.number_field :month %>
+    </div>
+  <div class="field">
+      <%= f.label :year %><br>
+    <%= f.number_field :year %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+json.extract! @report, :new_users, :number_of_orders, :number_of_quotes, :number_of_purchases, :amount_of_quotes, :amount_of_purchases, :catalogs_ordered, :month, :year, :created_at, :updated_at
