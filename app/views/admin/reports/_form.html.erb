@@ -11,6 +11,41 @@
     </div>
   <% end %>
 
+  Generate a report for a month:
+  <div class="field">
+    <%= f.label :month %><br>
+    <%= f.select :month, (1..12).to_a %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.select :year, [2016, 2015, 2014] %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<!--
+
+
+
+
+
+<%= form_for([:admin, @report]) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
       <%= f.label :new_users %><br>
     <%= f.number_field :new_users %>
@@ -41,7 +76,7 @@
     </div>
   <div class="field">
       <%= f.label :month %><br>
-    <%= f.number_field :month %>
+    <%= f.text_field :month %>
     </div>
   <div class="field">
       <%= f.label :year %><br>
@@ -51,3 +86,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+ -->

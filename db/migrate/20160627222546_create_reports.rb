@@ -8,7 +8,7 @@ class CreateReports < ActiveRecord::Migration
       t.decimal :amount_of_quotes, :precision => 8, :scale => 2
       t.decimal :amount_of_purchases
       t.integer :catalogs_ordered
-      t.string :month
+      t.integer :month
       t.integer :year
 
       t.timestamps

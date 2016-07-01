@@ -26,6 +26,8 @@ class Admin::ReportsController < AdminController
   def create
     @report = Report.new(report_params)
 
+    @users_that_month =  User.created_between(Time.zone.local(@report.year, @report.month).beginning_of_month.beginning_of_day, Time.zone.local(@report.year, @report.month).end_of_month.end_of_day).count
+    raise @users_that_month.inspect
     respond_to do |format|
       if @report.save
         format.html { redirect_to [:admin, @report], notice: 'Report was successfully created.' }
