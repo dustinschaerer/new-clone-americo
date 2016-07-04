@@ -5,6 +5,9 @@ class Admin::ReportsController < AdminController
   # GET /admin/reports.json
   def index
     @reports = Report.all
+
+    years = Report.uniq.pluck(:year)
+    @years = years.sort { |a,b| b <=> a }
   end
 
   # GET /admin/reports/1

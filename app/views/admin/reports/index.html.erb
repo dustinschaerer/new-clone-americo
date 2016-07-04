@@ -1,36 +1,41 @@
 <h1>Listing reports</h1>
 
-<table class="table table-bordered table-striped table-condensed">
-  <thead>
-    <tr>
-      <th>Month</th>
-      <th>Year</th>
-      <th>New users</th>
-      <th>Orders</th>
-      <th>Quotes (Sub-totals)</th>
-      <th>Purchases (Sub-totals)</th>
-      <th>Actions</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% @years.each do |year| %>
 
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-        <td><%= report.month %></td>
-        <td><%= report.year %></td>
-        <td><%= report.new_users %></td>
-        <td><%= report.number_of_orders %></td>
-        <td><%= report.number_of_quotes %> (<%= number_to_currency(report.amount_of_quotes) %>)</td>
-        <td><%= report.number_of_purchases %> (<%= number_to_currency(report.amount_of_purchases) %>)</td>
-        <td><%= report.new_users + report.number_of_orders + report.number_of_quotes + report.number_of_purchases %></td>
-        <td><%= link_to 'Show', [:admin, report] %></td>
-        <td><%= link_to 'Destroy', [:admin, report], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-bordered table-striped table-condensed">
+      <caption><%= year.to_s %></caption>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Year</th>
+          <th>New users</th>
+          <th>Orders</th>
+          <th>Quotes (Sub-totals)</th>
+          <th>Purchases (Sub-totals)</th>
+          <th>Actions</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reports.where(year: year).order(:month).each do |report| %>
+          <tr>
+            <td><%= report.month %></td>
+            <td><%= report.year %></td>
+            <td><%= report.new_users %></td>
+            <td><%= report.number_of_orders %></td>
+            <td><%= report.number_of_quotes %> (<%= number_to_currency(report.amount_of_quotes) %>)</td>
+            <td><%= report.number_of_purchases %> (<%= number_to_currency(report.amount_of_purchases) %>)</td>
+            <td><%= report.new_users + report.number_of_orders + report.number_of_quotes + report.number_of_purchases %></td>
+            <td><%= link_to 'Show', [:admin, report] %></td>
+            <td><%= link_to 'Destroy', [:admin, report], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+<% end %>
 
 <br>
 
