@@ -26,8 +26,15 @@ class Admin::ReportsController < AdminController
   def create
     @report = Report.new(report_params)
 
-    @users_that_month =  User.created_between(Time.zone.local(@report.year, @report.month).beginning_of_month.beginning_of_day, Time.zone.local(@report.year, @report.month).end_of_month.end_of_day).count
-    raise @users_that_month.inspect
+    start_of_month = Time.zone.local(@report.year, @report.month).beginning_of_month.beginning_of_day
+    end_of_month = Time.zone.local(@report.year, @report.month).end_of_month.end_of_day
+    @report.new_users = User.created_between(start_of_month, end_of_month).count
+    @report.number_of_orders = Order.created_between(start_of_month, end_of_month).count
+    @report.number_of_quotes = Quote.created_between(start_of_month, end_of_month).count
+    @report.number_of_purchases = Purchase.created_between(start_of_month, end_of_month).count
+    @report.amount_of_quotes = Quote.created_between(start_of_month, end_of_month).pluck(:total).sum
+    @report.amount_of_purchases = Purchase.created_between(start_of_month, end_of_month).pluck(:total).sum
+
     respond_to do |format|
       if @report.save
         format.html { redirect_to [:admin, @report], notice: 'Report was successfully created.' }
