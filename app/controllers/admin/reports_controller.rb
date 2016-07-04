@@ -32,8 +32,8 @@ class Admin::ReportsController < AdminController
     @report.number_of_orders = Order.created_between(start_of_month, end_of_month).count
     @report.number_of_quotes = Quote.created_between(start_of_month, end_of_month).count
     @report.number_of_purchases = Purchase.created_between(start_of_month, end_of_month).count
-    @report.amount_of_quotes = Quote.created_between(start_of_month, end_of_month).pluck(:total).sum
-    @report.amount_of_purchases = Purchase.created_between(start_of_month, end_of_month).pluck(:total).sum
+    @report.amount_of_quotes = Quote.created_between(start_of_month, end_of_month).pluck(:subtotal).sum
+    @report.amount_of_purchases = Purchase.created_between(start_of_month, end_of_month).pluck(:subtotal).sum
 
     respond_to do |format|
       if @report.save
