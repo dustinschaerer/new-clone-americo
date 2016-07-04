@@ -37,7 +37,7 @@ class Admin::ReportsController < AdminController
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to [:admin, @report], notice: 'Report was successfully created.' }
+        format.html { redirect_to admin_reports_path, notice: 'Report was successfully created.' }
         format.json { render action: 'show', status: :created, location: @report }
       else
         format.html { render action: 'new' }
