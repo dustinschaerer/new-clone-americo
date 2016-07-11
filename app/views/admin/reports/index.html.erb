@@ -19,7 +19,7 @@
       </thead>
 
       <tbody>
-        <% @reports.where(year: year).order(:month).each do |report| %>
+        <% @reports.where(year: year).order(month: :asc).each do |report| %>
           <tr>
             <td><%= report.month %></td>
             <td><%= report.year %></td>
