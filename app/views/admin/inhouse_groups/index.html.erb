@@ -35,7 +35,8 @@
               </td>
         <td><%= inhouse_group.name %></td>
         <td><%= inhouse_group.inhouse_customers.count %></td>
-        <td><%= inhouse_group.email_message %></td>
+        <td><%= inhouse_group.email_message.try(:id) %>
+          <%= inhouse_group.email_message.try(:subject) %> </td>
         <td><%= inhouse_group.last_sent_on %></td>
         <td><%= link_to 'Show', [:admin, inhouse_group], class: 'btn btn-primary btn-xs' %></td>
         <td><%= link_to 'Edit', edit_admin_inhouse_group_path(inhouse_group), class: 'btn btn-primary btn-xs' %></td>

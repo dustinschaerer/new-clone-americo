@@ -28,6 +28,7 @@ class Admin::ReportsController < AdminController
   # POST /admin/reports.json
   def create
     @report = Report.new(report_params)
+    @report.month = @report.month.to_i
 
     start_of_month = Time.zone.local(@report.year, @report.month).beginning_of_month.beginning_of_day
     end_of_month = Time.zone.local(@report.year, @report.month).end_of_month.end_of_day
