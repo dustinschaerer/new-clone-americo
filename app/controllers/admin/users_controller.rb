@@ -64,7 +64,7 @@ class Admin::UsersController < AdminController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email_message_id, :last_sent_on, :sort_direction, :sort_column, :subscribed, :user_group_id)
+      params.require(:user).permit(:name, :email_message_id, :last_sent_on, :sort_direction, :sort_column, :subscribed, :user_group_id, :in_constant_contact)
     end
 
     def sort_column

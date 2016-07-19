@@ -72,7 +72,7 @@ class Admin::SentEmailsController < AdminController
 
     if @sent_email.sendable_type == "user_group"
       @list_entity.users.each do |user|
-        if user.subscribed == true
+        if user.subscribed == true && user.in_constant_contact == false
           recipient_count += 1
           actual_recipients_hash["#{user.email}"] = { user.id => "user"}
           email_to_send = EmailMessage.find(@sent_email.email_message_id)
@@ -145,7 +145,7 @@ class Admin::SentEmailsController < AdminController
       @list_entity.save
 
     elsif @sent_email.sendable_type == "user"
-      if @list_entity.subscribed == true
+      if @list_entity.subscribed == true && user.in_constant_contact == false
         recipient_count += 1
         actual_recipients_hash["#{@list_entity.email}"] = { @list_entity.id => "user"}
         email_to_send = EmailMessage.find(@sent_email.email_message_id)
