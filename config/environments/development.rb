@@ -32,7 +32,7 @@
   config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
 
   # Action Mailer config setting
-  # config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     address:    'smtp.sendgrid.net',
     port:       '587',
     authentication: :plain,
