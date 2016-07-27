@@ -74,18 +74,30 @@ Americo::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
 
-  config.action_mailer.delivery_method = :sparkpost
-
   # Action Mailer config setting
   config.action_mailer.smtp_settings = {
-    user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
-    password:   ENV['SPARKPOST_SMTP_PASSWORD'],
-    address:    ENV['SPARKPOST_SMTP_HOST'],
-    port:       ENV['SPARKPOST_SMTP_PORT'],
-    enable_starttls_auto: true,
-    domain:     'americo-inc.com',
-    authentication: 'plain'
+    address:    'smtp.sendgrid.net',
+    port:       '587',
+    domain:     'heroku.com',
+    authentication: 'plain',
+    user_name:  ENV['SENDGRID_USERNAME'],
+    password:   ENV['SENDGRID_APIKEY'],
+    enable_starttls_auto: true
   }
+
+  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :sparkpost
+
+  # # Action Mailer config setting
+  # config.action_mailer.smtp_settings = {
+  #   user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
+  #   password:   ENV['SPARKPOST_SMTP_PASSWORD'],
+  #   address:    ENV['SPARKPOST_SMTP_HOST'],
+  #   port:       ENV['SPARKPOST_SMTP_PORT'],
+  #   enable_starttls_auto: true,
+  #   domain:     'americo-inc.com',
+  #   authentication: 'plain'
+  # }
 
   # config.action_mailer.smtp_settings = {
   #   address:    'smtp.mandrillapp.com',

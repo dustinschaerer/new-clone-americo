@@ -31,8 +31,33 @@
   # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
 
+
+  # Action Mailer config setting
+  config.action_mailer.smtp_settings = {
+    address:    'smtp.sendgrid.net',
+    port:       '587',
+    domain:     'heroku.com',
+    authentication: 'plain',
+    user_name:  ENV['SENDGRID_USERNAME'],
+    password:   ENV['SENDGRID_APIKEY'],
+    enable_starttls_auto: true
+  }
+
   # Set email delivery configuration
-  config.action_mailer.delivery_method = :sparkpost
+  # config.action_mailer.delivery_method = :sparkpost
+  config-.action_mailer.delivery_method = :smtp
+
+
+  # # Action Mailer config setting
+  # config.action_mailer.smtp_settings = {
+  #   user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
+  #   password:   ENV['SPARKPOST_SMTP_PASSWORD'],
+  #   address:    ENV['SPARKPOST_SMTP_HOST'],
+  #   port:       ENV['SPARKPOST_SMTP_PORT'],
+  #   enable_starttls_auto: true,
+  #   domain:     'americo-inc.com',
+  #   authentication: 'plain'
+  # }
 
   # Action Mailer config setting
   # config.action_mailer.smtp_settings = {
@@ -44,17 +69,6 @@
   #   password:   ENV['MANDRILL_APIKEY'],
   #   enable_starttls_auto: true
   # }
-
-  # Action Mailer config setting
-  config.action_mailer.smtp_settings = {
-    user_name:  ENV['SPARKPOST_SMTP_USERNAME'],
-    password:   ENV['SPARKPOST_SMTP_PASSWORD'],
-    address:    ENV['SPARKPOST_SMTP_HOST'],
-    port:       ENV['SPARKPOST_SMTP_PORT'],
-    enable_starttls_auto: true,
-    domain:     'americo-inc.com',
-    authentication: 'plain'
-  }
 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
