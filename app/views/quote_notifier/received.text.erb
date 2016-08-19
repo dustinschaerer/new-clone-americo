@@ -1,20 +1,18 @@
 Dear <%= @quote.firstname %> <%= @quote.lastname %>
 
-Thank you for your recent Quote submission to Americo.
+Thank you for your recent Quote submission to Americo and for considering Americo products.
 
-Thank you for considering Americo products. For your convenience, the item(s) you requested are listed below.
-
-Quantity x Product Type
------------------------
-<%= render @quote.lines -%>
------------------------
-
-Your updated quote will include any necessary Sales Taxes and the Shipping Cost to the submitted address.
-
-We'll send you a separate e-mail once we have priced all the items in your quote.
+We'll send you a notification e-mail once we have priced all the items in your quote.
 Thank you for being our customer!
 
 Sincerely,
 Ken
 
 http://www.americo-inc.com
+
+For your convenience, the item(s) you requested are listed below.
+
+Quantity x Product Type
+-----------------------
+<%= render @quote.lines -%>
+-----------------------

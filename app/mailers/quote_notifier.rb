@@ -13,6 +13,11 @@ class QuoteNotifier < ActionMailer::Base
     mail to: quote.email, subject: 'Pricing Complete on Americo Quote'
   end
 
+  def priced_new(quote)
+    @quote = quote
+    mail to: "dustinschaerer@gmail.com", subject: 'Pricing Complete on Americo Quote'
+  end
+
   def question(quote, current_user)
     @quote = quote
     @current_user = current_user
@@ -28,6 +33,12 @@ class QuoteNotifier < ActionMailer::Base
     @quote = quote
     @user = @quote.user_id
     mail to: quote.email, subject: 'Americo Quote Follow Up'
+  end
+
+  def quote_followup_detail(quote)
+    @quote = quote
+    @user = @quote.user_id
+    mail to: quote.email, subject: 'Americo Quote Follow Up Detail'
   end
 
 end

@@ -28,8 +28,8 @@
   config.assets.debug = false
 
   # Add mailer config options for Devise
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # config.action_mailer.default_url_options = { :host => 'www.americo-inc.com' }
 
   # Action Mailer config setting
   config.action_mailer.smtp_settings = {
@@ -42,11 +42,9 @@
     enable_starttls_auto: true
   }
 
-
   # Set email delivery configuration
   # config.action_mailer.delivery_method = :sparkpost
-  config-.action_mailer.delivery_method = :smtp
-
+  config.action_mailer.delivery_method = :smtp
 
   # # Action Mailer config setting
   # config.action_mailer.smtp_settings = {

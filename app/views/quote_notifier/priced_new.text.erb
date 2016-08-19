@@ -1,0 +1,24 @@
+Dear <%= @quote.firstname %> <%= @quote.lastname %>
+
+We have finished pricing your recent Quote! Here is a shortened summary of the pricing for the items you requested.  Call us at 1.800.626.2350 and let us answer any questions you have. We are happy to provide you with any additional pricing information you would like.
+
+<% @quote.lines.each do |line| %>
+  Product: <%= line.try(:quote_product_name).upcase %>
+  Color: <%= image_tag(line.color.name) if line.color.name %>
+  Unit Price: <%= number_to_currency(line.price) %>
+  Quantity: <%= line.quantity %>
+  Total Price: <%= number_to_currency(line.total_price) %>
+  --------------------------------
+<% end %>
+
+Sub-Total: <%= number_to_currency(@quote.subtotal) %>
+Shipping: <%= number_to_currency(@quote.shipping) %>
+Sales Tax: <%= number_to_currency(@quote.sales_tax) %>
+Total: <%= number_to_currency(@quote.total) %>
+
+
+Please review your full quote here:
+<%= quote_url(@quote) %>
+
+To purchase this quote:
+<%= link_to "Purchase Now", new_purchase_url(quote_id: @quote.id) %>
