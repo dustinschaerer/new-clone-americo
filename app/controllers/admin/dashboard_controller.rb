@@ -65,6 +65,11 @@ class Admin::DashboardController < AdminController
     @purchases = Purchase.all.order(id: :desc).limit(10)
   end
 
+  def template_trial
+    quote = Quote.find(280)
+    QuoteNotifier.priced_new(quote).deliver
+  end
+
   def user_traffic
   end
 
