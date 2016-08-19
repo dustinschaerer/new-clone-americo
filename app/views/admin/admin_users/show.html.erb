@@ -60,5 +60,9 @@
 
 </div>
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br>
+<% if @admin_user.id == 3 %>
+<%= link_to "Try out email template", admin_template_trial_path %>
+<% end %>
+<br><br><br><br><br><br><br><br>
 
