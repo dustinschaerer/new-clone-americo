@@ -15,6 +15,11 @@ class QuoteNotifier < ActionMailer::Base
 
   def priced_new(quote)
     @quote = quote
+    @quote.lines.each do |line|
+      # line.color_image_url
+      # attachments.inline['patch.png'] = File.read('path/to/image.png')
+      attachments.inline[File.basename(line.color_image_url)] = File.read(line.color_image_url)
+    end
     mail to: "dustinschaerer@gmail.com", subject: 'Pricing Complete on Americo Quote'
   end
 
