@@ -44,7 +44,7 @@
                 <td align="left" valign="top">
                   <p style="margin-top:20px;">We have finished pricing your recent Quote! Here is a shortened summary of the pricing for the items you requested.</p>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
@@ -54,7 +54,7 @@
                     </v:roundrect>
                   <![endif]--></div>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
@@ -81,7 +81,7 @@
               <% @quote.lines.each do |line|  %>
               <tr>
                 <td width="100" height="100" align="center" valign="top"><%= line.try(:quote_product_name).upcase %></td>
-                <td width="100" height="100" align="center" valign="top"><%= image_tag(line.color_image_url) if line.color_id %></td>
+                <td width="100" height="100" align="center" valign="top"><%= image_url(line.color_image_url) if line.color_id %></td>
                 <td width="100" height="100" align="center" valign="top"><%= line.quantity %></td>
                 <td width="100" height="100" align="center" valign="top">Unit Price: <%= number_to_currency(line.price) %><br>
                   Total Price: <%= number_to_currency(line.total_price) %></td>
@@ -121,7 +121,7 @@
               <tr>
                 <td align="left" valign="ytop"><p style="margin-top:20px;"></p>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
@@ -131,7 +131,7 @@
                     </v:roundrect>
                   <![endif]--></div>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
