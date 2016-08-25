@@ -115,7 +115,9 @@ Americo::Application.routes.draw do
     get 'visits', to: 'dashboard#visits', as: '/visits'
     get 'visitor_stats', to: 'dashboard#visitor_stats', as: '/visitor_stats'
     get 'email_manager', to: 'email_messages#email_manager', as: '/email_manager'
-    get 'template_trial', to: 'dashboard#template_trial', as: '/template_trial'
+    # get 'template_trial', to: 'dashboard#template_trial', as: '/template_trial'
+    # get 'quote_followup_detail', to: 'dashboard#quote_followup_detail', as: '/quote_followup_detail'
+    # get 'quote_question', to: 'dashboard#quote_question', as: '/quote_question'
 
     resources :sent_emails
 
@@ -154,6 +156,9 @@ Americo::Application.routes.draw do
         get 'recalculate'
         get 'send_priced_email'
         get 'send_question_email'
+        get 'template_trial'
+        get 'quote_followup_detail'
+        get 'quote_question_new'
       end
     end
     resources :purchases do

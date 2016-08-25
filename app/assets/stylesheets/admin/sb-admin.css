@@ -297,6 +297,15 @@ ul.alert-dropdown {
     color: #446e9b;
 }
 
+.panel-primary a.question-btn {
+    color: #ffffff;
+}
+
+.panel-primary a.question-btn:hover {
+    color: #eeeeee;
+}
+
+
 .panel-primary a:hover {
     color: #28415B;
 }

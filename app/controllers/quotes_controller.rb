@@ -1,12 +1,13 @@
 class QuotesController < ApplicationController
 
   before_action :authenticate_admin_user!, :except => [:new, :create, :show, :edit, :update]
+  before_filter :authenticate_user!, unless: :current_admin_user
   include CurrentCart
   include CurrentQuoteholder
   before_action :set_quoteholder
   before_action :set_cart, only: [:show, :new, :create]
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, unless: :current_admin_user
+
 
   # GET /quotes
   # GET /quotes.json

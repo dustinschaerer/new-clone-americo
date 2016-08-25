@@ -974,3 +974,10 @@ body .galleria-thumbnails-container {
 #user_form .radio label, .checkbox label {
   font-weight: bold;
 }
+
+@media (min-width: 768px) {
+  #quoteModal .modal-dialog {
+    width: 80%;
+    margin: 30px auto;
+  }
+}

@@ -15,18 +15,20 @@ class QuoteNotifier < ActionMailer::Base
 
   def priced_new(quote)
     @quote = quote
-    @quote.lines.each do |line|
-      img_path = 'app/assets/images/' + line.color_image_url
-      attachments.inline[File.basename(line.color_image_url)] = File.read(img_path)
-    end
-
-    mail to: "dustinschaerer@gmail.com", subject: 'Pricing Complete on Americo Quote'
+    mail to: "dustinschaerer@gmail.com", subject: 'Your Pricing on your Americo Quote'
   end
 
   def question(quote, current_user)
     @quote = quote
     @current_user = current_user
     mail to: quote.email, subject: 'Question about your Americo Quote'
+  end
+
+  def quote_question_new(quote, user)
+    @quote = quote
+    @current_user = user
+    # mail to: quote.email, subject: 'Question about your Americo Quote'
+    mail to: "dustinschaerer@gmail.com", subject: 'Question about your Americo Quote'
   end
 
   def notify_admin(quote)
@@ -43,7 +45,8 @@ class QuoteNotifier < ActionMailer::Base
   def quote_followup_detail(quote)
     @quote = quote
     @user = @quote.user_id
-    mail to: quote.email, subject: 'Americo Quote Follow Up Detail'
+    # mail to: quote.email, subject: 'Americo Quote is Ready for Purchase'
+    mail to: "dustinschaerer@gmail.com", subject: 'Americo Quote is Ready for Purchase'
   end
 
 end

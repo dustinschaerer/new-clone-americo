@@ -22,7 +22,7 @@
 </head>
 <body style="font-family: Arial,Helvetica, sans-serif">
 
-<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable" style="color:#000000;">
   <tr>
     <td align="center" valign="top">
       <table border="0" cellpadding="0" cellspacing="0" width="400" id="emailContainer">
@@ -31,8 +31,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
               <tr>
                 <td align="center" valign="top">
-                  <div><img class="image_fix" src="http://americo-test.us/images-email/logo.png" style="text-align: center;" alt=""></div>
-                </td>
+                  <img src="http://americo-test.us/americo-logo.png" style="text-align:center;width:192px;height:48x;" /></td>
               </tr>
             </table>
           </td>
@@ -41,27 +40,28 @@
           <td align="center" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
               <tr>
-                <td align="left" valign="top"><p style="margin-top:20px;">If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you make the right decision.</p>
+                <td align="left" valign="top">
+                  <p style="margin-top:20px;color:#000000;">You should have received pricing for your recent Quote #<%= @quote.id %>. If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you find the perfect product for your needs.</p>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
-                        <%= link_to "Purchase Now", quote_url(@quote), { style: "background-color:#BF2C37;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:170px;-webkit-text-size-adjust:none;" } %>
+                        <%= link_to "Purchase Now", new_purchase_url(quote_id: @quote.id), { style: "background-color:#BF2C37;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:45px;text-align:center;text-decoration:none;width:198px;-webkit-text-size-adjust:none;" } %>
                     <!--[if mso]>
                       </center>
                     </v:roundrect>
-                  <![endif]--></div>
+                  <![endif]--></span>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
-                        <%= link_to "View Quote", quote_url(@quote), { style: "background-color:#446e9b;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:170px;-webkit-text-size-adjust:none;" } %>
+                        <%= link_to "View Quote", quote_url(@quote), { style: "background-color:#446e9b;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:45px;text-align:center;text-decoration:none;width:198px;-webkit-text-size-adjust:none;" } %>
                     <!--[if mso]>
                       </center>
                     </v:roundrect>
-                  <![endif]--></div>
+                  <![endif]--></span>
 
                 </td>
               </tr>
@@ -74,16 +74,28 @@
         </tr>
 
         <tr>
+          <td>Here is a summary of your quote for your convenience:</td>
+        </tr>
+
+        <tr>
+          <td><hr>QUOTE ID# <%= @quote.id %><hr></td>
+        </tr>
+
+        <tr>
+          <td style="margin-top:15px;">&nbsp;</td>
+        </tr>
+
+        <tr>
           <td align="left" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailGallery">
 
-              <%= @quote.lines.each do |line|  %>
+              <% @quote.lines.each do |line|  %>
               <tr>
-                <td width="100" height="100" align="center" valign="top"><%= line.try(:quote_product_name).upcase %></td>
-                <td width="100" height="100" align="center" valign="top"><%= image_tag(line.color_image_url) if line.color_id %></td>
-                <td width="100" height="100" align="center" valign="top"><%= line.quantity %></td>
-                <td width="100" height="100" align="center" valign="top">Unit Price: <%= number_to_currency(line.price) %><br>
-                  Total Price: <%= number_to_currency(line.total_price) %></td>
+                <td width="120" height="20" align="left" valign="top">Product</td>
+                <td width="100" height="20" align="center" valign="top">Color
+                </td>
+                <td width="80" height="20" align="center" valign="top">Quantity</td>
+                <td width="100" height="20" align="right" valign="top">Price</td>
               </tr>
               <% end %>
 
@@ -92,8 +104,34 @@
         </tr>
 
         <tr>
+          <td style="margin-top:15px;">&nbsp;</td>
+        </tr>
+
+        <tr>
           <td align="left" valign="top">
-            <table border="0" cellpadding="18" cellspacing="0" width="100%" id="emailGallery">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailGallery">
+
+              <% @quote.lines.each do |line|  %>
+              <tr>
+                <td width="120" height="100" align="left" valign="top"><%= line.try(:quote_product_name).capitalize %></td>
+                <td width="100" height="100" align="center" valign="top"><% if line.color_id %><img src='<%= "http://americo-test.us/" + line.color.image_url %>' style='width:100px;height:100px;'><% end %>
+                </td>
+                <td width="80" height="100" align="center" valign="top">&times;<%= line.quantity %></td>
+                <td width="100" height="100" align="right" valign="top">Unit Price: <%= number_to_currency(line.price) %><br><br>
+                  Total Price: <%= number_to_currency(line.total_price) %></td>
+              </tr>
+              <% end %>
+
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="margin-top:12px;">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td align="left" valign="top">
+            <table border="0" cellpadding="4" cellspacing="0" width="100%" id="emailGallery">
               <tr>
                 <td width="100" align="left" valign="top">Sub-Total:</td>
                 <td width="300" align="left" valign="top"><%= number_to_currency(@quote.subtotal) %></td>
@@ -118,27 +156,27 @@
           <td align="center" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
               <tr>
-                <td align="left" valign="ytop"><p style="margin-top:20px;"></p>
+                <td align="left" valign="ytop"><p style="margin-top:20px;">
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
-                        <%= link_to "Purchase Now", quote_url(@quote), { style: "background-color:#BF2C37;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:170px;-webkit-text-size-adjust:none;" } %>
+                        <%= link_to "Purchase Now", new_purchase_url(quote_id: @quote.id), { style: "background-color:#BF2C37;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:45px;text-align:center;text-decoration:none;width:198px;-webkit-text-size-adjust:none;" } %>
                     <!--[if mso]>
                       </center>
                     </v:roundrect>
-                  <![endif]--></div>
+                  <![endif]--></span>
                   <span style="display:inline-block;"><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:200px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
                       <center>
                     <![endif]-->
-                        <%= link_to "View Quote", quote_url(@quote), { style: "background-color:#446e9b;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:170px;-webkit-text-size-adjust:none;" } %>
+                        <%= link_to "View Quote", quote_url(@quote), { style: "background-color:#446e9b;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:45px;text-align:center;text-decoration:none;width:198px;-webkit-text-size-adjust:none;" } %>
                     <!--[if mso]>
                       </center>
                     </v:roundrect>
-                  <![endif]--></div>
+                  <![endif]--></span>
 
                 </td>
               </tr>

@@ -1,6 +1,7 @@
 class Admin::QuotesController < AdminController
 
-  before_action :set_quote, only: [:show, :edit, :update, :destroy, :recalculate, :send_priced_email, :send_question_email]
+  before_action :set_quote, only: [:show, :edit, :update, :destroy, :recalculate, :send_priced_email, :send_question_email,
+                :template_trial, :quote_question_new, :quote_followup_detail]
 
   # GET /quotes
   # GET /quotes.json
@@ -73,6 +74,23 @@ class Admin::QuotesController < AdminController
     else
       render :back, :notice => "ERROR: Could not deliver email message."
     end
+  end
+
+
+  def template_trial
+    QuoteNotifier.priced_new(@quote).deliver
+    redirect_to [:admin, @quote], :notice => "NEW Quote Priced Email message sent to customer."
+  end
+
+  def quote_followup_detail
+    QuoteNotifier.quote_followup_detail(@quote).deliver
+    redirect_to [:admin, @quote], :notice => "NEW Quote Followup Email message sent to customer."
+  end
+
+  def quote_question_new
+    @user = @quote.user
+    QuoteNotifier.quote_question_new(@quote, @user).deliver
+    redirect_to [:admin, @quote], :notice => "NEW Quote Question Email message sent to customer."
   end
 
     private

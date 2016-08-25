@@ -159,14 +159,23 @@
       </div>
       <div class="panel-body">
         <%= best_in_place @quote, :question, :as => :textarea, :nil => "Click here to type a question..." %>
-
-
-        <%= link_to send_question_email_admin_quote_path, :class => "btn btn-success pull-right"  do %>
+        <%= link_to send_question_email_admin_quote_path, :class => "question-btn btn btn-success btn-med pull-right"  do %>
            <i class="glyphicon glyphicon-paper-plane"></i> Send Customer Question Now
         <% end %>
-
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top:15px;">
+  <div class="col-xs-12">
+    <h4>WARNING: Do not click these links, they are for testing only.</h4>
+    <br><br>
+      <%= link_to "Send priced email preview to special recipients", template_trial_admin_quote_path(@quote.id) %>
+    <br><br>
+      <%= link_to "Send question email to special recipients", quote_question_admin_quote_path(@quote.id, @user) %>
+    <br><br>
+      <%= link_to "Send quote followup detail to special recipients",  quote_followup_detail_admin_quote_path(@quote.id) %>
   </div>
 </div>
 

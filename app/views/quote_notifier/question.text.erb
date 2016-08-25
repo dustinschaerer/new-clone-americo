@@ -9,7 +9,33 @@ Dear <%= @quote.firstname.capitalize %> <%= @quote.lastname.capitalize %>,
 Reply to Question: <%= edit_quote_url(@quote) %>
 View Quote: <%= quote_url(@quote) %>
 
+--------------------------------
+QUOTE ID# <%= @quote.id %>
+--------------------------------
+<% @quote.lines.each do |line| %>
+  Product: <%= line.try(:quote_product_name).upcase %>
+  Color:  <%= line.try(:color).try(:name) %>
+  Quantity: <%= line.quantity %>
+  Unit Price: <%= number_to_currency(line.price) %>
+  Total Price: <%= number_to_currency(line.total_price) %>
+  --------------------------------
+<% end %>
+
+Sub-Total: <%= number_to_currency(@quote.subtotal) %>
+Shipping: <%= number_to_currency(@quote.shipping) %>
+Sales Tax: <%= number_to_currency(@quote.sales_tax) %>
+Total: <%= number_to_currency(@quote.total) %>
+
+--------------------------------
+
+To purchase this quote:
+<%= new_purchase_url(quote_id: @quote.id) %>
+
+Please review your full quote here:
+<%= quote_url(@quote) %>
+
 You can reply to this email message directly or review this Quote and your entire Account history here: <%= user_url(@current_user) %>
+
 
 Sincerely,
 Ken
