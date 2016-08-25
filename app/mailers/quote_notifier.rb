@@ -15,7 +15,7 @@ class QuoteNotifier < ActionMailer::Base
 
   def priced_new(quote)
     @quote = quote
-    mail to: "dustinschaerer@gmail.com", subject: 'Your Pricing on your Americo Quote'
+    mail to: ["dustinschaerer@gmail.com", "ken@americo-inc.com"], subject: 'Your Pricing on your Americo Quote'
   end
 
   def question(quote, current_user)
@@ -28,7 +28,7 @@ class QuoteNotifier < ActionMailer::Base
     @quote = quote
     @current_user = user
     # mail to: quote.email, subject: 'Question about your Americo Quote'
-    mail to: "dustinschaerer@gmail.com", subject: 'Question about your Americo Quote'
+    mail to: ["dustinschaerer@gmail.com", "ken@americo-inc.com"], subject: 'Question about your Americo Quote'
   end
 
   def notify_admin(quote)
@@ -46,7 +46,7 @@ class QuoteNotifier < ActionMailer::Base
     @quote = quote
     @user = @quote.user_id
     # mail to: quote.email, subject: 'Americo Quote is Ready for Purchase'
-    mail to: "dustinschaerer@gmail.com", subject: 'Americo Quote is Ready for Purchase'
+    mail to: ["dustinschaerer@gmail.com", "ken@americo-inc.com"], subject: 'Americo Quote is Ready for Purchase'
   end
 
 end

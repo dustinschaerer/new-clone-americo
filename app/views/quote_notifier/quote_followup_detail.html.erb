@@ -41,7 +41,8 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
               <tr>
                 <td align="left" valign="top">
-                  <p style="margin-top:20px;color:#000000;">You should have received pricing for your recent Quote #<%= @quote.id %>. If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you find the perfect product for your needs.</p>
+                  <p style="margin-top:20px;color:#000000;"><%= @quote.firstname.capitalize %> <%= @quote.lastname.capitalize %>,</p>
+                  <p style="color:#000000;">You should have received pricing for your recent Quote #<%= @quote.id %>. If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you find the perfect product for your needs.</p>
                   <span style="display:inline-block;"><!--[if mso]>
                     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.americo-inc.com" style="height:53px;v-text-anchor:middle;width:190px;" arcsize="8%" stroke="f" fillcolor="#BF2C37">
                       <w:anchorlock/>
