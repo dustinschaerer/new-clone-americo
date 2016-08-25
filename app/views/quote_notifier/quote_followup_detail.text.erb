@@ -1,0 +1,28 @@
+Dear <%= @quote.firstname %> <%= @quote.lastname %>
+
+You should have received pricing for your recent Quote #<%= @quote.id %>. If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you find the perfect product for your needs.
+
+Here is a summary of your quote for your convenience:
+--------------------------------
+QUOTE ID# <%= @quote.id %>
+--------------------------------
+<% @quote.lines.each do |line| %>
+  Product: <%= line.try(:quote_product_name).upcase %>
+  Color:  <%= line.try(:color).try(:name) %>
+  Quantity: <%= line.quantity %>
+  Unit Price: <%= number_to_currency(line.price) %>
+  Total Price: <%= number_to_currency(line.total_price) %>
+  --------------------------------
+<% end %>
+
+Sub-Total: <%= number_to_currency(@quote.subtotal) %>
+Shipping: <%= number_to_currency(@quote.shipping) %>
+Sales Tax: <%= number_to_currency(@quote.sales_tax) %>
+Total: <%= number_to_currency(@quote.total) %>
+
+
+To purchase this quote:
+<%= new_purchase_url(quote_id: @quote.id) %>
+
+Please review your full quote here:
+<%= quote_url(@quote) %>
