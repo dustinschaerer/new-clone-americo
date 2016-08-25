@@ -10,10 +10,8 @@ task :send_quote_followup => :environment do
 
   uniqued.each do |quote|
     purchase = Purchase.find_by_quote_id(quote)
-    quote.status == "Offline-Purchased"
     unless quote.status == "Offline-Purchased" || purchase.present? || quote.status == "Purchased"
-      QuoteNotifier.quote_followup_detail(quote).deliver
+      QuoteNotifier.quote_followup(quote).deliver
     end
-    # QuoteNotifier.quote_followup_detail(quote).deliver unless purchase.present?
 	end
 end

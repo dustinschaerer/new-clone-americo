@@ -1,13 +1,13 @@
 Dear <%= @quote.firstname %> <%= @quote.lastname %>
 
-We have finished pricing your recent Quote! Here is a shortened summary of the pricing for the items you requested.  Call us at 1.800.626.2350 and let us answer any questions you have. We are happy to provide you with any additional pricing information you would like.
+Our team has finished pricing your recent Quote! Here is a shortened summary of the pricing for the items you requested.  Call us at 1.800.626.2350 and let us answer any questions you have. We are happy to provide you with any additional pricing information you would like.
 
 --------------------------------
 QUOTE ID# <%= @quote.id %>
 --------------------------------
 <% @quote.lines.each do |line| %>
   Product: <%= line.try(:quote_product_name).upcase %>
-  Color:  <%= line.try(:color).try(:name) %>
+  <% if line.color %>Color:  <%= line.try(:color).try(:name) %><% end %>
   Quantity: <%= line.quantity %>
   Unit Price: <%= number_to_currency(line.price) %>
   Total Price: <%= number_to_currency(line.total_price) %>
@@ -20,8 +20,12 @@ Sales Tax: <%= number_to_currency(@quote.sales_tax) %>
 Total: <%= number_to_currency(@quote.total) %>
 
 
-To purchase this quote:
+To purchase this quote, click here:
 <%= new_purchase_url(quote_id: @quote.id) %>
 
 Please review your full quote here:
 <%= quote_url(@quote) %>
+
+Sincerely,
+Ken
+ken@americo-inc.com

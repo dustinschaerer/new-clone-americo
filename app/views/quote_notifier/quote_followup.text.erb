@@ -1,13 +1,28 @@
-Dear <%= @quote.firstname.capitalize %> <%= @quote.lastname.capitalize %>,
+Dear <%= @quote.firstname %> <%= @quote.lastname %>
 
-You should have received pricing on your recent Americo Quote request. If you have not, please contact us at 1-800-626-2350.
+You should have received pricing for your recent Americo Quote request #<%= @quote.id %> you requested from americo-inc.com. If you haven't made your decision yet, we would love to answer any questions you have or provide you with any additional pricing information. Call us at 1.800.626.2350 so we can help you find the perfect product for your needs.
 
-If you're happy with the pricing on your quote, you can easily purchase it online, anytime at this link: <%= user_url(@user) %>
+Here is a summary of your quote for your convenience:
+--------------------------------
+QUOTE ID# <%= @quote.id %>
+--------------------------------
+<% @quote.lines.each do |line| %>
+  Product: <%= line.try(:quote_product_name).upcase %>
+  Color:  <%= line.try(:color).try(:name) %>
+  Quantity: <%= line.quantity %>
+  Unit Price: <%= number_to_currency(line.price) %>
+  Total Price: <%= number_to_currency(line.total_price) %>
+  --------------------------------
+<% end %>
 
-If you need additional pricing or have any questions about your quote, please contact us at 1-800-626-2350.
+Sub-Total: <%= number_to_currency(@quote.subtotal) %>
+Shipping: <%= number_to_currency(@quote.shipping) %>
+Sales Tax: <%= number_to_currency(@quote.sales_tax) %>
+Total: <%= number_to_currency(@quote.total) %>
 
-Sincerely,
-Ken
-ken@americo-inc.com
 
-If you have already made a recent purchase, please disregard this message, and thank you for your business.
+To purchase this quote:
+<%= new_purchase_url(quote_id: @quote.id) %>
+
+Please review your full quote here:
+<%= quote_url(@quote) %>

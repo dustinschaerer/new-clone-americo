@@ -1,7 +1,3 @@
--------------------------
-QUOTE ID# <%= @quote.id %>
---------------------------
-
 Dear <%= @quote.firstname.capitalize %> <%= @quote.lastname.capitalize %>,
 
 <%= @quote.question %>
@@ -34,8 +30,7 @@ To purchase this quote:
 Please review your full quote here:
 <%= quote_url(@quote) %>
 
-You can reply to this email message directly or review this Quote and your entire Account history here: <%= user_url(@current_user) %>
-
+You can reply to this email message directly, or review this Quote and your entire Account history here: <%= user_url(@current_user) %>
 
 Sincerely,
 Ken

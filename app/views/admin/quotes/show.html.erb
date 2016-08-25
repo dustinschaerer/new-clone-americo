@@ -16,8 +16,6 @@
 </div>
 <!-- /.row -->
 
-  <%= render 'layouts/messages' %>
-
 <div class="row" id="user-bg-row-quote">
   <div class="col-lg-12">
     <p class=""><a href="/admin/users/<%= @quote.user_id %>" class="user-email-link"><%= @quote.email %></a></p></div>
@@ -171,11 +169,15 @@
   <div class="col-xs-12">
     <h4>WARNING: Do not click these links, they are for testing only.</h4>
     <br><br>
-      <%= link_to "Send priced email preview to special recipients", template_trial_admin_quote_path(@quote.id) %>
-    <br><br>
-      <%= link_to "Send question email to special recipients", quote_question_new_admin_quote_path(@quote.id, @user) %>
-    <br><br>
-      <%= link_to "Send quote followup detail to special recipients",  quote_followup_detail_admin_quote_path(@quote.id) %>
+      <%=
+      #link_to "Send priced email preview to special recipients", template_trial_admin_quote_path(@quote.id)
+      %>
+      <%=
+      # link_to "Send question email to special recipients", quote_question_new_admin_quote_path(@quote.id, @user)
+      %>
+      <%=
+      # link_to "Send quote followup detail to special recipients",  quote_followup_detail_admin_quote_path(@quote.id)
+      %>
   </div>
 </div>
 

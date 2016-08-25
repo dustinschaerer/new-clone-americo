@@ -56,7 +56,7 @@ class Admin::QuotesController < AdminController
     #@quote = Quote.find(params[:id])
     @current_user_id = @quote.user_id
     @current_user = User.find(@current_user_id)
-    QuoteNotifier.priced(@quote, @current_user).deliver
+    QuoteNotifier.priced(@quote).deliver
     @quote.status = "Priced"
     if @quote.save!
       logger.debug "Priced Email message sent to customer."
@@ -78,12 +78,12 @@ class Admin::QuotesController < AdminController
 
 
   def template_trial
-    QuoteNotifier.priced_new(@quote).deliver
+    QuoteNotifier.priced(@quote).deliver
     redirect_to [:admin, @quote], :notice => "NEW Quote Priced Email message sent to customer."
   end
 
   def quote_followup_detail
-    QuoteNotifier.quote_followup_detail(@quote).deliver
+    QuoteNotifier.quote_followup(@quote).deliver
     redirect_to [:admin, @quote], :notice => "NEW Quote Followup Email message sent to customer."
   end
 
