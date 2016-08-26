@@ -16,24 +16,24 @@ class Line < ActiveRecord::Base
   delegate :name, to: :cover, prefix: true
   delegate :name, to: :shape, prefix: true
 
-  validates :quantity, presence: true, numericality: {:only_integer => true}
   validates :price, presence: true, numericality: true
 
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
-  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 72 }, if: :is_placemat?
+  # validates :quantity, presence: true, numericality: {:only_integer => true}
+  validates :quantity, presence: true, numericality: { greater_than: 0, only_integer: true }
+  validates :quantity, numericality: { greater_than_or_equal_to: 72 }, if: :is_placemat?
   validates :quantity, numericality: { greater_than_or_equal_to: 4 }, if: :is_value_one?
   validates :quantity, numericality: { greater_than_or_equal_to: 2 }, if: :is_value_two?
 
   validates :size_id, presence: true, if: :is_value?
 
   validates :shape_id, presence: true, if: :is_shape?
-  validates :shape_id, numericality: { greater_than: 0 }, if: :is_shape?
+  # validates :shape_id, numericality: { greater_than: 0 }, if: :is_shape?
   validates :cover_id, presence: true, if: :is_cover?
-  validates :cover_id, numericality: { greater_than: 0 }, if: :is_cover?
+  # validates :cover_id, numericality: { greater_than: 0 }, if: :is_cover?
   validates :series_id, presence: true, if: :is_series?
-  validates :series_id, numericality: { greater_than: 0 }, if: :is_series?
+  # validates :series_id, numericality: { greater_than: 0 }, if: :is_series?
   validates :color_id, presence: true, if: :is_color?
-  validates :color_id, numericality: { greater_than: 0 }, if: :is_color?
+  # validates :color_id, numericality: { greater_than: 0 }, if: :is_color?
   validates :width, presence: true, if: :is_width?
   validates :width, numericality: { greater_than: 0 }, if: :is_width?
   validates :width, numericality: { greater_than: 0 }, if: :is_americlear?
@@ -50,7 +50,6 @@ class Line < ActiveRecord::Base
   validates :yards, presence: true, if: :is_yards?
   validates :yards, presence: true, numericality: { greater_than_or_equal_to: 5 }, if: :is_cut?
   validates :yards, presence: true, numericality: { less_than_or_equal_to: 25 }, if: :is_cut?
-
 
   def is_cut?
     (quote_product_id == 7) || (quote_product_id == 8) || (quote_product_id == 9)

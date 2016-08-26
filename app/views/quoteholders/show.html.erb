@@ -2,7 +2,7 @@
 
   <div class="panel-heading">
     <h3 class="panel-title"><h3 style="display:inline;">Your Quote Cart in Progress</h3> <%= link_to "Submit Quote for Pricing Now", new_quote_path, class: "btn btn-success inline pull-right" %>
-  </div>
+  &nbsp;&nbsp;&nbsp;  <%= link_to "Add Another Item to Quote", '/request_quote', class: "btn btn-primary inline pull-right", style: "margin-right: 10px;" %> &nbsp;&nbsp;&nbsp;  </div>
 
   <div class="panel-body">
     <% if (@quoteholder.lines.empty?) %>

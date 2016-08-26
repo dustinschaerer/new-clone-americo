@@ -1,13 +1,37 @@
 jQuery ->
-  colors = $('#line_color_id').html();
-  $('#line_series_id').change ->
+  if $('#line_series_id').val() == ""
+    $('#line_color_id').prop('disabled',true)
+  else
+    $('#line_color_id').prop('disabled',false)
+    colors = $('#line_color_id').html()
     series = $('#line_series_id :selected').text()
     options = $(colors).filter("optgroup[label='#{series}']").html()
     if options
       $('#line_color_id').html(options)
-      $('#line_color_id').prepend('<option selected="selected">Please select...</option>')
+      $('#line_color_id').prepend('<option value="" selected disabled>Please Choose</option>')
     else
       $('#line_color_id').empty()
+
+jQuery ->
+  colors = $('#line_color_id').html();
+  $('#line_series_id').change ->
+
+    if $('#line_series_id :selected').text() == "Choose Series"
+      # $('#line_color_id').prepend('<option value="" selected disabled>Please Choose</option>')
+    else
+      series = $('#line_series_id :selected').text()
+      options = $(colors).filter("optgroup[label='#{series}']").html()
+      if options
+        $('#line_color_id').html(options)
+        $('#line_color_id').prop('disabled',false)
+        $('#line_color_id').prepend('<option value="" selected disabled>Please Choose</option>')
+      else
+        $('#line_color_id').empty()
+
+      if $('#line_series_id').val() == ""
+        $('#line_color_id').prop('disabled',true)
+      else
+        $('#line_color_id').prop('disabled',false)
 
 jQuery ->
   $('#new_line').find('.form-inputs label:first').hide();

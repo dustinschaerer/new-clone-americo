@@ -116,6 +116,44 @@
 
   <div class="form-inputs">
     <%= f.collection_select :quote_product_id, QuoteProduct.all.order("name"), :id, :name, { selected: @qp_id, label: false  } %>
+        <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2|7|8|9|10|11|12|13|14|15|16|17">
+        <% if (@qp_id == '1') || (@qp_id == '7') || (@qp_id == '10') || (@qp_id == '14')%>
+          <%= f.collection_select(:series_id, Series.where("style_id = 1 OR style_id = 2").order("name").includes(:colors), :id, :name, {prompt: "Choose Series"} ) %>
+
+        <% elsif (@qp_id == '2') || (@qp_id == '8') || (@qp_id == '11') %>
+
+          <%= f.collection_select(:series_id, Series.where("style_id = 3").order("name").includes(:colors), :id, :name, {prompt: "Choose Series"} ) %>
+
+        <% elsif (@qp_id == '15') || (@qp_id == '16') %>
+
+          <%= f.collection_select(:series_id,  Series.where("style_id = 1 OR style_id = 2 OR style_id = 3").order("name").includes(:colors), :id, :name, {prompt: "Choose Series"} ) %>
+
+        <% elsif (@qp_id == '9') ||  (@qp_id == '12') %>
+          <%= f.collection_select(:series_id,  Series.where("style_id = 7").order("name").includes(:colors), :id, :name, {prompt: "Choose Series"} ) %>
+
+        <% elsif (@qp_id == '13') || (@qp_id == '17') %>
+          <%= f.collection_select(:series_id,  Series.where("style_id = 8").order("name").includes(:colors), :id, :name, {prompt: "Choose Series"} ) %>
+        <% end %>
+    </div>
+
+    <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2|7|8|9|10|11|12|13|14|15|16|17">
+        <% if (@qp_id == '1') || (@qp_id == '7') || (@qp_id == '10') || (@qp_id == '14')%>
+          <%= f.grouped_collection_select(:color_id, Series.where("style_id = 1 OR style_id = 2").order("name"), :colors, :name, :id, :name, {prompt: "Choose Color"}, {class: "form-control", disabled: true} ) %>
+
+        <% elsif (@qp_id == '2') || (@qp_id == '8') || (@qp_id == '11') %>
+          <%= f.grouped_collection_select(:color_id, Series.where("style_id = 3").order("name"), :colors, :name, :id, :name, {prompt: "Choose Color"}, {class: "form-control"} ) %>
+
+        <% elsif (@qp_id == '15') || (@qp_id == '16') %>
+
+          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 1 OR style_id = 2 OR style_id = 3").order("name"), :colors, :name, :id, :name, {prompt: "Choose Color"}, {class: "form-control"} ) %>
+
+        <% elsif (@qp_id == '9') ||  (@qp_id == '12') %>
+          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 7").order("name"), :colors, :name, :id, :name, {prompt: "Choose Color"}, {class: "form-control"} ) %>
+
+        <% elsif (@qp_id == '13') || (@qp_id == '17') %>
+          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 8").order("name"), :colors, :name, :id, :name, {prompt: "Choose Color"}, {class: "form-control"} ) %>
+        <% end %>
+    </div>
 
     <% if (@qp_id == '1') || (@qp_id == '2') || (@qp_id == '16') %>
     <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2|16">
@@ -163,50 +201,7 @@
       <%= f.number_field :height, placeholder: "Height (In Inches)" %>
     </div>
 
-    <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2|7|8|9|10|11|12|13|14|15|16|17">
-        <% if (@qp_id == '1') || (@qp_id == '7') || (@qp_id == '10') || (@qp_id == '14')%>
-          <%= f.collection_select(:series_id, Series.where("style_id = 1 OR style_id = 2").order("name").includes(:colors), :id, :name, {prompt: "Please  Select a Series before Selecting a Color"} ) %>
 
-        <% elsif (@qp_id == '2') || (@qp_id == '8') || (@qp_id == '11') %>
-
-          <%= f.collection_select(:series_id, Series.where("style_id = 3").order("name").includes(:colors), :id, :name, {prompt: "Please Select a Series before Selecting a Color"} ) %>
-
-        <% elsif (@qp_id == '15') || (@qp_id == '16') %>
-
-          <%= f.collection_select(:series_id,  Series.where("style_id = 1 OR style_id = 2 OR style_id = 3").order("name").includes(:colors), :id, :name, {prompt: "Please Select a Series before Selecting a Color"} ) %>
-
-        <% elsif (@qp_id == '9') ||  (@qp_id == '12') %>
-          <%= f.collection_select(:series_id,  Series.where("style_id = 7").order("name").includes(:colors), :id, :name, {prompt: "Please  Select a Series before Selecting a Color"} ) %>
-
-        <% elsif (@qp_id == '13') || (@qp_id == '17') %>
-          <%= f.collection_select(:series_id,  Series.where("style_id = 8").order("name").includes(:colors), :id, :name, {prompt: "Please  Select a Series before Selecting a Color"} ) %>
-        <% end %>
-    </div>
-
-    <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2|7|8|9|10|11|12|13|14|15|16|17">
-    <!--  <div class="form-group"><label class="col-sm-3 col-md-3 control-label" for="line_color_id">Color</label>
-        <div class="col-sm-9 col-md-9"> -->
-
-        <% if (@qp_id == '1') || (@qp_id == '7') || (@qp_id == '10') || (@qp_id == '14')%>
-          <%= f.grouped_collection_select(:color_id, Series.where("style_id = 1 OR style_id = 2").order("name"), :colors, :name, :id, :name, {prompt: "Please Select a Series above first"}, {class: "form-control"} ) %>
-
-        <% elsif (@qp_id == '2') || (@qp_id == '8') || (@qp_id == '11') %>
-          <%= f.grouped_collection_select(:color_id, Series.where("style_id = 3").order("name"), :colors, :name, :id, :name, {prompt: "Please Select a Series above first"}, {class: "form-control"} ) %>
-
-        <% elsif (@qp_id == '15') || (@qp_id == '16') %>
-
-          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 1 OR style_id = 2 OR style_id = 3").order("name"), :colors, :name, :id, :name, {prompt: "Please Select a Series above first"}, {class: "form-control"} ) %>
-
-        <% elsif (@qp_id == '9') ||  (@qp_id == '12') %>
-          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 7").order("name"), :colors, :name, :id, :name, {prompt: "Please Select a Series above first"}, {class: "form-control"} ) %>
-
-        <% elsif (@qp_id == '13') || (@qp_id == '17') %>
-          <%= f.grouped_collection_select(:color_id,  Series.where("style_id = 8").order("name"), :colors, :name, :id, :name, {prompt: "Please Select a Series above first"}, {class: "form-control"} ) %>
-        <% end %>
-
-<!--        </div>
-      </div> -->
-    </div>
 
     <div class="js-dependent-fields" data-select-id="line_quote_product_id" data-option-value="1|2">
       <%= f.form_group :umbrella, label: { text: "Umbrella Hole?" } do %>
@@ -294,20 +289,20 @@
         <div>For a quick reminder on how to measure for different table styles and accessories, choose from a table cover style below. For complete instructions, visit our <%= link_to 'measuring page', '/how_to_measure' %>.</div>
         <br>
 
-<div class="list-group">
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalDrapeRect"> Drape-Rectangular and Square</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalDrapeRound"> Drape-Round</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFitRect"> Fitted-Rectangular and Square</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFitRound"> Fitted-Round</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFloorRect"> To The Floor - Rectangular and Square</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFloorRound"> To The Floor - Round</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalBooth"> Booths</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalElasticRect"> Elastic Fit -Rectangular and Square</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalElasticRound"> Elastic Fit-Round</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalTopperRect"> Rectangular and Square</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalTopperRound"> Round</a>
-  <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalRectRunner"> Rectangular and Square Runner</a>
-</div>
+        <div class="list-group">
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalDrapeRect"> Drape-Rectangular and Square</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalDrapeRound"> Drape-Round</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFitRect"> Fitted-Rectangular and Square</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFitRound"> Fitted-Round</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFloorRect"> To The Floor - Rectangular and Square</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalFloorRound"> To The Floor - Round</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalBooth"> Booths</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalElasticRect"> Elastic Fit -Rectangular and Square</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalElasticRound"> Elastic Fit-Round</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalTopperRect"> Rectangular and Square</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalTopperRound"> Round</a>
+          <a href="#" class="addblack list-group-item" data-toggle="modal" data-target="#modalRectRunner"> Rectangular and Square Runner</a>
+        </div>
 
       </div>
     </div>
