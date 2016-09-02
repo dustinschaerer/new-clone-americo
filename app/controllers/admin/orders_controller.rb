@@ -70,8 +70,7 @@ class Admin::OrdersController < AdminController
 
   def send_shipped_email
     @current_user_id = @order.user_id
-    @current_user = User.find(@current_user_id)
-    OrderNotifier.shipped(@order, @current_user).deliver
+    OrderNotifier.shipped(@order).deliver
     if (@order.status == "Shipped")
       redirect_to admin_order_path(@order), {:notice => "WARNING: EMAIL MESSAGE SENT TO CUSTOMER AGAIN - Your order has Shipped Email was re-sent to #{@current_user.email}."}
     else

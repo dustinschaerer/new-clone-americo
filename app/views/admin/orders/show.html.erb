@@ -98,6 +98,17 @@
 </div>
 
 <div class="row">
+  <div class="col-xs-12 text-right">
+    <div class="btn-group">
+    <%= link_to send_shipped_email_admin_order_path, :class => "btn btn-danger btn-med"  do %>
+      <i class="glyphicon glyphicon-paper-plane"></i> Send Shipped Email to Customer Now and Update Purchase Status to Shipped
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="row top20">
   <div class="col-xs-12 col-lg-8">
     <div class="panel panel-dark">
       <div class="panel-heading">
@@ -105,7 +116,7 @@
       </div>
       <div class="panel-body">
         <%= best_in_place @order, :question, :as => :textarea, :place_holder => "Click here to type a message..." %>
-        <%= link_to send_question_email_admin_order_path(@order.id), :class => "btn btn-success pull-right"  do %>
+        <%= link_to send_question_email_admin_order_path(@order.id), :class => "order-btn btn btn-success pull-right"  do %>
            <i class="glyphicon glyphicon-paper-plane"></i> Send Customer Question Now
         <% end %>
 

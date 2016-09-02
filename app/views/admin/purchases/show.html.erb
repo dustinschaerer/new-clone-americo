@@ -186,7 +186,7 @@
       </div>
       <div class="panel-body">
         <%= best_in_place @purchase, :question, :as => :textarea, :place_holder => "Click here to type a question..." %>
-        <%= link_to send_question_email_admin_purchase_path(@purchase.id), :class => "btn btn-success pull-right"  do %>
+        <%= link_to send_question_email_admin_purchase_path(@purchase.id), :class => "purchase-btn btn btn-success pull-right"  do %>
            <i class="glyphicon glyphicon-paper-plane"></i> Send Customer Question Now
         <% end %>
       </div>

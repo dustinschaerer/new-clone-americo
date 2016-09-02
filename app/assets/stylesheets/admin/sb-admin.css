@@ -297,7 +297,7 @@ ul.alert-dropdown {
     color: #446e9b;
 }
 
-.panel-primary a.question-btn {
+.panel-primary a.question-btn, .panel-dark a.order-btn, .panel-red a.purchase-btn {
     color: #ffffff;
 }
 
