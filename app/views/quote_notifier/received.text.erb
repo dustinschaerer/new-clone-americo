@@ -20,3 +20,4 @@ Product: <%= line.try(:quote_product_name) %>
 <% if line.color %>Color:  <%= line.try(:color).try(:name) %><% end %>
 Quantity: <%= line.quantity %>
 --------------------------------
+<% end %>

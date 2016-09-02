@@ -41,11 +41,9 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
               <tr>
                 <td align="left" valign="top">
-                  <hr>
-                  <span style="color:#000000;">ORDER ID #<%= @order.id %></span>
-                  <hr>
+
                   <p style="margin-top:20px;color:#000000;">Dear <%= @order.firstname.capitalize %> <%= @order.lastname.capitalize %>,</p>
-                  <p style="margin-top:20px;color:#000000;">We have a question about your recent Americo Order.</p>
+                  <p style="margin-top:20px;color:#000000;">We have a question about your recent Americo Order #<%= @order.id %>.</p>
                   <p style="margin-top:20px;color:#000000;"><%= @order.question %></p>
 
                   <span style="display:inline-block;"><!--[if mso]>
@@ -96,9 +94,10 @@
           <td align="left" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailGallery">
               <tr>
-                <td width="150" height="20" align="left" valign="top">Swatch</td>
-                <td width="150" height="20" align="center" valign="top">Series</td>
-                <td width="80" height="20" align="center" valign="top">Color</td>
+                <td width="100" height="20" align="center" valign="top">Swatch</td>
+                <td width="100" height="20" align="center" valign="top">Style</td>
+                <td width="100" height="20" align="center" valign="top">Color</td>
+                <td width="100" height="20" align="center" valign="top">Series</td>
               </tr>
             </table>
           </td>
@@ -114,10 +113,10 @@
 
             <% @order.line_items.each do |line_item| %>
               <tr style="margin-top: 8px;">
-                <td width="150" height="100" align="left" valign="top"><img src='<%= "http://americo-test.us/" + line_item.color.image_url %>' style='width:100px;height:100px;'></td>
-                <td width="150" height="100" align="center" valign="top"><%= line_item.series_name %>
-                </td>
-                <td width="80" height="100" align="center" valign="top"><%= line_item.color_name %></td>
+                <td width="100" height="100" align="center" valign="top"><% if line_item.color_id %><img src='<%= "http://americo-test.us/" + line_item.color.image_url %>' style='width:100px;height:100px;'><% end %></td>
+                <td width="100" height="100" align="center" valign="top"><%= line_item.series_name %></td>
+                <td width="100" height="100" align="center" valign="top"><%= line_item.color_name %></td>
+                <td width="100" height="100" align="center" valign="top"><%= line_item.series.style.name %></td>
               </tr>
             <% end %>
 
