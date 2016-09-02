@@ -4,7 +4,7 @@ class QuoteNotifier < ActionMailer::Base
   def received(quote, current_user)
     @quote = quote
     @current_user = current_user
-    mail to: quote.email, subject: 'Americo Quote Confirmation'
+    mail to: quote.email, subject: 'Americo Quote Received'
   end
 
   def priced(quote)

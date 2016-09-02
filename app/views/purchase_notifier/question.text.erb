@@ -1,14 +1,8 @@
 Dear <%= @purchase.firstname %> <%= @purchase.lastname %>
 
-We have a question for you to review about your recent purchase Submission with Americo-Inc.com.
+We have a question for you to review about your recent purchase from Americo-Inc.com.
 
--------------------------
-Purchase ID# <%= @purchase.id %>
---------------------------
 <%= @purchase.question %>
------------------------
-
-View purchase: <%= purchase_url(@purchase) %>
 
 To respond, please reply directly to this email, or send to me an email at ken@americo-inc.com
 
@@ -17,5 +11,26 @@ You can always review this purchase and your entire account history here: <%= us
 Sincerely,
 Ken
 
-ken@americo-inc.com
-http://www.americo-inc.com
+https://www.americo-inc.com
+
+
+Here is a summary of your purchase:
+
+--------------------------------
+PURCHASE ID# <%= @purchase.id %>
+--------------------------------
+<% @purchase.lines.each do |line| %>
+Product: <%= line.try(:quote_product_name).upcase %>
+Color:  <%= line.try(:color).try(:name) %>
+Quantity: <%= line.quantity %>
+Unit Price: <%= number_to_currency(line.price) %>
+Total Price: <%= number_to_currency(line.total_price) %>
+--------------------------------
+<% end %>
+Sub-Total: <%= number_to_currency(@purchase.subtotal) %>
+Shipping: <%= number_to_currency(@purchase.shipping) %>
+Sales Tax: <%= number_to_currency(@purchase.sales_tax) %>
+Total: <%= number_to_currency(@purchase.total) %>
+--------------------------------
+
+View purchase: <%= purchase_url(@purchase) %>

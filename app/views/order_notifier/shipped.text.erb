@@ -4,7 +4,14 @@ Your Americo Swatch Order has Shipped!
 
 This notification is to let you know that we've shipped your recent Sample Swatch order containing:
 
-<%= render @order.line_items -%>
+--------------------------------
+ORDER ID# <%= @order.id %>
+--------------------------------
+<% @order.line_items.each do |line_item| %>
+Product: <%= line_item.series.name %>
+Color:  <%= line_item.color.name %>
+--------------------------------
+<% end %>
 
 If you do not receive your order in 7-10 business days, please contact us and let us know.
 

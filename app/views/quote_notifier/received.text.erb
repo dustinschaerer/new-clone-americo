@@ -1,4 +1,4 @@
-Dear <%= @quote.firstname %> <%= @quote.lastname %>
+Dear <%= @quote.firstname %> <%= @quote.lastname %>,
 
 Thank you for your recent Quote submission to Americo and for considering Americo products.
 
@@ -12,7 +12,11 @@ http://www.americo-inc.com
 
 For your convenience, the item(s) you requested are listed below.
 
-Quantity x Product Type
------------------------
-<%= render @quote.lines -%>
------------------------
+--------------------------------
+QUOTE ID# <%= @quote.id %>
+--------------------------------
+<% @quote.lines.each do |line| %>
+Product: <%= line.try(:quote_product_name) %>
+<% if line.color %>Color:  <%= line.try(:color).try(:name) %><% end %>
+Quantity: <%= line.quantity %>
+--------------------------------

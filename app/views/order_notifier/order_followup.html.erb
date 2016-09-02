@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Americo Inc.</title>
+  <!-- Targeting Windows Mobile -->
+  <!--[if IEMobile 7]>
+  <style type="text/css">
+  </style>
+  <![endif]-->
+  <!-- ***********************************************
+  ****************************************************
+  END MOBILE TARGETING
+  ****************************************************
+  ************************************************ -->
+  <!--[if gte mso 9]>
+    <style>
+    /* Target Outlook 2007 and 2010 */
+    </style>
+  <![endif]-->
+</head>
+<body style="font-family: Arial,Helvetica, sans-serif">
+
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable" style="color:#000000;">
+  <tr>
+    <td align="center" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0" width="400" id="emailContainer">
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
+              <tr>
+                <td align="center" valign="top">
+                  <a href="https://www.americo-inc.com"><img src="http://americo-test.us/americo-logo.png" style="text-align:center;width:192px;height:48x;" /></a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
+              <tr>
+                <td align="left" valign="top">
+                  <p style="margin-top:20px;color:#000000;">Dear <%= @order.firstname %>,</p>
+                  <p style="color:#000000;">You should have received your Americo swatches/catalog by now.</p>
+                  <p style="color:#000000;">For pricing, you can easily request a quote here: <a href="https://www.americo-inc.com/request_quote">https://www.americo-inc.com/request_quote</a></p>
+                  <p style="color:#000000;">Or you can call us toll-free at 1-800-626-2350 and we will provide you with any pricing or product information you'd like. If larger samples are needed to make your final decision, please contact us by email or call us toll-free at 1-800-626-2350.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="margin-top:15px;">&nbsp;</td>
+        </tr>
+
+         <tr>
+          <td>Here is a summary of your order for your convenience:</td>
+        </tr>
+
+        <tr>
+          <td><hr>ORDER #<%= @order.id %><hr></td>
+        </tr>
+
+        <tr>
+          <td style="margin-top:15px;">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td align="left" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailGallery">
+              <tr>
+                <td width="150" height="20" align="left" valign="top">Swatch</td>
+                <td width="150" height="20" align="center" valign="top">Series</td>
+                <td width="80" height="20" align="center" valign="top">Color</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="margin-top:15px;">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td align="left" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailGallery">
+
+              <% @order.line_items.each do |line_item| %>
+              <tr>
+                <td width="150" height="100" align="left" valign="top"><img src='<%= "http://americo-test.us/" + line_item.color.image_url %>' style='width:100px;height:100px;'></td>
+                <td width="150" height="100" align="center" valign="top"><%= line_item.series_name %>
+                </td>
+                <td width="80" height="100" align="center" valign="top"><%= line_item.color_name %></td>
+              </tr>
+              <% end %>
+
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="margin-top:12px;">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailFooter" style="font-size:13px;">
+              <tr>
+                <td align="left">
+                  <p style="color:#000000">Thanks for shopping with Americo!<br><br>
+                  Sincerely,<br>
+                  Ken<br>
+                  ken@americo-inc.com</p>
+                </td>
+              </tr>
+              <tr>
+                <td height="15">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="center">&copy;2016 Americo Inc. | 601 East Barton | West Memphis, AR 72301</td>
+              </tr>
+              <tr>
+                <td align="center">Contact Us by Phone:  <span class="mobile_link">1.800.626.2350</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- End of wrapper table -->
+</body>
+</html>
